@@ -1,0 +1,28 @@
+COMANDI GIT
+
+git init -> viene creata la repository (dove vengono immagazzinate tutte le info del nostro codice tipo versioni, date ecc:
+		possono essere sia locali che remoti.
+git status -> stato della nostra applicazione e file
+git add -> aggiungere file che poi dovranno essere messi nella repository
+git rm --cached -> togliere file che non dovranno essere messi nella repository
+git commit -> aggiungere file alla repository
+	1) Scrivere i per inserire il messaggio
+	2) Premere esc quando il messaggio è finit
+	3) Scrivere :wq per uscire dal menù
+git commit -m -> fa la stessa cosa del commit normale ma più rapido
+git push -> viene usato per mandare il nostro codice nella repository
+git pull -> viene usato per prendere il codice di altri dalla repository
+git clone -> clona codice
+git --version -> versione di git
+git config --local(o global) user.name "Saverio" -> impostare un username per un singolo file o per tutti
+git config --local(o global) user.email "savcreaa.kr99gmail.com" -> impostare una mail per un singolo file o per tutti
+git checkout nomefile.estensione -> ripristina il file all'ultimo commit
+git branch -> stampa tutti i branch presenti
+git branch nomebranch -> crea un nuovo branch
+git checkout nomebranch -> cambia branch
+git merge nomebranch -> unisce due branch
+git log -> log dei cambiamenti
+git remote add origin urlgithub -> aggiungere repository di GitHub
+git push -u origin master -> aggiunge ciò che c'è su master su GitHub
+git stash -> salva le modifiche in un posto temporaneo
+git reset -> cancella le modifiche

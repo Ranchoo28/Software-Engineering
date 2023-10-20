@@ -1,0 +1,132 @@
+----------------------- Lezione 8 (1^ laboratorio) - 13/10/2023 -----------------------
+
+
+----- UNIT TESTING -----
+
+Testing: un metodo empirico per verificare la correttezza del softwar oppure un processo mirato a mostarre il comportamento del software in base all'input dato.
+
+Esistono due tipi di testing:
+- Black-box: un test in cui noi non sappiamo come è fatto il codice. Il test viene fatto in base all'input e all'output.
+- White-box: un test in cui noi sappiamo come è fatto il codice. Il test viene fatto in base al codice.
+
+Unit testing: è un tipo di white box testing. Si testa il codice in modo da capire se le varie unità (ovvero un porzione di codice) funzionano correttamente.
+
+Approccio divide-et-impera:
+- Si divide il codice in unità
+- Ogni unità viene debuggata separatamente
+Questo approccio riduce la probabilità di far presentare nuovi bug e gli errori non si propragano da unità ad unità.
+
+Approccio support regression testing:
+- verifichiamo che // da finire
+
+----- JUNIT -----
+JUnit: è un framework per testare il codice Java. Permette di creare dei test e di eseguirli in modo automatico. E' un API che facilita la creazione di test,
+ha un modo interno per eseguire i test e ha un modo interno per creare dei report. Permette anche di mettere numerosi test da eseguire tutti insieme con un solo comando.
+
+Test case: metodo che serve a verificare un determinato caso per una determinata funzione.
+Test suite: insieme di test case.
+
+Il nome del test case deve essere significativo e deve essere scritto in modo da capire cosa testa il test case e devono rispettare la regola Cammellare. es testAdd()
+Le classi per i test devono finire con la parola Test: es MathTest, CalculatorTest ecc...
+
+JUnit è un annotation-based testing framework. Le annotazioni sono delle parole chiave che servono a dare informazioni aggiuntive al compilatore.
+es @Test, @Before, @After ecc...
+
+@Test serve a far capire a JUnit che quel metodo sarà un test. 
+- @Test (timeout == 10) il test termina con successo se finisce entro 10 secondi.
+- @Test (expected == IllegalArgumentExpection.class) il test termina con successo se l'eccezione è quella che ci aspettiamo.
+- @Ignore (Reason): ignora il test.
+- @Before (@BeforeEach in JUnit 5): serve a far capire a JUnit che quel metodo deve essere eseguito prima di ogni test.
+- @After (@AfterEach in JUnit5): serve a far capire a JUnit che quel metodo deve essere eseguito dopo ogni test.
+- @AfterClass (@AfterAll in JUnit5): serve a far capire a JUnit che quel metodo deve essere eseguito dopo tutti i test.
+- @BeforeClass (@BeforeAll in JUnit5): serve a far capire a JUnit che quel metodo deve essere eseguito prima di tutti i test.
+- @Before e @After (se ne può assegnare solo UNA): servono per eseguire un metodo prima e dopo ogni test.
+- @BeforeClass e @AfterClass (se ne può assegnare solo UNA): servono per eseguire un metodo prima e dopo tutti i test.
+
+Parameterezided test: è un test che viene eseguito più volte con parametri diversi. I paramentri devono essere markati con @Parameters e 
+il metodo deve essere markato con @Test.
+
+
+classe Test di un fattoriale: 
+
+@RunWith(value = Parameterized.class)
+public class FactorialTest {
+    private long expected;
+    private int value;
+
+    @Parameters
+    public static Collection<Object[]> data(){
+        return
+            Arrays.asList(new Object [][]{{1,0},{1,1},{2,2},{6,3},{24,4},{120,5}});
+    }
+
+    public FactorialTest(long expected, int value){
+        this.expected = expected;
+        this.value = value;
+    }
+
+    @Test
+    public void testFactorial(){
+        assertEquals(expected, Factorial.compute(value));
+    }
+}
+
+Test Suites: è un insieme di test che vengono eseguiti tutti insieme. Per farlo si crea una classe che contiene i test e si marka la classe con @RunWith(Suite.class).
+
+@RunWith(Suite.class)
+@SuiteClasse(value == {MyProgramTest.class, AnotherTest.class})
+
+Per fare i test case si usano le asserzioni. Le asserzioni sono dei metodi che servono a verificare se il test è andato a buon fine.
+- assertEquals(expected, actual): verifica se expected è uguale ad actual. Funziona con oggetti, int, byte, String ecc. Per gli oggetti sfrutta il metodo Equals()
+- assertEquals(expected, actual, epsilon): verifica se expected è uguale ad actual con una tolleranza di epsilon.
+- assertTrue(condition) / assertFalse(condition): verifica se condition è vera o falsa.
+- assertNull(object) / assertNotNull(object): verifica se object è null o non è null.
+- assertSame(expected, actual) / assertNotSame(expected, actual): verifica se expected è lo stesso oggetto di actual o se expected non è lo stesso oggetto di actual.
+- assertArrayEquals(expected, actual): verifica se expected è uguale ad actual (Funziona solo con gli array).
+
+Esempi di altri unità di test:
+- NodeJS: Mocha, Jest, Jasmine.
+- Python: PyUnit, PyTest.
+- C++: UnitTest++, Unit++.
+
+----- Apache Maven -----
+
+Maven è un tool per la gestione del proprio progetto usato in Java. Si basa sul concetto di Project Object Model (POM). Il POM è un file XML che contiene
+tutte le informazioni sul progetto.
+
+Maven è un bulding tool. Maven divide il procsso di building in diverse fasi:
+- validate: valida il progetto se corretto e tutte le informazioni disponibili.
+- compile: compila il codice sorgente del progetto. (in Bytecode per la JVM)
+- test: test sorgente compilato usando un framework di unit testing (es JUnit)
+- package: prende il codice compilato e lo imballa in un formato distribuibile (es JAR, WAR ecc)
+- verify: esegue i test per verificare che il package sia valido e soddisfi i criteri di qualità.
+- install: installa il package nel repository locale, in modo che possa essere usato come dipendenza in altri progetti locali.
+- deploy: copia il package finale nel repository remoto, in modo che possa essere condiviso con altri sviluppatori e progetti.
+
+// Maven Coordinate: è un modo per identificare univocamente un progetto.
+
+Il POM si divide in:
+- POM Relationship
+- Buil Setting
+- General Project information
+- Build Enviroment 
+
+- Archeotipo: sono progetti template dal quale il programmatore può partire per creare il suo progetto con Maven. Quindi all'interno dell'Archeotipo
+avremo già tutte le dipendenze e le configurazioni necessarie per iniziare a lavorare. Per generarlo fare: mvn archetype:generate. Crea un cartella
+con il pom in base alla struttura dell'archeotipo dato.
+
+Maven adotta una struttura standard per i progetti:
+- src/main/java: contiene il codice sorgente del progetto.
+- src/main/resources: contiene le risorse del progetto.
+- src/test/java: contiene il codice sorgente per i test.
+- src/test/resources: contiene le risorse per i test.
+- target: contiene i file compilati e i file generati dal progetto.
+- pom.xml: contiene le informazioni sul progetto.
+
+- Goals: sono azioni che vengono eseguite da Maven. Per esempio: mvn clean install. Clean e install sono i goals.
+La fase di build di Maven è una sequenza di goals: package, install, test, deploy ecc...
+I goals vengono dati da Maven e non possono essere modificati.
+
+Esistono due tipi di plugin:
+- Plugin di build: sono plugin che vengono eseguiti durante la fase di build.
+- Plugin di reporting: sono plugin che vengono eseguiti durante la fase di reporting.

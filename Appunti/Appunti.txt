@@ -1,0 +1,801 @@
+----------------------- Lezione 2 - 27/09/2023 (la prima era solo introduzione) -----------------------
+
+Software: programma sviluppato per risolvere determinate esigenze.
+- Generico: sviluppato per risolvere problemi per utenti differenti.
+- Custom: sviluppato per un determinato utenti.
+
+Ingegneria del software: disciplina che tocca tutti gli aspetti per la creazione di un software.
+Ingegneria dei sistemi: disciplina che tocca gli aspetti legati al circuito.
+
+Modello di processo di sviluppo software: rappresentazione semplificata dello sviluppo software.
+
+Costi dello sviluppo di un software: 60% costi di sviluppo, 40% testing. Inoltre i costi variano in base al sistema
+che vogliamo sviluppare, performance e affidabilità <- (molto importante). La distribuzione dei costi dipende dal modello che si usa.
+
+- Modello a cascata: 25% specification, 25% design, 25% sviluppo, 50% integrazione e testing
+- Modello iterativo: 50% sviluppo iterativo, 25% testing , 25% specification
+- Modello component-based: 25% sviluppo , 50% testing, 25% specification
+
+CASE (Computer-Aided Software Engineering) -> Software che servono a creare software. Esistono due tipo:
+- Upper CASE: supportano la gestione del software "all'inizio", quindi design e requisiti per la sua creazione.
+- Lower CASE: supportano la gestione del software "alla fine", quindi debbugging, test e programmazione.
+
+Un software deve essere:
+- Affidabile: il sistema deve essere affidabile.
+- Efficiente: il software non deve sprecare risorse.
+- Mantenibile: il software deve essere aggiornato con le nuove tecnologie.
+- Accettabile: il software deve essere accettato dagli utenti finali per cui è designato. Quindi deve essere usabile e compatibile con altri sistemi.
+
+Sfide da affrontare come Ingegnere del software:
+- Eterogenità: svillupare un software che può collaborare con diverse piattaforme
+- Sviluppare tecniche per una consegna veloce del software
+- Sviluppare un software che può essere considerato affidabile dagli utenti finali
+
+Processi software: una serie ti attività per lo sviluppo dal software.
+- Specification
+- Design
+- Validation
+- Evolution
+
+Esempi di modelli di software process model:
+- Waterfall model: Modello che separa le fasi di specification e sviluppo. Qui il cliente è presente solo nella fase di analisi. Il problema principale di questo 
+modello è la flessibilità perchè non si puòù tornare indietro e modificare quando si vuole (proprio per questo si chiama a cascata). Le fasi sono:
+    1) Analisi e definizione dei requisiti
+    2) Design del software (progettazione)
+    3) Implementazione e unità di test
+    4) Manutenzione
+- Evolutionary development (evolutivo): Specification, sviluppo e validation sono intercollegate. Ha l'obiettivo di avere un feedback costante con il cliente, quindi
+evolvere il progetto in base a ciò che sceglie il cliente. Il problema principale è quella di poter perdere di vista il focus principale del progetto oppure
+fare scelte iniziali che potrebbero portare problemi con aggiornamenti futuri. 
+- Throw-away prototyping: modello usa e getta usato come presentazione per il cliente e successivamente buttato.
+- Component-based software engineering: Software creato dall'unione di componenti già esistenti o sono sistemi COTS (Commercial-off-the-shelf).
+- Process iteration: i requisiti di sistema si evolvono continuamente durante la realizzazione del progetto. Qui il progetto viene spezzato incrementi che si 
+ripetono fino a che il progetto non è completo. In questo processo è difficile avere una costante collaborazione col cliente dato che ad ogni iterazione 
+bisogna confrontarsi col cliente per sapere come procedere.
+- Spiral development: Qui si da molta attenzione ai rischi possibili che si potrebbero creare, in modo da ridurli. Ogni loop nella spirale rappresenta 
+una fase del processo. Non abbiamo delle fasi specifiche, cambiano in base ai requisiti.
+
+Requisito: il processo in cui si stabilisce che servizi sono richiesti e i vincoli per le operazioni di sistema e sviluppo.
+
+Requirements engineering process (output dell'analisi dei requisiti):
+- Feasibilty study: studio di fattibilità
+- Requirements elicitation and analysis: 
+- Requirements specification: 
+- Requirements validation: capire quali requisiti hanno dei conflitti
+
+Software design and implementation: il processo di convertire il sistema "astratto" in un sistema eseguibile.
+
+Desing process activtity:
+- Architectural design
+- Abstract specification
+- Interface design
+- Component design
+- Data structure design
+- Algorithm design
+
+Programmazione e debbugging: transformare il design in un programma rimuovendo gli errori.
+Software evolution: si interviene per tenere il software aggiornato continuamente.
+Tools: singoli strumenti
+Workbench: insieme di tools
+Enviroments: insieme di workbench (come un IDE)
+
+----------------------- Lezione 3 - 03/10/2023 -----------------------
+
+Requisito: una frase che descrive un servizio o una restrizione del sistema. I requisiti sono classificati in:
+- high-level: descrivono le funzionalità del sistema e le sue restrizioni usando un linguaggio qualsiasi (in modo astratto).
+- low-level: descrivono i requisiti del sistema in modo dettagliato, avvicinandosi molti ai dettagli implementativi.
+
+Requisiti utente: requisiti che descrivono le funzionalità del sistema dal punto di vista dell'utente. Può essere rappresentati in 2 modi:
+- In un linguaggio naturale o con diagrammi dei servizi di sistema e vincoli.
+- Scritto per gli utenti finali e per gli sviluppatori.
+
+Requisiti di sistema: descrivono le funzionalità dal punto di vista del sistema. Un documento strutturato 
+che contiene in modo dettagliato i requisiti del sistema, servizi di sistema e vincoli.
+
+Requisiti funzionali: descrivono le funzionalità del sistema, i servizi che il sistema deve fornire e come deve reagire a determinate situazioni.
+- Ad esempio: "Il sistema deve permettere agli utenti di creare un account". Altri esempi:
+- Vincoli di input e output 
+- Requisiti di processo devo essere soddisfatti 
+Requisiti non funzionali: descrivono i vincoli sul sistema o sui suoi componenti. Possono essere vincoli di processo, vincoli di interfaccia, vincoli di progettazione.
+- Ad esempio: "Il sistema deve essere disponibile 24/7 e deve sostenere 1mln di utenti connessi contemporaneamente".
+Requisiti del dominio: requisiti che derivano dal dominio di applicazione del sistema e che riflettono le caratteristiche del dominio stesso.
+- Ad esempio: "Il sistema deve essere in grado di gestire i dati dei pazienti". Quindi qualcosa che serve per il corretto funzionamento del dominio.
+
+LIBSYS: sistema per la gestione di una biblioteca.
+- Il sistema deve permettere agli utenti di cercare i libri, prenotarli e ritirarli.
+- Ogni ordine deve essere registrato e identifica tramite un codice univoco.
+
+Imprecisione nei requisiti: i requisiti possono essere imprecisi perchè il cliente non sa cosa vuole o perchè non sa come esprimerlo. Quindi bisogna fare attenzione
+e cercare di interpretare al meglio i requisiti.
+
+Requisiti completi e consistenti: i requisiti devono essere completi e consistenti. I requisiti sono completi se non manca nessuna informazione importante e sono
+consistenti se non ci sono conflitti tra i requisiti. In pratica però è difficile avere requisiti completi e consistenti perchè il cliente non sa cosa vuole e
+non sa come esprimerlo.
+
+Obiettivo: è un requisito che deve essere soddisfatto dal sistema.
+Differenza fra obiettivo e requisito: un obiettivo è qualcosa che il sistema deve fare, un requisito è qualcosa che il sistema deve essere.
+
+/* Questi appunti sono Universitari. Vorrei fossi più preciso possibile. Se trovi errori, scrivimi su Telegram @DavideC03. Chi è @DavideC03? Sono io, Davide Cappellino, 
+uno studente di Ingegneria Informatica all'Università di Pisa. LOL */
+
+Diagramma della sequenza: diagramma che mostra le interazioni tra oggetti in un sistema. Mostra gli oggetti e i messaggi che si scambiano.
+
+Requirements engineering process: attività da fare:
+- requisito di validazione
+- requisito di analisi
+- requisito di gestione
+- requisito di identificazione
+
+Identificazione e analisi: coinvolge gli utenti finali e gli stakeholder per capire cosa vogliono dal sistema. Più stakeholders sono coinvolti, più è difficile
+avere un accordo su cosa fare.
+
+Problemi dell'analisi dei requisiti:
+- Problemi di comprensione: gli stakeholders non sanno cosa vogliono o non sanno come esprimerlo.
+- Problemi di ambiguità: gli stakeholders esprimono i requisti in modo ambiguo.
+- Problemi di conflitto: gli stakeholders hanno esigenze diverse e quindi i requisiti possono essere in conflitto.
+- Problemi di cambiamento: i requisiti cambiano nel tempo.
+- Problemi di organizzazione: l'organizzazione può influenzare la definizione dei requisiti.
+
+Punto di vista: un modo di strutturare i requisiti in base al tipo di stakeholder che li esprime.
+L'analisi multi-prospettiva è un modo per analizzare i requisiti da più punti di vista ed è fondamentale per un corretto sviluppo e funzionamento del software.
+
+Interviste: sono un modo diretto per capire cosa vogliono gli stakeholders. 
+Scopo dell'etnografia: requisiti che derivano dall'osservazione di come lavorano gli stakeholders.
+Scenario: un esempio reale di come il sistema verrà usato. Gli scenari sono utili per capire cosa vogliono gli stakeholders e per capire se i requisiti 
+sono completi e consistenti.
+Devono includere:
+- Una descrizione della situazione iniziale
+- Una descrizione del normale flusso di eventi
+- Una descrizione di cosa può andare storto
+- Informazioni sulle altre attività che si svolgono in parallelo
+- Una descrizione della situazione finale
+
+// SEGNALIBRO
+----------------------- Lezione 4 - 04/10/2023 -----------------------
+
+System modelling: aiuta l'analisi dei requisiti e la loro comprensione. I modelli sono usati per capire cosa vuole il cliente e 
+per capire se i requisiti sono completi e consistenti. Esistomo modelli differento in base alla prospettiva che si vuole analizzare:
+- prospettiva esterna che mostra il contesto del sistema e dell'ambiente
+- prospettiva comportamentale che mostra il comportamento del sistema
+- prospettiva strutturale che mostra la struttura del sistema o l'architettura dei dati
+
+Data flow diagrams (diagramma di flusso): è un modello che serve per rappresentare il processamento dei dati. I dati sono rappresentati come flussi di dati.
+
+Dizionario dei dati (glossario): è un documento che contiene la definizione di tutti i termini usati nel sistema.
+Vantaggi: aiuta a capire cosa vuole il cliente e aiuta a capire se i requisiti sono completi e consistenti, inoltre aiuta a capire se i requisiti sono 
+comprensibili e se sono ambigui.
+Svantaggi: è difficile da mantenere e può essere difficile da capire, inoltre può essere difficile da capire se i requisiti sono completi e consistenti.
+
+Modelli ad oggetti(object models): descrivono il sistema in termini di oggetti e delle loro interazioni. Gli oggetti sono rappresentati come classi e
+le interazioni sono rappresentate come messaggi. I modelli ad oggetti sono usati per capire cosa vuole il cliente e per capire se i requisiti sono completi e consistenti.
+Un oggetto è un'astrazione di un entità del mondo reale che ha uno stato e un comportamento. Un oggetto ha un'identità, uno stato e un comportamento.
+
+UML: è uno standard di rappresentazione ideato dagli sviluppatori e viene usato per rappresentare i modelli ad oggetti.
+
+Metodi strutturati: sono modelli incorporati come parte ereditata del sistema.
+
+Method weakness (debolezze dei metodi strutturati):
+- potrebbero produrre troppa documentazione
+- potrebbero essere troppo astratti
+- potrebbero essere troppo dettagliati
+
+Specifica formale: è una specifica che usa un linguaggio formale per descrivere il sistema. I linguaggi formali sono linguaggi matematici che 
+hanno una sintassi e una semantica.
+
+Validazione dei requisiti: è il processo di verifica dei requisiti per capire se sono completi e consistenti, se sono comprensibili e se sono ambigui e 
+se rispettano ciò che il cliente vuole. I costi che porta una validazione dei requisiti errata sono molto alti e possono portare a numerosi problemi
+in futuro. Cosa fare per efftuarla:
+- Validità: il sistema fornisce funzioni per il supporto completo verso il cliente?
+- Consistenza: i requisiti sono consistenti e non si contraddicono?
+- Completezza: tutti i servizi richiesti dal cliente sono stati forniti?
+- Realizzabilità: i requisiti possono essere implementati in base al budget e tecnologia disponibili?
+- Verificabilità: è possibile verificare che il sistema soddisfi i requisiti?
+
+Come validare i requisiti:
+- Revisione: i requisiti sono esaminati da un gruppo di persone che non hanno partecipato alla loro scrittura.
+- Prototipazione: si crea un prototipo del sistema per capire se i requisiti sono completi e consistenti.
+- Test: si creano dei test per capire se i requisiti sono completi e consistenti.
+
+Metodi formali: metodi matematici per la validazione dei requisiti. Solitamente non sono molto usati.
+
+Tecnice di specificazione (specification techniques): sono usate per rappresentare i requisiti in modo formale.
+
+----- PROGETTAZIONE SOFTWARE (Design) -----
+
+Il processo di conversione della specificazione del sistema in un sistema eseguibile.
+
+Design process activities (attività del processo di progettazione): 
+- Architectural design: definisce la struttura del sistema. E' un modo per spezzare il sistema in sottosistemi (moduli) per semplicizzare la progettazione.
+- Abstract specification: definisce le componenti del sistema in modo astratto
+- Interface design: definisce le interfacce del sistema
+- Component design: definisce le componenti del sistema
+- Data structure design: definisce le strutture dati del sistema
+- Algorithm design: definisce gli algoritmi del sistema
+
+Nell'architectural design si impongono dei vincoli per la progettazione che bisogna rispettare. Si usa il diagramma Box and Line è un diagramma che mostra i moduli e 
+le loro interazioni. Descrivendo l'architettura del sistema si facilita la comjunicazione con gli stakeholders e si facilita 
+la comprensione del sistema. Le caratteristiche sono: performance, sicurezza, affidabilità, manutenibilità e portabilità.
+Strategia per strutturare il sistema: repository model, Service-oriented model, come macchina a strati.
+Repository model: si progetta il tutto intorno alla base di dati (attualmenete è poco usata). Con una grande quantità di dati
+condivisi da gestire ancora ora è molto utilizzato.
+Vantaggi:
+- Modo efficiente per gestire  una grande quantità di dati
+- Al sotto sistema non interessa come i dati sono centralizzati e gestiti (es backup, security)
+Svantaggi:
+- Il cambio o evoluzione di dati è difficile e costoso da attuare
+- Difficile da distribuire in modo efficiente
+
+Modello Client-Server: è un modello che divide il sistema in due parti: client e server. Il client è l'interfaccia utente e il server è il sistema che fornisce
+i servizi. Il client e il server comunicano tramite una rete. Il client e il server possono essere su macchine diverse o sulla stessa macchina. Il client e il server
+sono indipendenti e possono essere sviluppati in modo indipendente.
+Svantaggi: 
+- Alta complessità di realizzazione
+- Alta complessità di gestione
+- Dati rendundanti in ogni server
+- Difficile capire quali server e servizi sono disponibili
+
+Abstract machine model (modello di macchina astratta): è un modello che divide il sistema in vari parti. Ogni strato non sa cosa fanno gli altri strati ma 
+ogni strato conosce quello superiore e inferiore.
+Grazie a questo modello si ha una maggiore modularità e si facilita la manutenzione.
+
+Modulo: è un componente di un sistema che ha una funzione ben definita e che può essere sviluppato in modo indipendente.
+
+Per descrivere i software esistono due modi:
+- Pipeline model: è un modello che descrive il sistema come una serie di componenti che elaborano i dati in modo sequenziale.
+- Object model: è un modello dove il sistema è diviso in oggetti interattivi.
+
+----- ARCHITETTURA A SISTEMI DISTRIBUITI (Distribuited System Architecture) -----
+
+Sistema Embedded: è un sistema che è viene usato per piccoli dispositvi elettronici. (es Arduino, Lavatrice)
+
+Sistema distribuito: è un sistema che è composto da più componenti (nodi) che comunicano tramite una rete. (es Internet, Cloud)
+Deve essere:
+- Scalabile: deve essere in grado di gestire un numero variabile di utenti
+- Sicuro: deve essere in grado di proteggere i dati
+- Mantenibile: deve essere in grado di essere aggiornato con nuove tecnologie
+- Fault tolerant: deve essere in grado di funzionare anche se alcuni nodi non funzionano
+- Openness: deve essere in grado di comunicare con altri sistemi
+- Concurrency: deve essere in grado di gestire più utenti contemporaneamente
+
+/*  Client-Server e ad oggetti distribuiti saranno quelle trattati in questo corso
+//  netstat -l -> Visualizza statistiche relative ai protocolli e alle connessioni di rete TCP/IP correnti.
+//  netstat -a -> Visualizza tutte le connessioni e i porti TCP e UDP in ascolto.
+//  netstat -e -> Visualizza le statistiche Ethernet, ad esempio i byte trasmessi e ricevuti.
+//  netstat -n -> Visualizza gli indirizzi e i numeri di porta in formato numerico.
+//  netstat -o -> Visualizza il PID (identificatore di processo) del processo proprietario per ogni connessione attiva.
+//  netstat -p -> Visualizza il nome del programma che ha aperto la connessione.
+//  netstat -r -> Visualizza la tabella di routing.
+*/  netstat -s -> Visualizza le statistiche per i protocolli IP, ICMP, TCP e UDP.
+
+Il client-server prevede come strati:
+- Presentation layer: è lo strato che si occupa di presentare i dati all'utente
+- Application layer: è lo strato che si occupa di gestire le richieste dell'utente
+- Data Managment Layer: è lo strato che si occupa di gestire i dati
+
+Esistono due tipo di client:
+- Fat-Client Model: è un client che si occupa di gestire i dati e di presentarli all'utente. Il server si occupa solo di gestire le richieste dell'utente.
+- Thin-Client Model: è un client che si occupa solo di presentare i dati all'utente. Il server si occupa di gestire i dati e di gestire le richieste dell'utente.
+
+Architettura ad oggetti distribuiti: è un'architettura che si basa sul paradigma ad oggetti. I componenti sono oggetti che comunicano tramite messaggi.
+Come standard internazionale viene usato Corba (Common Object Request Broker Architecture) oppre Peer-to-Peer (P2P). In questa architetura non c'è un server
+centrale ma ogni nodo può essere sia client che server. Questo facilità la condivisione dei dati. (es Emule, Torrent)
+
+Service-oriented architectures: è basato sulla nozione di servizio. Lo standard internazionale attuale è REST (Representational State Transfer).
+Serve a creare servizi che possono essere usati da altri sistemi. (es Google Maps)
+
+
+----------------------- Lezione 5 - 06/10/2023 -----------------------
+
+// Il modello a cascata è poco pratico perchè i requisiti possono cambiare nel tempo e quindi bisogna tornare indietro e modificare il software.
+
+----- SVILUPPO -----
+
+Rapid Software Development (RAD, è un modello iterativo) nasce perchè a volte c'è bisogno di sviluppare un software in poco tempo. Inoltre si può avere un feeback costante con il cliente.
+Inoltre nel RAD spesso viene creato un prototipo usa e getta per mostrare al cliente come sarà il software. Solitamente nel prototipo non vengono usate le 
+tecnologie migliori, quindi è sconsigliato usarlo come punto di partenza.
+Carrateristiche:
+- Cicli di sviluppo brevi
+- E' formato da vari 
+- I requisiti cambiano di continuo
+
+Problemi legati al RAD:
+- conivolgimento costante col cliente
+- problemi di gestione
+- problemi di manutenzione
+- problemi di contratto: siccome il software viene sviluppato in poco tempo, il contratto è difficile da formulare a causa dei continui cambiamenti.
+
+Ambienti di sviluppo RAD: gli ambienti RAD sono stati per facilitare il lavoro. Per esempio generator di interfacce, generatori di report, database programming
+language o il links to office application (ovvero app che vengono adattate in base all'azienda usata. La base del software però rimane sempre la stessa)
+
+COTS (Commercial off the shelf): COTS sono software che sono già pronti e che possono essere usati per sviluppare un software. (es Microsoft Office)
+Svantaggi:
+- Non si può modificare il software
+- Non si può sapere come è stato sviluppato il software, quindi non si può sapere se è affidabile e sicuro
+- Il software potrebbe non essere aggiornato a lungo termine
+
+Metodi agili: cercano di arrivare all'obiettivo in modo evolutivo-incrementale in modo da ridurre al minimo la documentazione.
+Principi:
+- Customer involvment: il cliente deve essere coinvolto in tutto il processo di sviluppo
+- Incremental delivery: il software deve essere sviluppato in modo incrementale specificando i requisiti di ogni incremento 
+- People not process: le skills del team di sviluppo devono essere riconosciute ed esplorate
+- Embrance change: progettare il sistema in modo tale possa accomodare i cambiamenti
+- Maintain simplicity: bisogna concentrarsi anche sul mantenere il sistema semplice
+
+Problematiche legate ai metodi agili:
+- lavorare in modo costante è difficile col metodo agile
+- dare priorità ai requisiti è difficile soprattutto con multipli stakeholders
+- è difficile mantenere l'interesse dei clienti che sono coinvolti nel progetto
+- è difficile mantenere la qualità del software
+- avere un contratto può essere un problema (è comunque un modello iterativo)
+- mantenere la semplicità non è facile
+
+Extreme Programming (metodo agile): è uno dei metodi più usati e più vcecchi. E' estremo perchè:
+- si devono creare continuamente nuove build per sapere se il progetto si sta sviluppando correttamente (Solitamente ogni 2 settimane ci deve essere uno sviluppo incrementale)
+- si deve fare il refactoring continuamente
+- si deve fare il testing continuamente (su tutte le build)
+
+Come applicare l'Extreme programming:
+- Incremental planning: i requisiti vengono raccolti in delle Story Cards (contengono i requisiti). Le Story Cards vengono divise in task e assegnate ai programmatori.
+- Small releases: il software viene rilasciato in piccole parti con un minimo set di funzionalità in modo da farlo testare al cliente.
+- Simple design: il design deve essere il più semplice possibile in modo da rispettare il più possibile i requisiti.
+- Test first development: prima di scrivere il codice si scrivono i test per capire se il codice funziona.
+- Refactoring: il codice deve essere continuamente migliorato in modo da rendere il codice semplice e aggiornabile.
+- Pair programming: due programmatori lavorano insieme su un singolo computer. Uno scrive il codice e l'altro controlla che il codice sia corretto.
+- Collective ownership: tutti i programmatori possono modificare il codice, quindi nessuno ha la sua area di sviluppo.
+- Continuous integration: il codice viene integrato continuamente in modo da capire se il codice funziona. Anche qui devono essere eseguiti test.
+- Sustainable pace: i programmatori devono lavorare in modo costante e non devono lavorare troppo, in modo da non perdere qualità.
+- On-site customer: il cliente deve essere presente durante tutto lo sviluppo del software.
+- Coding standards: il codice deve essere scritto in modo standard in modo da essere comprensibile da tutti.
+
+/*
+SCRAM: è un metodo agile che si basa sullo sviluppo incrementale. I requisiti vengono raccolti in delle Story Cards (contengono i requisiti). Le Story Cards 
+vengono divise in task e assegnate ai programmatori. Inoltre ogni task ha un tempo limite per essere completato.
+KANVAN è simile a SCRAM ma non ha un tempo limite per completare i task.
+*/
+
+// La Story cards dice COSA fare, il task COME farlo
+
+Software reuse: è un modo per riutilizzare codice già esistente. Si possono riusare intere applicazioni, parti di applicazioni o parti di codice.
+Cosa si può riusare nello specifico: codice, librerie, frameworks, COTS, Aspect-oriented software development, program generators, design patterns ecc...
+Riuso concettuale: si riusa il concetto di un software e non il software in sè. (es riusare il concetto di un software di gestione di una biblioteca):
+Approcci principali:
+- Application frameworks: sono librerie di classi che possono essere riusate per creare un software.
+- Design patterns: sono modelli di progettazione che possono essere riusati per creare un software.
+- Component-based development: sistemi sviluppati attraverso l'integrazione di più componenti conformi al modello dei componenti standard.
+- Legacy system wrapping: si riusa un software esistente e si aggiunge un nuovo software che si interfaccia con il software esistente.
+- Service-oriented systems: sistemi sviluppati sfruttando servizi presi dall'esterno.
+- Application product lines: un tipo di app che può essere adattata in differenti modo in base al cliente.
+- COTS integration: sistemi sviluppati attraverso app esistenti.
+- Configurable vertical application: un sistema creato in modo generico per poi essere configurato a piacimento dal cliente.
+- Program generators: sono programmi che generano codice in base a dei parametri.
+- Program libraries: classi e funzioni di libreria disponibili per l'utilizzo.
+- Aspect-oriented development: diversi componenti intrecciati in un app in differenti posti durante la compilazione del programma. 
+
+
+/* 
+Aspect-oriented software development: è un modo per riusare il codice. Si divide il codice in parti e si riusa solo la parte che serve. Si aggiunge una noatzione
+che viene attivata quando serve.
+*/
+
+Sistemi di ERP (Enterprise Resource Planning): sono sistemi generici che possono essere usati per creare un software per le risorse aziendali (es SAP).
+
+----- SOFTWARE EVOLUTION -----
+
+Software evolution: è il processo di cambiamento del software nel tempo. Il software deve essere aggiornato per rispettare i requisiti e per rispettare 
+le nuove tecnologie. Il software quindi cambia continuamente infatti emergono sempre nuovi requisiti, nuove tecnologie, nuovi problemi, nuovi errori ecc... 
+Il cambiamento è INEVITABILE.
+
+Program evolution dynamics: è lo studio del processo di cambiamento del software nel tempo. Lehman e Belady hanno proprosto una serie di "leggi" da rispettare:
+- Legge del cambiamento continuo: il software deve essere aggiornato continuamente per rispettare i requisiti e le nuove tecnologie, altrimenti diventa obsoleto.
+- Legge del complesso crescente: il software diventa sempre più complesso nel tempo. Le risorse extra devono cercare di semplificare e preservarrere la struttura del software.
+- Legge della conservazione della familiarità: il software deve essere aggiornato in modo da non perdere la familiarità con il software.
+- Legge del declino continuo: il software diventa sempre meno utile nel tempo. Il software deve essere aggiornato in modo da non diventare obsoleto.
+- Legge della crescita continua: il software deve essere aggiornato in modo da soddisfare sempre il cliente e non diventare obsoleto. 
+- Large Program evolution: è un processo che si auto-regola. Gli attributi del sistema (size, tempo fra rilasci, il numero di errori) sono solitamente invarianti per rilascio.
+
+Distribuzione dei costi di mantenimento: 65% Aggiunta di funzionlità, 25% correzione di errori, 10% adattamento a nuove piattaforme. // da rivedere
+
+Fattori di costo di mantenimento:
+- Stabilità del team: se il team cambia spesso, il costo di mantenimento aumenta.
+- Staff skills: se il team non ha le competenze per mantenere il software, il costo di mantenimento aumenta.
+- Responsabilità contrattuali: il team di sviluppo potrebbe non avere responsabilità contrattuali per il mantenimento e quindi non essere incentivati ad aggiornare il software.
+- Program age and structure: col passare del tempo il software invecchia quindi diventa sempre più difficile da capire ed aggiornare.s
+
+Il processo di evoluzione dipende da:
+- il tipo di software da mantenere
+- il processo di sviluppo usato
+- skills ed esperienza delle persone coinvolte
+
+System reengineering: è il processo di riprogettazione del software in modo da rispettare i requisiti e le nuove tecnologie. Si possono sia riscrivere alcuni 
+componenti, ripartire da zero (forward engineering) oppure leggere il codice per capire com'è fatto e implementarlo (reverse engineering).
+Vantaggi:
+- Si riducono i rischi 
+- Si riducono i costi
+- Si riducono i tempi
+
+Reengineering process activities:
+- Source code translation: si traduce il codice in un altro linguaggio
+- Program structure improvement: si migliora la struttura del programma
+- Program modularization: si divide il programma in moduli
+- Data reengineering: si riscrive il codice per rispettare i nuovi requisiti
+- Forward engineering: si riscrive il codice da zero
+- Reverse engineering: si legge il codice per capire come è fatto e si riscrive
+
+// Rosetta: è un software che traduce il codice da un linguaggio ad un altro (fatto da Apple).
+
+Legacy system evolution (evoluzione dei sistemi ereditati): è il processo di evoluzione di un sistema ereditato. I sistemi ereditati sono sistemi 
+che sono stati sviluppati in passato e che sono ancora usati. I sistemi ereditati sono difficili da mantenere perchè sono vecchi e non sono aggiornati.
+Per evolvere un sistema ereditato si può:
+- Riscrivere il sistema da zero
+- Continuare ad evolverlo
+- Sostituire il sistema con un sistema nuovo
+
+Categorie di legacy system:
+- Low quality, low business value: sono sistemi che hanno un basso valore per l'azienda e che sono di bassa qualità. Questi sistemi devono essere sostituiti.
+- Low quality, high business value: sono sistemi che hanno un alto valore per l'azienda ma che sono di bassa qualità. Questi sistemi potrebbero essere sostituiti.
+- High quality, low business value: sono sistemi che hanno un basso valore per l'azienda ma che sono di alta qualità. Questi sistemi possono essere sostituiti o aggiornati.
+- High quality, high business value: sono sistemi che hanno un alto valore per l'azienda e che sono di alta qualità. Questi sistemi possono essere aggiornati.
+
+----------------------- Lezione 6 - 10/10/2023 -----------------------
+
+----- VERIFICATION E VALIDATION -----
+
+Verification: "Are we building the product right?", è il processo per capire se il software che stiamo realizzando è corretto.
+Validation: "Are we building the right product?", è il processo per capire se il software che stiamo realizzando è quello che il cliente vuole.
+
+Il processo V&V deve essere applicato ad ogni stage del nostro progetto. Ha 2 obiettivi:
+- La scoperta dei difetti del sistema.
+- Dimostrare che il progetto sia usabile e utile in diverse situazioni.
+
+// Teorema della fermata: è impossibile scrivere un algoritmo che riesce a verificare se un software si fermerà o meno.
+
+La confidenza con cui "rispondiamo" alla verifica dei V&V varia in base a:
+- Funzioni del software: il livello di confidenza dipende da quanto è critico il software in un organizzazione
+- Aspettative degli utenti: cosa si aspetta l'utente dal nostro software
+- Condizioni di mercato: cercare di creare un prodotto in poco tempo potrebbe essere più importante rispetto a trovare difetto nei programmi
+
+Come eseguire la V&V:
+- Ispezione del software: coincide con l'analisi della rappresentazione del sistema statico per scoprire i problemi (static verification). In questi casi può
+                          essere sfruttato un documento tool-based e l'analisi del codice.
+- Software testing: coincide con l'esercizio e osservazione del comportamento del prodotto (dynamic verification). Il sistema può essere eseguito con Test
+                    data e vengono osservati i comportamenti delle operazioni.
+
+// Il testing può rivelare la presenza di errore ma non la loro assenza.
+// Il debug scopre l'errore e il modo in cui risolverlo, il testing rivela solo la presenza.
+// Ispezione e testing sono complementari e non opposti, quindi vanno eseguite entrambe.
+
+Tipi di testing:
+- Defect tesing: test creato per scoprire se il sistema ha difetti. Ha successo quando viene rilevato almeno un difetto nel sistema
+- Validaton testing: test creato per capire se il software rispetta i requisiti. Ha successo quando dimostra che il sistema rispetta i requisiti
+
+Il processo di testing:
+- Test planning and control: si pianifica il testing e si controlla che venga eseguito correttamente
+- Test analysis and design: si analizzano i requisiti e si crea un piano di testing
+- Test implementation and execution: si implementa il piano di testing e si esegue
+- Evaluating exit criteria and reporting: si valuta se il testing è stato eseguito correttamente e si crea un report
+- Test closure activities: si chiude il testing
+
+Non è possibile certificare il funzionamento del software, quindi il tesing esaustivo è impossibile.
+
+Test di integrazione (integration testing): è un test che serve per capire se i componenti del sistema funzionano correttamente insieme, qui 
+i vari componenti vengono integrati e testati insieme. Esistono due tipi di approcci:
+- Top-down integration: sviluppa lo scheletro del sistema e viene popolato con i componenti
+- Bottom-up integration: vengono integrate prima le infrastrutture dei componenti e poi vengono aggiunte le funzionalità
+
+Black-box Testing: somministriamo degli input e verifichiamo i vari output.
+White-box testing: effettuare i test tramite un software di cui si conosce l'implementazione.
+
+Linee guida per il testing:
+- input che coprano il maggior numero di casi possibili
+- input che potrebbero far fallire il software
+
+I test di performance sono test che servono per capire se il software rispetta i requisiti di performance. Solitamente si stressa il sistema per vedere come si comporta.
+Lo stress tesing serve per capire come si comporta il software in condizioni di stress. (viene testato con un carico di lavoro molto alto, anche sopra il limite).
+
+Component testing; è il processo di testare individualmente i componenti del sistema.
+I componenti potrebbero essere:
+- Oggetti di classi con diversi attributi e metodi
+- Componenti compositi formati da interfacce con determinati metodi
+
+Errori legati alle interfacce:
+- Interface misuse: l'interfaccia viene usata in modo errato
+- Interface misunderstanding: l'interfaccia viene interpretata in modo errato
+- Timing errors: l'interfaccia viene usata in modo errato
+
+Linee guida per verificare le interfacce:
+- Progettare dei test in modo che i parametri delle funzioni siano fuori dal range
+- Progettare dei test con paramentri null
+- Progettare dei test con parametri in ordine errato
+
+Test case design: è il processo di progettazione dei test. I test devono essere progettati in modo da coprire il maggior numero di casi possibili.
+Requirements-based testing: test che riprone tutti gli utilizzi fatti da un utente.
+Partition testing: partizionare i vari input e sfruttare un input per tutte le classi.
+Path testing: test che riesce a cotrollare almeno una volta tutti i percorsi del nostro algoritmo.
+Test automation: è il processo di automatizzazione dei test. I test vengono eseguiti in modo automatico e vengono creati dei report, diminuendo il tempo e i costi. 
+                 Per esempio si può usare Junit per testare il codice Java. ("Controllo della matrice tripla carpiata delle Perri" cit Ricca)
+
+----- CONFIGURATION MANAGMENT -----
+
+Configuration management: è il processo di gestione delle modifiche del software. Il software deve essere aggiornato per rispettare i requisiti e le nuove tecnologie.
+Si associa ad un software una procedura di build. 
+
+I cambiamenti arrivano principlamente dagli utenti, sviluppatori, manager, stakeholder, tecnologie, ambiente di sviluppo ecc...
+Esistono dei software che aiutano a gestire le modifiche del software (es Git, SVN, CVS ecc...)
+Software di controllo del versioni: sono software che aiutano a gestire le modifiche del software (es Git). 
+Permettono di:
+- Tenere traccia delle modifiche
+- Tenere traccia delle versioni
+
+Differenza fra versione, variane e rilascio:
+- Versione: è una versione del software distinta dalle altre (con più o meno funzionalità).
+- Variante: istanza del sistema identica ma non funzionalmente distinta dalle altre (es versione per Windows e versione per Linux / Git o Git LFS).
+- Rilascio: è una versione del software che viene rilasciata al pubblico.
+
+Identificazione delle versioni: procedura che serve a identificare univocamente le versioni del software. Si usa un numero di versione (es 1.0.0) o 
+un numero di build. Esistono 3 tecniche:
+- Version numbering
+- Attribute-based identification
+- Change-oriented identification
+
+Gestione dei rilasci: è il processo di gestione dei rilasci del software. I rilasci sono le versioni del software che vengono rilasciate al pubblico. Le nuove 
+aggiunte devono essere trovate o dagli utenti o dai cambiamenti dell'hardware.
+
+A volte le release possono anche malviste dagli utenti perchè possono portare a problemi di compatibilità con l'hardware o con altri software, possono essere
+tolte funzionalità che piacevano agli utenti ecc...
+
+System release strategy:
+- Technical quality release: a volte a causa di bug o di problemi di compatibilità, il software viene rilasciato per risolvere questi problemi.
+- Platform changes: a volte il software viene rilasciato per risolvere problemi di compatibilità con l'hardware.
+- Customer requested enhancements: a volte il software viene rilasciato per risolvere problemi richiesti dagli utenti.
+- Marketing reasons: a volte il software viene rilasciato per motivi di marketing.
+- Lehman's fifth law: a volte il software viene rilasciato per rispettare la legge di Lehman, quindi il numero di funzionalità deve essere costante nel tempo.
+
+Ambienti automatici di supporto: sono ambienti che aiutano a gestire le modifiche del software. Per esempio si può usare Jenkins o Maven per gestire le build del software.
+
+----------------------- Lezione 7 - 11/10/2023 -----------------------
+
+Cosa abbiamo fatto fino ad oggi: Argomenti di base (in generale) per esonero:
+- Cos'è Ingegneria del software
+- Processi software
+- Requisiti
+- Testing
+- In che modo sviluppare il progetto
+- Software project management
+
+----- SOFTWARE PROCESS MANAGMENT (Processo di gestione software) -----
+
+Le attività devono assicurare che il processo sia sviluppato in tempo e in accordo con i requisiti dell'organizzazione.
+Ogni progetto ha sempre dei vincoli di budget e di requisiti che vengono stabiliti all'inizio del progetto.
+
+Distinzioni nel processo di gestione software:
+- il prodotto intagibile.
+- il prodotto è unicamente flessibile.
+- l'ingegneria del software non è riconosciuta come una disciplina ingegneristica.
+- il processo di sviluppo non è un processo standardizzato.
+
+attività tipiche da fare:
+- determinare i costi del software
+- monitorare e controllare lo sviluppo del software
+- assicurare che il software sia sviluppato in tempo e in accordo con i requisiti dell'organizzazione
+- selezione del personale 
+- presentazione e scrittura di report
+
+Il project planning è l'attività che consuma più tempo. Nel tempo questa attività deve essere ricontrollata per essere sicuri che il progetto sia sviluppato correttamente.
+Il project planning è un processo iterativo, quindi la milestone in questi casi è raggiungere le vari iterazioni per farle vedere al cliente.
+
+Come fare la pianificazione:
+- introduzione
+- organizzazione del progetto
+- analisi dei rischi
+- requisiti delle risorse hardware e software
+- suddivisione del lavoro
+- schedulare il progetto
+- meccanismo di monitoraggio e comunicazione
+
+Le attività di project planning devono essere organizzate: 
+- per produrre outputs tangibili per giudicare un progresso
+- avere delle Milestone alla fine di ogni attività
+- il risultato finale deve coincidere con ciò che richiesto dal cliente
+- il modello a cascata permette di avere delle milestone ben definite 
+
+Rete delle attività: modo per rappresentare le varie task. Ad ogni nodo abbiamo entro quanto tempo deve essere completata la task.
+Diagramma di Gantt: è un diagramma che mostra le varie task e il tempo che ci vuole per completarle.
+Allocazione del personale sulle task: è un modo per suddivere il lavoro tra il personale. (es Gira)
+
+----- SOFTWARE COST ESTIMATION -----
+
+Domande fondametali da porsi:
+- Quanto sforzo è richiesto per completare un'attività?
+- Quanto tempo ci vuole per completare un'attività?
+- Quanto costa completare un'attività?
+
+Le stime sono fatte per scoprire i costi degli sviluppatori, dei test, dei requisiti e del software. La relazione fra i costi di sviluppo e il prezzo
+per il cliente è una relazione molto difficile da capire.
+
+Costo: è il costo per sviluppare il software. Il costo è dato dal costo del personale, del software, dell'hardware ecc...
+Prezzo: è il prezzo che il cliente paga per il software. Il prezzo è dato dal costo del software, dal costo del supporto, dal costo del personale ecc...
+
+Fattori di prezzo di un software:
+- Market opportunity: è il mercato in cui il software viene venduto. Il prezzo del software dipende dal mercato in cui viene venduto.
+- Contruactual terms: è il contratto che viene fatto con il cliente. Il prezzo del software dipende dal contratto che viene fatto con il cliente.
+- Cost estimate uncertainty: è l'incertezza che c'è nel calcolare il costo del software.
+- Requirements volatility: è la volatilità dei requisiti. Il prezzo del software dipende dai requisiti che il cliente vuole.
+
+Esistono due tipi di misurazioni delle stime:
+- Per dimensione: si misura la dimensione del software in modo da capire quanto costa svilupparlo (es numero di linee di codice).
+- Per funzionalità: si misura il numero di funzioni del software in modo da capire quanto costa svilupparlo (es numero di funzioni).
+
+Problemi di misurazione: 
+- Stimare la grandezza della misurazione da sfruttare
+- Stimare il numero totale di  programmatori
+- Stima della produttività dell'appalto e integrazione di tale stima in quella globale
+
+Quindi si possono fare delle analisi basandosi sui punti funzione (Function Point Analysis). I punti funzione sono un modo per misurare la dimensione del software, per
+esempio il numero di bottoni, il numero di funzioni ecc... I punti funzione sono un modo per misurare la dimensione del software in modo indipendente dal linguaggio.
+
+LOC = AVC * number of function points // da rivedere
+
+I punti oggetto sono un modo per misurare la dimensione del software in modo indipendente dal linguaggio. Per esempio il numero di classi, il numero di metodi ecc.
+
+Fattori che influenzano la produttività:
+- Esperienza del team sul dominio
+- Grandezza del progetto
+- Support tecnologico (es IDE)
+- Esperienza del team sul linguaggio
+
+Tecniche per le stime:
+- Algorithmic cost modelling: è un modo per stimare il costo del software. Si basa su un modello matematico che prende in input i requisiti e restituisce il costo.
+- Expert judgement: è un modo per stimare il costo del software. Si basa sull'esperienza del team.
+- Estimation by analogy: è un modo per stimare il costo del software. Si basa su un software simile già sviluppato.
+- Parkinson's law: è un modo per stimare il costo del software. Si basa sul tempo che ci vuole per sviluppare il software. ("Il progetto finisce quando la data di scadenza è vicina" )
+- Pricing to win: è un modo per stimare il costo del software. Si basa sul prezzo che il cliente vuole pagare per il software.
+
+// Solitamente inizilamente la stima dei costi sarà molto approssimativa, verso la fine invece sarà più accurata.
+
+COCOMO 81 o COCOMO 2: è un modello per stimare il costo del software. Si basa su un modello matematico che prende in input i requisiti e restituisce il costo.
+
+----- MANAGING GROUPS (Gestione dei gruppi) -----
+
+Un'altra task importante è la gestione dei gruppi. I gruppi sono formati da persone che lavorano insieme per raggiungere un obiettivo comune.
+Le informazioni per la selezione vengono da:
+- informazioni che vengono dai candidati
+- informazioni prese da un'intervista, da un test o parlando con i candidati.
+- raccomandaizoni e commenti con altre persone che sanno o che hanno lavorato con i candidati.
+
+Le persone vengono selezionate in base a:
+- conoscenze tecniche
+- conoscenze sociali
+- conoscenze di problem solving
+
+Un ruolo importante del manager è quello di motivare il team. Motivare qualcuno è un problema complesso perchè ogni persona è diversa e ha bisogno di 
+essere motivata in modo diverso. Per esempio si può motivare una persona con un aumento di stipendio, con un premio, training,con un giorno di ferie, soddisfare
+i bisogni basici della persona ecc...
+
+Esistono principalmente 3 tipi di persone (Un buon team deve avere tutte e 3 i tipi di persona):
+- Task oriented: la persona è motivata a fare un lavoro perchè è interessata a quello che fa.
+- Self-oriented: la persona è motivata a fare un lavoro perchè vuole migliorare se stessa (diventare ricca, salire di posizione ecc)
+- Interaction-oriented: la persona è motivata a fare un lavoro perchè vuole interagire con altre persone.
+
+Bisogna anche stabilire un Leader del gruppo. Il leader deve essere una persona che ha esperienza e che sa gestire il gruppo e soprattutto un titolo guadagnato.
+Chief programming: affiancare persone di esperienza a persone meno esperte in modo da insegnare loro come lavorare.
+
+Le aziende hanno un continuo via vai di persone, quindi è consigliato cercare di far lavorare più persone possibili sullo stesso progetto in modo da non perdere
+mai le conoscenze su quella parte di software.
+
+---- FINITI ARGOMENTI PRIMO ESONERO ----
+
+----------------------- Lezione 8 (1^ laboratorio) - 13/10/2023 -----------------------
+
+
+(guardare appunti laboratorio)
+
+
+----------------------- Lezione 9 - 17/10/2023 -----------------------
+
+----- ANALISI DEI CASI D'USO FATTA CON LA SCHEDA DEI REQUISITI -----
+
+Questa scheda non ha un modo preciso per essere fatta, infatti può essere divisa in paragrafi o usare anche il modo illustrato nel libro. L'importante è
+che ci siano le cose fondametali.
+
+// Il modo migliore per capire quali sono i casi d'uso è impersonificarsi negli stakeholders. 
+
+1) Il nome del caso d'uso solitamente inizia con un verbo (es "Acquistare" nel caso del comprare) 
+2) Portata (opzionale): Il sistema che si sta progettando
+3) Livello (opzionale): Obiettivo utente o sottofunzione (cioè che si possono usare casi d'uso già descritti per continuarne un altro)
+4) Attore primario: Colui che chiede al sistema di fornire i suoi servizi
+5)Parti interessati e interessi: coloro che vogliono usufruire del sistema e in che modo (es un cliente che acquista online qualcosa su un 
+e-commerce (ovvero il suo obiettivo). Ovviamente ci sono diverse diramazioni possibili (es non trova esattamente ciò che vuole, quindi cerca qualcosa simile).
+6) Pre-condizioni (dipende dal caso d'uso, non è obbligatorio che ci sia): Condizioni che si devono verificare prima che il caso d'uso si possa verificare. (NON il login per compare su Amazon)
+Le cose ovvie non bisogna metterle (es aver internet per accedere ad un sito) 
+7) Garanzia di successo (o Post-condizioni): Descrive come viene alterato lo stato del sistema dopo che il caso d'uso si è svolto.
+8) Scenario principale di successo (o Flusso di Base): Uno scenario comune di attraversamento del caso d'uso di successo (infatti si percorre una sola strada). Quindi 
+descrivere un insieme di passi (numerati) scritti in modo semplice; dire cosa gli attori dovranno fare. Fornire due scenari di successo e uno di 
+insuccesso SOLO se frequente e rilevante.
+9) Scenari alternativi (Estensioni): scenari alternativi sia di successo che di fallimento. (es scegliere un metodo di pagamento diverso da quello di default o anche
+il fatto che potrebbe cadere internet in momento dello scenario, quindi descrivere cosa succederà dopo il ritorno della connessione)
+10) Requisiti speciali (non funzionali): Descrizione requisiti non funzionali.
+11) Elenco delle varianti I/O: Varianti dei metodi di I/O e nel formato dei dati ({inserire il tts per le persone senza mani cit Kloz LOL} inserire un stile per 
+ritardati oppure qualcosa per i daltonici)
+12) Frequenza di ripetizione: frequenza di esecuzione prevista per il casdo d'uso. (es quanti acquisti contemporaneamente vengono fatti)
+13) Varie: Altri aspetti (es problemi aperti).
+
+Esempio di caso d'uso completo (Caso d'uso UC1): 
+Nome caso d'uso: Elabora vendita (Process Sale)
+(Guardare libro, è troppo lungo da scrivere)
+
+// Quando si scrivono i requisiti fare sempre riferimento al binomio "Attore-Obiettivo"
+
+Come identificare i casi d'uso:
+1) Scegliere i confini del sistema
+2) Identificazione degli attori primari
+- Chi avvia o chiude il sistema
+- Chi interigisce con i lofìg di sistema
+- Chi fornisce dati al sistema
+3) Identificazione degli obiettivi degli attori primari
+4) Identificazione dei casi d'uso
+
+Test per i casi d'uso:
+- Test del capo: Arriva il capo e chiede "cosa avete fatto?", voi rispondete "Il login". Se è felice, il test è superato altrimenti no.
+- Test EBP (Elementary Business Process): // da finire
+- Test della dimensione: il caso d'uso deve essere LUNGO. Se è corto, il test è fallito. 
+
+Operazioni CRAD (Create, Read, Update, Delete): sono operazioni che solitamente sono nello stesso caso d'uso. (es aggiungere un prodotto al carrello)
+UML (Unified Modeling Language): è un linguaggio di modellazione e specifica basato sul paradigma orientato agli oggetti. Serve per descrivere i casi d'uso.
+
+
+----------------------- Lezione 10 - 18/10/2023 -----------------------
+
+----- DIAGRAMMI DELLE CLASSI -----
+
+Il modello di dominio (o modello concettuale) è un modo per descrivere il dominio del problema attraverso la rappresentazione grafica delle classi di oggetti 
+che popolano il nostro domimio. Il modello di dominio deve esssere UNICO per progetto. All'interno non è necessario inserire i vari metodi dato che questo
+NON è programmazione. (si usa UML per rappresentare il modello di dominio). ALl'interno troveremo quindi oggetti di dominio o classi concettuali, associazioni tra 
+classi concettuali e attributi di classi concettuali. Quindi avremo SOLO nome della classe e attributi (evitare di mettere Database o concetti di implementazione).
+
+// sul libro (Tabella 9.1) è presente un esempio di cosa possiamo inserire nel modello di dominio.
+
+Linee guida:
+- per aiutarsi si possono evidenziare possibili classi di oggetti da inserire nel modello di dominio.
+- utilizzare nomi esistenti sul territorio
+- escludere caratteristiche irrilevanti o fuori portata 
+- evitare di inserire cose inutili
+- modellare gli oggetti del mondo non reale (es un app di messaggistica)
+- usare le classi descrizione (es un menù di una pizzeria in cui aggiungiamo la descrizione della pizza)
+    1) inserire una descrizione SOLO se necessaria e indipendentemente dal fatto se sia disponibile o meno.
+    2) quando l'eliminazione di istanze degli oggetti che descrivono darebbe luogo ad una perdita di informazioni che è necesasario conservare.
+    3) quando si vogliono ridurre le informazioni rindondanti o ripetute.
+
+Quando si va a fare la descrizione del modello di dominio si parla di associazioni e attributi:
+- Associazioni: è una relazione fra una o più classi. In UML è la rappresentazione semantica tra due o più classificatori che comporta una connessione fra le rispettive 
+                istanze. Importante inserire solo le associazioni necessarie e non tutte quelle che si potrebbero andare a creare.
+                (es Facebook. Io e Noemi siamo amici nella vita REALE, quindi si crea un'associazione fra noi due ma non su Facebook. Di conseguenza non si crea 
+                un'associazione RILEVANTE per Facebook da inserire nel modello di dominio). Dare nomi alle associazioni in modo da capire cosa rappresentano, devono
+                contenere verbi generici e una freccia di direzione di lettura. 
+                (es Nome classe - verbo + locuzione - Nome classe : "Il giocatore - è su un - quadrante")
+
+- Attributi: è un valore logico di un oggetto. In UML è una proprietà di un classificatore che descrive un valore che è contenuto in ogni istanza del classificatore.
+             Bisogna rispettare un'annotazione per inserirli nel modello di dominio. (es Nome attributo : tipo attributo)
+
+Valore: è un'istanza di un tipo di dato. In UML è un'istanza di un tipo di dato. (es 1, 2, 3, 4, 5 ecc...). I valori sono sempre costanti. I valori non hanno un'anima
+e non si ha bisogno di distinguerli e associarli.
+Oggetto: è un'istanza di una classe. In UML è un'istanza di un classificatore. Gli oggetti sono sempre variabili.
+Questo confronto è molto simile a quando in una diagramma E-R bisogna scegliere se fare una relazione o un'entità.
+
+Linee guida per attributi:
+- Ha sezioni separate (es numero di telefono o nome)
+- Ci sono operazioni associate ad esso (es un numero di telefono può essere chiamato)
+
+- Ha un valore che può essere calcolato, misurato o derivato (es il prezzo/peso di un prodotto)
+- Ha un valore che è un'enumerazione (es il sesso)
+- Ha un valore che è un'identificatore, quindi in ID univoco (es il codice fiscale)
+
+Ovviamente NON esiste un solo dominio corretto (un pò come un modello E-R) perchè sono approssimazioni del dominio che si sta tentando ci rappresentare. 
+
+----- DIAGRAMMI DI SEQUENZA DI SISTEMA (o SSD) -----
+
+E' una figura che mostra per particolare scenario di un caso d'uso, gli eventi generati da attori esterni, il loro ordine e gli eventi tra sistemi.All'interno abbiamo 
+degli attori che interagiscono con un determinato evento. Qui l'attore avvia un evento e riceveràuna risposta da parte del sistema.In questo diagramma bisogna inserire 
+il nome dell'attore e per ogni evento un nome ed eventuali attributi utili all'evento. (Figura 10.1 libro)
+Inserire un SSD per OGNI scenario principale di caso d'uso e per gli scenari alternativi più frequenti. I nomi delle funzioni devono avere un senso e devono inseriti
+in un glossario, dove vengono descritti in modo dettagliato. 
+

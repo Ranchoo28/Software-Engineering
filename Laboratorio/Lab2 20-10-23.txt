@@ -1,0 +1,34 @@
+----------------------- Lezione 11 (2^ laboratorio) - 20/10/2023 -----------------------
+
+----- MAVEN (continua) -----
+
+// Volendo sfruttare il framework JodaTime
+
+Creare un archeotipo:
+- mvn archetype:create-from-project -> per creare un archeotipo con base il progetto che abbiamo scelto.
+
+
+----- GIT -----
+
+Git è un software per il controllo della versione. Consente ad un gruppo di sviluppatori di lavorare sullo stesso progetto contemporaneamente. I file vengono condivisi
+sulla repository e le copie sono conservate localmente per ogni sviluppatore.
+
+Come usarlo:
+- Creare una cartella dove verrà scaricata una copia del progetto principale. (-git clone <url>)
+- Procedere con fare tutte le modifiche del caso
+- Dopo aver finito, fare il commit con commento e titolo SENSATO (-git commit -m "commento")
+- Pushare le modifiche sulla repository (-git push)
+- In caso di errori nel commit o nel push, è possibile fare un rollback (-git reset --hard <commit>)
+
+Git si basa su un sistema di Branching:
+- Il branch principale è il master (o main)
+- Un nuovo branch può essere creato come copia di un altro branch
+- I branch possono essere uniti (merge) o eliminati (delete)
+
+I Branch servono a lavorare su una copia del progetto principale, in modo da non modificare direttamente il progetto principale. Una volta che il branch è pronto, si
+può fare il merge con il progetto principale.
+
+Gitflow: è un sistema di branching che prevede diversi branch: master, hotfix, release, develop, feature. Il master è il branch principale, mentre gli altri vengono usati
+per aggiungere cose senza rovinare per il master. Il master deve essere SEMPRE funzionante.
+
+
