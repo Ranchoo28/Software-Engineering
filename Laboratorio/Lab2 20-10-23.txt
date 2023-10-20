@@ -30,5 +30,3 @@ può fare il merge con il progetto principale.
 
 Gitflow: è un sistema di branching che prevede diversi branch: master, hotfix, release, develop, feature. Il master è il branch principale, mentre gli altri vengono usati
 per aggiungere cose senza rovinare per il master. Il master deve essere SEMPRE funzionante.
-
-

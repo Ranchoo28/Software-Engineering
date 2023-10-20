@@ -26,3 +26,6 @@ git remote add origin urlgithub -> aggiungere repository di GitHub
 git push -u origin master -> aggiunge ciò che c'è su master su GitHub
 git stash -> salva le modifiche in un posto temporaneo
 git reset -> cancella le modifiche
+git checkout -b nomebranch -> crea un nuovo branch e ci si sposta
+git merge -nomebranch -> si fa il merge su un altro branch
+
