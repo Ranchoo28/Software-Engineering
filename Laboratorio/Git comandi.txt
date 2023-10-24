@@ -1,4 +1,4 @@
-COMANDI GIT
+------- COMANDI GIT -------
 
 git init -> viene creata la repository (dove vengono immagazzinate tutte le info del nostro codice tipo versioni, date ecc:
 		possono essere sia locali che remoti.
@@ -29,3 +29,10 @@ git reset -> cancella le modifiche
 git checkout -b nomebranch -> crea un nuovo branch e ci si sposta
 git merge -nomebranch -> si fa il merge su un altro branch
 
+
+
+------- COMANDI GIT LFS -------
+
+git lfs install -> inizializza lfs
+git lfs track "*.m" -> tracka tutti i file con estensione .m
+git add .gitattributes -> aggiunge il file .gitattributes che serve a git lfs per sapere quali file trackare da mettere su server lfs
