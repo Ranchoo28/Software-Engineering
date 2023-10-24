@@ -1,6 +1,6 @@
 ----------------------- Lezione 2 - 27/09/2023 (la prima era solo introduzione) -----------------------
 
-Software: programma sviluppato per risolvere determinate esigenze.
+Software: programma sviluppato per risolvere determinate esigenze. Comprende anche la documentazione associata.
 - Generico: sviluppato per risolvere problemi per utenti differenti.
 - Custom: sviluppato per un determinati utenti.
 
@@ -31,13 +31,13 @@ Sfide da affrontare come Ingegnere del software:
 - Sviluppare tecniche per una consegna veloce del software
 - Sviluppare un software che può essere considerato affidabile dagli utenti finali
 
-Processi software: una serie ti attività per lo sviluppo dal software.
+Processi software: una serie di attività per lo sviluppo dal software.
 - Specification
 - Design
 - Validation
 - Evolution
 
-Esempi di modelli di software process model:
+Esempi di software process model:
 - Waterfall model: Modello che separa le fasi di specification e sviluppo. Qui il cliente è presente solo nella fase di analisi. Il problema principale di questo 
 modello è la flessibilità perchè non si può tornare indietro e modificare quando si vuole (proprio per questo si chiama a cascata). Le fasi sono:
     1) Analisi e definizione dei requisiti
@@ -93,8 +93,8 @@ Requisiti utente: requisiti che descrivono le funzionalità del sistema dal punt
 - In un linguaggio naturale o con diagrammi dei servizi di sistema e vincoli.
 - Scritto per gli utenti finali e per gli sviluppatori.
 
-Requisiti di sistema: descrivono le funzionalità dal punto di vista del sistema. Un documento strutturato 
-che contiene in modo dettagliato i requisiti del sistema, servizi di sistema e vincoli.
+Requisiti di sistema: descrivono le funzionalità dal punto di vista del sistema. Un documento strutturato che contiene in modo dettagliato i requisiti del sistema, 
+servizi di sistema e vincoli. Si usa un linguaggio formale per descrivere i requisiti.
 
 Requisiti funzionali: descrivono le funzionalità del sistema, i servizi che il sistema deve fornire e come deve reagire a determinate situazioni.
 - Ad esempio: "Il sistema deve permettere agli utenti di creare un account". 
@@ -109,6 +109,12 @@ LIBSYS: sistema per la gestione di una biblioteca.
 
 Obiettivo: è un requisito che deve essere soddisfatto dal sistema.
 Differenza fra obiettivo e requisito: un obiettivo è qualcosa che il sistema deve fare, un requisito è qualcosa che il sistema deve essere.
+
+Caratteristiche dei requisiti:
+- Validità
+- Completezza
+- Realismo
+- Verificabilità
 
 /* Questi appunti sono Universitari. Vorrei fossi più preciso possibile. Se trovi errori, scrivimi su Telegram @DavideC03. Chi è @DavideC03? Sono io, Davide Cappellino, 
 uno studente di Ingegneria Informatica all'Università di Pisa. LOL */
@@ -219,7 +225,7 @@ Svantaggi:
 - Difficile da distribuire in modo efficiente
 
 Modello Client-Server: è un modello che divide il sistema in due parti: client e server. Il client è l'interfaccia utente e il server è il sistema che fornisce
-i servizi. Il client e il server comunicano tramite una rete. Il client e il server possono essere su macchine diverse o sulla stessa macchina. Sono indipendenti e 
+i servizi. Il client e il server comunicano tramite una rete. Il client e il server possono essere su macchine diverse o sulla stessa macchina. Sono indipendenti e
 possono essere sviluppati in modo indipendente.
 Svantaggi: 
 - Alta complessità di realizzazione
@@ -346,9 +352,8 @@ Come applicare l'Extreme programming:
 SCRAM: è un metodo agile che si basa sullo sviluppo incrementale. I requisiti vengono raccolti in delle Story Cards (contengono i requisiti). Le Story Cards 
 vengono divise in task e assegnate ai programmatori. Inoltre ogni task ha un tempo limite per essere completato.
 KANVAN è simile a SCRAM ma non ha un tempo limite per completare i task.
+La Story cards dice COSA fare, il task COME farlo
 */
-
-// La Story cards dice COSA fare, il task COME farlo
 
 Software reuse: è un modo per riutilizzare codice già esistente. Si possono riusare intere applicazioni, parti di applicazioni o parti di codice.
 Cosa si può riusare nello specifico: codice, librerie, frameworks, COTS, Aspect-oriented software development, program generators, design patterns ecc...
@@ -383,7 +388,7 @@ Il cambiamento è INEVITABILE.
 Program evolution dynamics: è lo studio del processo di cambiamento del software nel tempo. Lehman e Belady hanno proprosto una serie di "leggi" da rispettare:
 - Legge del cambiamento continuo: il software deve essere aggiornato continuamente per rispettare i requisiti e le nuove tecnologie, altrimenti diventa obsoleto.
 - Legge del complesso crescente: il software diventa sempre più complesso nel tempo. Le risorse extra devono cercare di semplificare e preservare la struttura del software.
-- Legge della conservazione della familiarità: il software deve essere aggiornato in modo da non perdere la familiarità con il software.
+- Legge della conservaziFone della familiarità: il software deve essere aggiornato in modo da non perdere la familiarità con il software.
 - Legge del declino continuo: il software diventa sempre meno utile nel tempo. Il software deve essere aggiornato in modo da non diventare obsoleto.
 - Legge della crescita continua: il software deve essere aggiornato in modo da soddisfare sempre il cliente e non diventare obsoleto. 
 - Large Program evolution: è un processo che si auto-regola. Gli attributi del sistema (size, tempo fra rilasci, il numero di errori) sono solitamente invarianti per rilascio.
@@ -429,7 +434,7 @@ Categorie di legacy system:
 - Low quality, low business value: sono sistemi che hanno un basso valore per l'azienda e che sono di bassa qualità. Questi sistemi devono essere sostituiti.
 - Low quality, high business value: sono sistemi che hanno un alto valore per l'azienda ma che sono di bassa qualità. Questi sistemi potrebbero essere sostituiti.
 - High quality, low business value: sono sistemi che hanno un basso valore per l'azienda ma che sono di alta qualità. Questi sistemi possono essere sostituiti o aggiornati.
-- High quality, high business value: sono sistemi che hanno un alto valore per l'azienda e che sono di alta qualità. Questi sistemi possono essere aggiornati ma anche no.
+- High quality, high business value: sono sistemi che hanno un alto valore per l'azienda e che sono di alta qualità. Questi sistemi potrebbero essere aggiornati ma anche no.
 
 ----------------------- Lezione 6 - 10/10/2023 -----------------------
 
@@ -769,7 +774,6 @@ Questo confronto è molto simile a quando in una diagramma E-R bisogna scegliere
 Linee guida per attributi:
 - Ha sezioni separate (es numero di telefono o nome)
 - Ci sono operazioni associate ad esso (es un numero di telefono può essere chiamato)
-
 - Ha un valore che può essere calcolato, misurato o derivato (es il prezzo/peso di un prodotto)
 - Ha un valore che è un'enumerazione (es il sesso)
 - Ha un valore che è un'identificatore, quindi in ID univoco (es il codice fiscale)
@@ -778,8 +782,8 @@ Ovviamente NON esiste un solo dominio corretto (un pò come un modello E-R) perc
 
 ----- DIAGRAMMI DI SEQUENZA DI SISTEMA (o SSD) -----
 
-E' una figura che mostra per particolare scenario di un caso d'uso, gli eventi generati da attori esterni, il loro ordine e gli eventi tra sistemi.All'interno abbiamo 
-degli attori che interagiscono con un determinato evento. Qui l'attore avvia un evento e riceveràuna risposta da parte del sistema.In questo diagramma bisogna inserire 
+E' una figura che mostra per particolare scenario di un caso d'uso gli eventi generati da attori esterni, il loro ordine e gli eventi tra sistemi. All'interno abbiamo 
+degli attori che interagiscono con un determinato evento. Qui l'attore avvia un evento e riceverà una risposta da parte del sistema. In questo diagramma bisogna inserire 
 il nome dell'attore e per ogni evento un nome ed eventuali attributi utili all'evento. (Figura 10.1 libro)
 Inserire un SSD per OGNI scenario principale di caso d'uso e per gli scenari alternativi più frequenti. I nomi delle funzioni devono avere un senso e devono inseriti
 in un glossario, dove vengono descritti in modo dettagliato. 
@@ -809,10 +813,10 @@ Come creare i contratti:
 
 L'architettura software è la struttura o le strutture del sistema, che comprende gli elementi del software, le proprietà esterne di tali elementi e i 
 relativi rapporti. L'architettura software è la struttura del sistema, che comprende gli elementi del software, le proprietà esterne di tali elementi e i.
-(Capire se il modo in cui è strutturato è in linea con i requisiti non funzionali)
+(L'obiettivo è capire se il modo in cui è strutturato è in linea con i requisiti non funzionali)
 
-Diagramma di package (in UML): è un diagramma che mostra le dipendenze fra i vari package. Segue l'idea del modello della macchina a strati.
-Quindi si hanno diversi layer (livelli) che si occupano di diverse cose. (UI, Domain, Technical Services ecc...).
+Diagramma di package (in UML): è un diagramma che mostra le dipendenze fra i vari package. Segue l'idea del modello della macchina a strati, quindi si hanno diversi 
+layer (livelli) che si occupano di diverse cose. (UI, Domain, Technical Services ecc...).
 Solitamente si cerca di rendere indipendenti i vari layer (non è una regola che bisogna rispettare sempre, ma è consigliato)
 
 Gli strati di un sistema orientato agli oggetti sono divisi in (secondo il pattern MVC):
