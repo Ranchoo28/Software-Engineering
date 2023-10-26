@@ -391,7 +391,7 @@ Program evolution dynamics: è lo studio del processo di cambiamento del softwar
 - Legge della conservazione della familiarità: il software deve essere aggiornato in modo da non perdere la familiarità con il software.
 - Legge del declino continuo: il software diventa sempre meno utile nel tempo. Il software deve essere aggiornato in modo da non diventare obsoleto.
 - Legge della crescita continua: il software deve essere aggiornato in modo da soddisfare sempre il cliente e non diventare obsoleto. 
-- Large Program evolution: è un processo che si auto-regola. Gli attributi del sistema (size, tempo fra rilasci, il numero di errori) sono solitamente invarianti per rilascio.
+// - Large Program evolution: è un processo che si auto-regola. Gli attributi del sistema (size, tempo fra rilasci, il numero di errori) sono solitamente invarianti per rilascio.
 
 Distribuzione dei costi di mantenimento: 65% Aggiunta di funzionlità, 25% correzione di errori, 10% adattamento a nuove piattaforme. // da rivedere
 
@@ -440,7 +440,7 @@ Categorie di legacy system:
 
 ----- VERIFICATION E VALIDATION -----
 
-Verification: "Are we building the product right?", è il processo per capire se il software che stiamo realizzando è corretto.
+Verification: "Are we building the product in the right way?", è il processo per capire se il software che stiamo realizzando è corretto.
 Validation: "Are we building the right product?", è il processo per capire se il software che stiamo realizzando è quello che il cliente vuole.
 
 Il processo V&V deve essere applicato ad ogni stage del nostro progetto. Ha 2 obiettivi:
@@ -665,7 +665,7 @@ i bisogni basici della persona ecc...
 
 Esistono principalmente 3 tipi di persone (Un buon team deve avere tutte e 3 i tipi di persona):
 - Task oriented: la persona è motivata a fare un lavoro perchè è interessata a quello che fa.
-- Self-oriented: la persona è motivata a fare un lavoro perchè vuole migliorare se stessa (diventare ricca, salire di posizione ecc)
+- Self-oriented: la persona è motivata a fare un lavoro perchè vuole migliorare se stessa (diventare ricca, salire di posizione ecc).
 - Interaction-oriented: la persona è motivata a fare un lavoro perchè vuole interagire con altre persone.
 
 Bisogna anche stabilire un Leader del gruppo. Il leader deve essere una persona che ha esperienza e che sa gestire il gruppo e soprattutto un titolo guadagnato.
@@ -782,7 +782,7 @@ Ovviamente NON esiste un solo dominio corretto (un pò come un modello E-R) perc
 
 ----- DIAGRAMMI DI SEQUENZA DI SISTEMA (o SSD) -----
 
-E' una figura che mostra per particolare scenario di un caso d'uso gli eventi generati da attori esterni, il loro ordine e gli eventi tra sistemi. All'interno abbiamo 
+E' una figura che mostra per particolare scenario di un caso d'uso gli con eventi generati da attori esterni, il loro ordine e gli eventi tra sistemi. All'interno abbiamo 
 degli attori che interagiscono con un determinato evento. Qui l'attore avvia un evento e riceverà una risposta da parte del sistema. In questo diagramma bisogna inserire 
 il nome dell'attore e per ogni evento un nome ed eventuali attributi utili all'evento. (Figura 10.1 libro)
 Inserire un SSD per OGNI scenario principale di caso d'uso e per gli scenari alternativi più frequenti. I nomi delle funzioni devono avere un senso e devono inseriti
@@ -813,7 +813,7 @@ Come creare i contratti:
 
 L'architettura software è la struttura o le strutture del sistema, che comprende gli elementi del software, le proprietà esterne di tali elementi e i 
 relativi rapporti. L'architettura software è la struttura del sistema, che comprende gli elementi del software, le proprietà esterne di tali elementi e i.
-(L'obiettivo è capire se il modo in cui è strutturato è in linea con i requisiti non funzionali)
+(L'obiettivo è capire se il modo in cui è strutturato il software è in linea con i requisiti non funzionali)
 
 Diagramma di package (in UML): è un diagramma che mostra le dipendenze fra i vari package. Segue l'idea del modello della macchina a strati, quindi si hanno diversi 
 layer (livelli) che si occupano di diverse cose. (UI, Domain, Technical Services ecc...).
@@ -829,12 +829,12 @@ Ordine su come farlo:
 1) UI
 2) Application (Workflow, App controller)
 3) Domain 
-4) Business Infrastrucuture (accesso al DB, accesso ad un sistema esterno)
+4) Business Infrastrucuture (accesso al DB, accesso ad un sistema esterno)3
 
 Non identificare risorse esterne. (es COTS o DB).
 */
 
------ FINE ARGOMENTO ESONERO (dioporco) ----- 
+----- FINE ARGOMENTO ESONERO ----- 
 
 ----- DESIGN DI PATTERN ----- 
 
