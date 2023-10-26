@@ -293,7 +293,7 @@ Serve a creare servizi che possono essere usati da altri sistemi. (es Google Map
 Rapid Software Development (RAD, è un modello iterativo) nasce perchè a volte c'è bisogno di sviluppare un software in poco tempo. Inoltre si può avere un feeback costante con il cliente.
 Inoltre nel RAD spesso viene creato un prototipo usa e getta per mostrare al cliente come sarà il software. Solitamente nel prototipo non vengono usate le 
 tecnologie migliori, quindi è sconsigliato usarlo come punto di partenza.
-Carrateristiche:
+Carratteristiche:
 - Cicli di sviluppo brevi
 - E' formato da vari 
 - I requisiti cambiano di continuo
@@ -344,7 +344,7 @@ Come applicare l'Extreme programming:
 - Pair programming: due programmatori lavorano insieme su un singolo computer. Uno scrive il codice e l'altro controlla che il codice sia corretto.
 - Collective ownership: tutti i programmatori possono modificare il codice, quindi nessuno ha la sua area di sviluppo.
 - Continuous integration: il codice viene integrato continuamente in modo da capire se il codice funziona. Anche qui devono essere eseguiti test.
-- Sustainable pace: i programmatori devono lavorare in modo costante e non devono lavorare troppo, in modo da non perdere qualità.
+- Sustainaionble pace: i programmatori devono lavorare in modo costante e non devono lavorare troppo, in modo da non perdere qualità.
 - On-site customer: il cliente deve essere presente durante tutto lo sviluppo del software.
 - Coding standards: il codice deve essere scritto in modo standard in modo da essere comprensibile da tutti.
 
@@ -373,7 +373,7 @@ Approcci principali:
 
 
 /* 
-Aspect-oriented software development: è un modo per riusare il codice. Si divide il codice in parti e si riusa solo la parte che serve. Si aggiunge una noatzione
+Aspect-oriented software development: è un modo per riusare il codice. Si divide il codice in parti e si riusa solo la parte che serve. Si aggiunge una notazione
 che viene attivata quando serve.
 */
 
@@ -388,7 +388,7 @@ Il cambiamento è INEVITABILE.
 Program evolution dynamics: è lo studio del processo di cambiamento del software nel tempo. Lehman e Belady hanno proprosto una serie di "leggi" da rispettare:
 - Legge del cambiamento continuo: il software deve essere aggiornato continuamente per rispettare i requisiti e le nuove tecnologie, altrimenti diventa obsoleto.
 - Legge del complesso crescente: il software diventa sempre più complesso nel tempo. Le risorse extra devono cercare di semplificare e preservare la struttura del software.
-- Legge della conservaziFone della familiarità: il software deve essere aggiornato in modo da non perdere la familiarità con il software.
+- Legge della conservazione della familiarità: il software deve essere aggiornato in modo da non perdere la familiarità con il software.
 - Legge del declino continuo: il software diventa sempre meno utile nel tempo. Il software deve essere aggiornato in modo da non diventare obsoleto.
 - Legge della crescita continua: il software deve essere aggiornato in modo da soddisfare sempre il cliente e non diventare obsoleto. 
 - Large Program evolution: è un processo che si auto-regola. Gli attributi del sistema (size, tempo fra rilasci, il numero di errori) sono solitamente invarianti per rilascio.
@@ -617,7 +617,7 @@ Esistono due tipi di misurazioni delle stime:
 - Per dimensione: si misura la dimensione del software in modo da capire quanto costa svilupparlo (es numero di linee di codice).
 - Per funzionalità: si misura il numero di funzioni del software in modo da capire quanto costa svilupparlo (es numero di funzioni).
 
-Problemi di misurazione: 
+Problemi di misurazione:
 - Stimare la grandezza della misurazione da sfruttare
 - Stimare il numero totale di programmatori
 - Stima della produttività dell'appalto e integrazione di tale stima in quella globale
@@ -625,7 +625,7 @@ Problemi di misurazione:
 Quindi si possono fare delle analisi basandosi sui punti funzione (Function Point Analysis). I punti funzione sono un modo per misurare la dimensione del software, per
 esempio il numero di bottoni, il numero di funzioni ecc... I punti funzione sono un modo per misurare la dimensione del software in modo indipendente dal linguaggio.
 
-LOC = AVC * number of function points // da rivedere
+LOC (line of code) = AVC * number of function points 
 
 I punti oggetto sono un modo per misurare la dimensione del software in modo indipendente dal linguaggio. Per esempio il numero di classi, il numero di metodi ecc.
 
@@ -726,7 +726,7 @@ Come identificare i casi d'uso:
 
 Test per i casi d'uso:
 - Test del capo: Arriva il capo e chiede "cosa avete fatto?", voi rispondete "Il login". Se è felice, il test è superato altrimenti no.
-- Test EBP (Elementary Business Process): un processo di business elementare è un'attività svolta da una persona in un determinato tempo e luogo che lascia i dati in un stato consisente.
+- Test EBP (Elementary Business Process): Se la funzionalità del caso d'uso porta qualche vantaggio all'utilizzatore.
 - Test della dimensione: il caso d'uso deve essere LUNGO. Se è corto, il test è fallito. 
 
 Operazioni CRAD (Create, Read, Update, Delete): sono operazioni che solitamente sono nello stesso caso d'uso. (es aggiungere un prodotto al carrello)
@@ -861,4 +861,42 @@ Come selezionare un DP:
 - Vedere le loro correlazioni
 - Considerare cosa può variare nel progetto
 - Considerare le conseguenze del pattern
+
+----------------------- Lezione 12 - 25/10/2023 -----------------------
+
+----- PATTERN DI CREAZIONE -----
+
+- Factory Method(FM)
+- Abstract Factory (AF)
+- Builder (BU)
+- Prototype (PR)
+- Singleton (SI)
+
+----- FACTORY METHOD -----
+
+Factory Method (FM, Metodo di fabbrica): Definisce un interfaccia per creare un oggetto, ma lasciare alle sottoclassi la decisione su quale classe istanziare, conosciuto
+come costruttore virtuale. Immagina di avere un framework applicativo per aprire diversi documenti. L'app non può sapere in anticipo cosa deve creare, quindi si ridefinisce
+un metodo "CreaDocumento" che cambierà il comportamento in base a quale documento si vuole aprire. (es Word, Excel ecc...). Il metodo "CreaDocumento" è il Factory Method.
+
+Quando usare FM:
+- quando la classe non può anticipare in che modo va creato l'oggetto.
+- quando le classi delegano la responsabilità di creazione alle sottoclassi, e si vuole localizzare quale sottoclasse è reponsabile della creazione.
+Conseguenze di FM:
+- si elimina la necessità di legare il codice specifico dell'applicazione alla classe concreta (quindi in caso di aggiornamenti bisogna crea solo una nuova sottoclasse).
+- i clienti devono sapere che per instanziare una classe c'è bisogno di un creatore (Factory Method).
+- da un aggancio per le sottoclassi. Creare un oggetto dentro un classe con FM è più flessibile che crearlo dentro un costruttore.
+Implementazione FM:
+- creare una classe astratta che non da nessuna implementazione di default
+- creare una classe che da un Implementazione di default
+- FM parametrizzato 
+
+----- SINGLETON -----
+
+(c'è anche bisogno? xd)
+
+Bisogna usarlo quando abbiamo bisogno di una sola istanza per tutti il progetto.
+Come implementarlo:
+- costruttore privato.
+- creare l'oggetto statico e privato nella classe.
+- creare un metodo statico pubblico per ritornare l'oggetto creato.
 
