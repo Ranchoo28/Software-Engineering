@@ -243,6 +243,14 @@ Per descrivere i software esistono due modi:
 - Pipeline model: è un modello che descrive il sistema come una serie di componenti che elaborano i dati in modo sequenziale.
 - Object model: è un modello dove il sistema è diviso in oggetti interattivi.
 
+Stili di controllo: si occupano di controllare il flusso tra sottosistemi. I principali sono:
+- Controllo centralizzato: un sistema ha tutte le resposanbilità e controlla tutto per la gestione ed esecuzione dei sistemi.
+    1) Modello call-return: modello top-down il cui controllo inizia da un punto e si espande verso il basso. Può essere applicato ai modelli sequenziali.
+    2) Modello manager: un componente controlla stopping, starting e coordinazione degli altri processi. Può essere applicato ai modelli concorrenti.
+- Controllo basato sugli eventi: ogni sottosistema risponde agli eventi che riceve da altri sottosistemi, esternamente o generati dall'ambiente del sistema.
+    1) Modello di trasmissione Broadcast: un sottosistema invia un messaggio a tutti gli altri sottosistemi.
+    2) Modelli guidati da interruzioni: funziona tramite interruzioni (interrupt). Quando un sottosistema riceve un interruzione, il sottosistema interrompe quello 
+       che sta facendo e si occupa dell'interruzione.
 
 ----- ARCHITETTURA A SISTEMI DISTRIBUITI (Distribuited System Architecture) -----
 
@@ -344,7 +352,7 @@ Come applicare l'Extreme programming:
 - Pair programming: due programmatori lavorano insieme su un singolo computer. Uno scrive il codice e l'altro controlla che il codice sia corretto.
 - Collective ownership: tutti i programmatori possono modificare il codice, quindi nessuno ha la sua area di sviluppo.
 - Continuous integration: il codice viene integrato continuamente in modo da capire se il codice funziona. Anche qui devono essere eseguiti test.
-- Sustainaionble pace: i programmatori devono lavorare in modo costante e non devono lavorare troppo, in modo da non perdere qualità.
+- Sustainaible pace: i programmatori devono lavorare in modo costante e non devono lavorare troppo, in modo da non perdere qualità.
 - On-site customer: il cliente deve essere presente durante tutto lo sviluppo del software.
 - Coding standards: il codice deve essere scritto in modo standard in modo da essere comprensibile da tutti.
 
@@ -429,6 +437,7 @@ Per evolvere un sistema ereditato si può:
 - Riscrivere il sistema da zero
 - Continuare ad evolverlo
 - Sostituire il sistema con un sistema nuovo
+- Reingegniarizzare il sistema
 
 Categorie di legacy system:
 - Low quality, low business value: sono sistemi che hanno un basso valore per l'azienda e che sono di bassa qualità. Questi sistemi devono essere sostituiti.
@@ -440,7 +449,7 @@ Categorie di legacy system:
 
 ----- VERIFICATION E VALIDATION -----
 
-Verification: "Are we building the product in the right way?", è il processo per capire se il software che stiamo realizzando è corretto.
+Verification: "Are we building the product in the right way?", è il processo per capire se il software lo stiamo realizzando nella maniera giusta.
 Validation: "Are we building the right product?", è il processo per capire se il software che stiamo realizzando è quello che il cliente vuole.
 
 Il processo V&V deve essere applicato ad ogni stage del nostro progetto. Ha 2 obiettivi:
@@ -715,6 +724,7 @@ Nome caso d'uso: Elabora vendita (Process Sale)
 
 // Quando si scrivono i requisiti fare sempre riferimento al binomio "Attore-Obiettivo"
 
+Un caso d'uso è un insieme di scenari che hanno in comune un obiettivo. 
 Come identificare i casi d'uso:
 1) Scegliere i confini del sistema
 2) Identificazione degli attori primari
@@ -726,7 +736,7 @@ Come identificare i casi d'uso:
 
 Test per i casi d'uso:
 - Test del capo: Arriva il capo e chiede "cosa avete fatto?", voi rispondete "Il login". Se è felice, il test è superato altrimenti no.
-- Test EBP (Elementary Business Process): Se la funzionalità del caso d'uso porta qualche vantaggio all'utilizzatore.
+- Test EBP (Elementary Business Process): Se la funzionalità del caso d'uso porta qualche vantaggio all'utilizzatore, il test è superato altrimenti no.
 - Test della dimensione: il caso d'uso deve essere LUNGO. Se è corto, il test è fallito. 
 
 Operazioni CRAD (Create, Read, Update, Delete): sono operazioni che solitamente sono nello stesso caso d'uso. (es aggiungere un prodotto al carrello)
@@ -791,7 +801,7 @@ in un glossario, dove vengono descritti in modo dettagliato.
 ----------------------- Lezione 11 - 24/10/2023 -----------------------
 
 (Esempi sul libro)
-Contratto (numero identificativo tipo C02/C03): è un contratto nel quale verrà specificato per le operazioni i riferimenti, le pre-condizoni e le post-condizioni.
+Contratto (numero identificativo tipo C02/C03): un contratto è qualcosa nel quale verrà specificato per le operazioni i riferimenti, le pre-condizoni e le post-condizioni.
 Nelle pre e post condizioni bisogna mettere che cosa verrà fatto.
 Inserire in ordine:
 - Nome operazione (nome e paramentri dell'operazione)
