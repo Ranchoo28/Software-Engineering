@@ -910,3 +910,32 @@ Come implementarlo:
 - creare l'oggetto statico e privato nella classe.
 - creare un metodo statico pubblico per ritornare l'oggetto creato.
 
+
+----------------------- Lezione 12 - 31/10/2023 -----------------------
+
+----- ABSTRACT FACTORY -----
+
+Look-and-feel: è uno standard che definisce l'aspetto e il comportamento di un prodotto software. (es Windows, Mac ecc...)
+Obiettivo: fornire un'interfaccia per creare famiglie di oggetti correlati o dipendenti senza specificare le classi concrete.
+Differenti look-and-feels quindi definiscono differenti componenti grafici. (es Windows usa un tipo di bottone diverso da Mac)
+La differenza fra AF e FM è che l'Abstract Factory crea famiglie di oggetti correlati o dipendenti mentre il Factory Method crea un solo oggetto. Inoltre nella 
+AF si occupa la fabbrica di creare l'oggetto mentre nella FM si occupa la sottoclasse di creare l'oggetto.
+
+Quando usare AF:
+- un sistema deve essere indipendente da come i suoi prodotti sono creati, composti e rappresentati.
+- un sistema deve essere configurato con una famiglia di prodotti.
+- una famiglia di prodotti correlati è progettata per essere usata insieme e si vuole imporre questa vincolo.
+- bisogna implementare una libreria di classi e si vuole rendere disponibile la sua interfaccia di livello superiore senza rivelare la sua implementazione.
+
+Conseguenze di AF:
+- Isola le classi concrete. Il codice del nostro progetto non faranno riferimento al costruttore specifico per creare un oggetto.
+- Impone un vincolo di coerenza. Siccome non si usa il costruttore, in automatico crea oggetti delle stessa famiglia.
+- E' molto difficile aggiungere un nuovo prodotto. Se aggiungiamo un nuovo prodotto dobbiamo aggiungere un altro metodo fabbrica a tutte le sottoclassi presenti.
+
+Come implementrare AF:
+- Usare il pattern Singleton per garantire che durante l'esecuzione ci sia solo un oggetto di un determinato tipo. 
+- Dichiarare solo l'interfaccia per creare prodotti. Le sottoclassi si occuperanno di implementare i metodi.
+- Definire un metodo fabbrica per ogni prodotto da creare.
+
+Oppure:
+- Creare un metodo parametrico con il tipo di oggetto da creare che avrà un switch case per creare l'oggetto giusto.
