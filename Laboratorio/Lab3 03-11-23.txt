@@ -1,0 +1,5 @@
+Dependency injection: è un pattern che permette di separare la creazione di un oggetto dalla sua utilizzazione. In questo modo è possibile creare un oggetto 
+e passarlo ad un altro oggetto che lo utilizzerà. Questo permette di rendere il codice più flessibile e testabile.
+
+MOCKITO: è un framework per il testing di unità Java che permette di creare oggetti/dipendenze mock. Un oggetto mock è un oggetto che simula il comportamento 
+di un oggetto reale.
