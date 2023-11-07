@@ -1,23 +1,74 @@
 package it.unical.demacs.FundasticServer.Users;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
-public class User {
+@Entity
+@Table
+public class Users {
+    @Id
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+
     private long id;
+    private String name;
+    private String surname;
     private String username;
     private String password;
     private String email;
     private LocalDate birthday;
+    @Transient
+    private Integer age;
 
-    public User(long id, String username, String password, String email, LocalDate birthday) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Integer getAge() {
+        return Period.between(this.birthday, LocalDate.now()).getYears();
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+
+
+    public Users() {}
+
+    public Users(long id, String name, String surname,String username, String password, String email, LocalDate birthday) {
         this.id = id;
+        this.name = name;
+        this.surname = surname;
         this.username = username;
         this.password = password;
         this.email = email;
         this.birthday = birthday;
     }
 
-    public User(String username, String password, String email, LocalDate birthday) {
+    public Users(String name, String surname,String username, String password, String email, LocalDate birthday) {
+        this.name = name;
+        this.surname = surname;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -66,7 +117,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Users{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

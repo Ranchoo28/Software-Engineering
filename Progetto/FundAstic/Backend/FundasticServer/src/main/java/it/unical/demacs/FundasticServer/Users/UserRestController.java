@@ -20,8 +20,8 @@ public class UserRestController {
     }
 
     @GetMapping
-    public List<User> getStudent(){
-        return userService.getStudent();
+    public List<Users> getStudent(){
+        return userService.getUsers();
     }
 
 
