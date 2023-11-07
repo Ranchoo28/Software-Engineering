@@ -1,0 +1,44 @@
+.btnContact{
+    margin-left: 10%;
+}  
+
+.btnContact:hover{
+    background-color: #03a5fc;
+}
+
+.btnNormal:hover{
+    background-color: #03a5fc;
+}
+
+.btnLogin{
+    margin-left: 30%;
+}
+.btnLogin:hover{
+    background-color: orange;
+
+}
+
+.btnReg:hover{
+    background-color: orange;
+}
+
+
+@keyframes grow {
+    0% {
+      transform: scale(1);
+   }
+    50% {
+      transform: scale(1.050);
+   }
+    100% {
+      transform: scale(1);
+   }
+  }
+  
+*{
+   transition: 0.4s;
+  
+   &:hover {
+      animation: grow 0.8s infinite;
+   }
+  }

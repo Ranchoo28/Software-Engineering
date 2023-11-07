@@ -1,0 +1,30 @@
+La Dependency Injection (DI) è un design pattern utilizzato nella programmazione per ridurre l'accoppiamento stretto 
+tra i componenti software. L'idea di base è quella di permettere a un componente di ricevere le sue dipendenze, invece di doverle 
+creare internamente. Questo può rendere il codice più modulare, più facile da testare e più flessibile.
+
+JUnit 5:
+1) Creare la classe test. Deve comprendere la parola "Test" nel nome (es UserServiceImplTest). Bisogna fare testing sulle interfacce.
+2) Aggiungere Mockito e inizializzarlo (@ExtendedWith(MockitoExtension.class) sopra dell'intestazione del metodo).
+3) Mockare tutti gli attributi/variabili (@Mocka sopra attributi/variabili).
+4) Usare il @BeforeEach per creare l'oggetto e quindi inizializzare la classe.
+5) Creare un metodo per fare Testing (@Test sopra dell'intestazione del metodo).
+6.a) Usare il metodo assertEquals per fare il testing. (assertEquals(expected, actual)).
+6.b) Se usiamo @Mock dobbiamo dare ai vai Mock un'implementazione 
+    Esempio:
+    @Test
+    public void userShouldGetNewPassword() throws Exception{
+        String fakePassword = "Password1234";
+        String hashFakePassword = "Hashed Password1234";
+        when (user.getPassword()).thenReturn(fakePassword); // Quando verrà chiamato il getPassword, in automatico mette la fake password
+        when (securityService.hash(fakePassword)).thenReturn(hashFakePassword)
+
+        User userReturn = userService.assignPassword(user);
+
+        verify(securityService, 2).hash(fakePassword); // verify può essere chimato solo sui Mock. Il secondo paramentro serve per vedere se è stato chiamato esattamente 2 volte.
+        veryfy(user).setPassword(hashFakePassword);
+        verifyNoInteraction(user); // Verifica se non sono stati chiamati metodi su user.
+        verify(userDao).updateUser(user);
+
+        assertEquals(user, userReturn);
+    }
+7) Eseguire il test.
