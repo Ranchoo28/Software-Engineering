@@ -28,6 +28,29 @@ public class Users {
     @Transient
     private Integer age;
 
+    public Users() {}
+
+    public Users(long id, String name, String surname,String username, String password, String email, LocalDate birthday) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.birthday = birthday;
+    }
+
+    public Users(String name, String surname,String username, String password, String email, LocalDate birthday) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.birthday = birthday;
+    }
+
+    // GETTER E SETTER
+
     public String getName() {
         return name;
     }
@@ -50,29 +73,6 @@ public class Users {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-
-
-    public Users() {}
-
-    public Users(long id, String name, String surname,String username, String password, String email, LocalDate birthday) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.birthday = birthday;
-    }
-
-    public Users(String name, String surname,String username, String password, String email, LocalDate birthday) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.birthday = birthday;
     }
 
     public long getId() {
