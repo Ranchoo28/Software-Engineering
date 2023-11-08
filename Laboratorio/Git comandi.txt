@@ -18,9 +18,7 @@ git config --local(o global) user.name "Saverio" -> impostare un username per un
 git config --local(o global) user.email "savcreaa.kr99gmail.com" -> impostare una mail per un singolo file o per tutti
 git checkout nomefile.estensione -> ripristina il file all'ultimo commit
 git branch -> stampa tutti i branch presenti
-git branch nomebranch -> crea un nuovo branch
 git checkout nomebranch -> cambia branch
-git merge nomebranch -> unisce due branch
 git log -> log dei cambiamenti
 git remote add origin urlgithub -> aggiungere repository di GitHub
 git push -u origin master -> aggiunge ciò che c'è su master su GitHub
@@ -29,6 +27,17 @@ git reset -> cancella le modifiche
 git checkout -b nomebranch -> crea un nuovo branch e ci si sposta
 git merge -nomebranch -> si fa il merge su un altro branch
 
+LOCALE
+Creo nuovo branch 
+Faccio modifiche
+git add -a
+git commit
+ci spostiamo di branch
+git merge -nomebranch da cui mergare le cose (es da dev a main)
+
+REMOTO
+stessa cosa, però bisogna fare una pull request o Pr (GitHub in automatico lo rileva e ci permette di eseguirlo) che solitamente verrà
+approvato da qualcun altro. Una volta approvato si può fare il merge.
 
 
 ------- COMANDI GIT LFS -------

@@ -1,6 +1,6 @@
 import { Input, Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FirebaseService } from 'src/app/Services/firebase.service';
+import { RequestService } from 'src/app/Services/RequestService';
 
 @Component({
   selector: 'app-login',
@@ -9,22 +9,25 @@ import { FirebaseService } from 'src/app/Services/firebase.service';
 })
 
 export class LoginComponent {
-  
-  constructor(private firebase: FirebaseService){}
-  loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  }); 
 
-  ngOnInit(){
-   
+  loginForm!: FormGroup
+  constructor(private request: RequestService){}
+ 
+  ngOnInit():void{
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+    }); 
   }
   
-  submit() {  
-   
+  submit() {
+    this.request.loginUtente({
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    })
   }
   
-  @Input() error: string | null | undefined;
+
 
   @Output() submitEM = new EventEmitter();
 

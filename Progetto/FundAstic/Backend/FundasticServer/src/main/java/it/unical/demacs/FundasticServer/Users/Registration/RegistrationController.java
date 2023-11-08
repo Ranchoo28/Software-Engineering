@@ -1,20 +1,20 @@
-package it.unical.demacs.FundasticServer.Users;
+package it.unical.demacs.FundasticServer.Users.Registration;
 
+import it.unical.demacs.FundasticServer.Users.UserService;
+import it.unical.demacs.FundasticServer.Users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/users") // http://localhost:8080/api/v1/users
-
-public class UserRestController {
+@CrossOrigin(origins = "http://localhost:4200") // Specifica l'origine del frontend
+@RequestMapping("api/registration") // Specifica il percorso per accedere a questa classe ( http://localhost:8080/api/v1/users )
+public class RegistrationController {
 
     private final UserService userService;
 
     @Autowired
-    public UserRestController(UserService userService) {
+    public RegistrationController(UserService userService) {
         this.userService = userService;
     }
 
@@ -24,8 +24,8 @@ public class UserRestController {
     }
 
     @PostMapping // il PostMapping serve per registrare un nuovo utente, attraverso il body della richiesta
-    public void registerNewUser(@RequestBody Users user){
-        userService.addNewUser(user);
+    public void registerNewUser(@RequestBody RegistrationRequest request ){
+        userService.addNewUser(request);
     }
 
     @DeleteMapping(path = "{userId}") // il DeleteMapping serve per eliminare un utente, attraverso il body della richiesta
@@ -41,7 +41,7 @@ public class UserRestController {
             @RequestParam (required = false) String username,
             @RequestParam (required = false) String password,
             @RequestParam (required = false) String email,
-            @RequestParam (required = false) LocalDate birthday){
+            @RequestParam (required = false) String birthday){
 
         userService.updateUser(userId, name, surname, username, password, email, birthday);
     }

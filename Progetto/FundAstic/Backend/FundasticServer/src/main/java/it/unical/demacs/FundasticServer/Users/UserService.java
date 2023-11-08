@@ -1,11 +1,13 @@
 package it.unical.demacs.FundasticServer.Users;
 
 import it.unical.demacs.FundasticServer.Handler.RegexHandler;
+import it.unical.demacs.FundasticServer.Users.Login.LoginRequest;
+import it.unical.demacs.FundasticServer.Users.Registration.RegistrationRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,20 +22,36 @@ public class UserService {
 
     public List<Users> getUsers(){ return usersRepository.findAll(); }
 
-    public void addNewUser(Users user) {
-        Optional<Users> userOptional = usersRepository.findUsersByEmail(user.getEmail());
+    public void loginUser(LoginRequest request){
+        Optional<Users> userOptional = usersRepository.findUsersByUsername(request.getUsername());
+        if(userOptional.isEmpty()) throw new IllegalStateException("Username or password are incorrect");
+        else
+            if(!userOptional.get().getPassword().equals(request.getPassword()))
+                throw new IllegalStateException("Username or password are incorrect");
+            else
+                System.out.println("Login successful");
+    }
+
+    public void addNewUser(RegistrationRequest request) {
+        Optional<Users> userOptional = usersRepository.findUsersByEmail(request.getEmail());
         if(userOptional.isPresent()) throw new IllegalStateException("Email already taken");
-        userOptional = usersRepository.findUsersByUsername(user.getUsername());
+        userOptional = usersRepository.findUsersByUsername(request.getUsername());
         if(userOptional.isPresent()) throw new IllegalStateException("Username already taken");
 
-        usersRepository.save(user);
+        usersRepository.save(new Users(
+                request.getName(),
+                request.getSurname(),
+                request.getUsername(),
+                request.getPassword(),
+                request.getEmail(),
+                request.getBirthday()
+        ));
     }
 
     public void deleteUser(Long id) {
        if(usersRepository.existsById(id)) usersRepository.deleteById(id);
          else throw new IllegalStateException("User with id " + id + " does not exist");
     }
-
 
     @Transactional
     public void updateUser(
@@ -43,7 +61,7 @@ public class UserService {
             String username,
             String password,
             String email,
-            LocalDate birthday) {
+            String birthday) {
 
         Users userToUpdate = usersRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with id " + userId + " does not exist"));
@@ -79,5 +97,16 @@ public class UserService {
         if(birthday != null && !birthday.equals(userToUpdate.getBirthday()) && userToUpdate.getAge() > 18){
             userToUpdate.setBirthday(birthday);
         }
+    }
+
+    public boolean isValidUser(String username, String password) {
+        Users user = usersRepository.findUsersByUsername(username).orElse(null);
+
+        if (user != null) return password.equals(user.getPassword());
+        return false;
+    }
+
+    public void getLoggedUser() {
+        System.out.println("Logged user");
     }
 }

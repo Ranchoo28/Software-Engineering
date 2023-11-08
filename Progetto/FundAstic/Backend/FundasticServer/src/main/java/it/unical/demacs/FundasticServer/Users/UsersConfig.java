@@ -9,7 +9,7 @@ import java.util.List;
 
 @Configuration
 public class UsersConfig {
-   // @Bean
+   // @Bean Serve solo per testare il database
     CommandLineRunner commandLineRunner(UsersRepository usersRepository){
         return args -> {
             Users Mario = new Users(
@@ -18,7 +18,7 @@ public class UsersConfig {
                     "Ranchoo",
                     "sav@gmail.com",
                     "123456",
-                    LocalDate.of(1999, 1, 5)
+                    "1998-01-01"
             );
 
             usersRepository.save(Mario);
