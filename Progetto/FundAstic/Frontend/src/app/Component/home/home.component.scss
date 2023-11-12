@@ -1,0 +1,27 @@
+@font-face {
+    font-family: font;
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+}
+
+h2{
+    margin-top: 1.5%;
+    font-size: 30px;
+    font-family: font;
+}
+
+div{ 
+    font-size: 18px;
+    text-align: center;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    margin: 0;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 222px); /* Cambia il numero di colonne e la larghezza desiderata */
+    gap: 10px; /* Aggiunge uno spazio tra le colonne */
+}

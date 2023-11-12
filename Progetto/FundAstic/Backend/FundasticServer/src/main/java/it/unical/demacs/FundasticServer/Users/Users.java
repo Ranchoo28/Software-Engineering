@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -13,6 +12,7 @@ import java.time.Period;
 @AllArgsConstructor
 @Entity
 @Table
+
 public class Users {
     @Id
     @SequenceGenerator(
@@ -25,7 +25,7 @@ public class Users {
             generator = "user_sequence"
     )
 
-    private long id;
+    private Long id;
     private String name;
     private String surname;
     private String username;

@@ -1,6 +1,10 @@
+*{
+    margin-top: -2%;
+}
 .btnContact{
-    margin-left: 10%;
-}  
+
+    margin-left: 4%;
+}
 
 .btnContact:hover{
     background-color: #03a5fc;
@@ -11,7 +15,7 @@
 }
 
 .btnLogin{
-    margin-left: 30%;
+    margin-left: 25%;
 }
 .btnLogin:hover{
     background-color: orange;
@@ -20,6 +24,15 @@
 
 .btnReg:hover{
     background-color: orange;
+}
+
+img {
+    margin-left: 4%;
+    margin-top: 1%;
+}
+
+hr{
+    margin-top: 0.1%;
 }
 
 
