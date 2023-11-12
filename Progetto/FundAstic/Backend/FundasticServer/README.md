@@ -1,4 +1,4 @@
-# Fundastic
+# Fundastic Server
 
 ## Descrizione
 
