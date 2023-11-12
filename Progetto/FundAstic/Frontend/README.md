@@ -1,27 +1,22 @@
-# FundAstic
+# Fundastic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
+## Descrizione
 
-## Development server
+Fundastic è una web app di crowdfunding sviluppata in Angular 17, progettata per consentire agli utenti di creare e partecipare a campagne di finanziamento collettivo. La piattaforma offre una varietà di funzionalità per gestire e promuovere campagne di crowdfunding in modo efficace.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Caratteristiche Principali
 
-## Code scaffolding
+- **Creazione di Campagne:** Gli utenti possono facilmente creare nuove campagne di crowdfunding specificando obiettivi finanziari, descrizioni dettagliate e periodi di durata.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Partecipazione:** Gli utenti possono contribuire finanziariamente alle campagne che sostengono, con opzioni di pagamento sicure e varie modalità di contributo.
 
-## Build
+- **Dashboard Personale:** Ogni utente ha accesso a un'area personale dove può monitorare le campagne a cui ha partecipato, visualizzare le statistiche e gestire le proprie informazioni.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Promozione delle Campagne:** Gli utenti possono condividere le campagne sui social media e utilizzare strumenti di promozione integrati per aumentare la visibilità.
 
-## Running unit tests
+## Requisiti di Sistema
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Node.js
+- Angular CLI
+- TypeScript
+- Angular 17
