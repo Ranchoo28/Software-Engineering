@@ -1,5 +1,6 @@
 package it.unical.demacs.FundasticServer.Users.Registration;
 
+import it.unical.demacs.FundasticServer.Users.Role;
 import it.unical.demacs.FundasticServer.Users.UserService;
 import it.unical.demacs.FundasticServer.Users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,10 @@ public class RegistrationController {
             @RequestParam (required = false) String username,
             @RequestParam (required = false) String password,
             @RequestParam (required = false) String email,
-            @RequestParam (required = false) String birthday){
+            @RequestParam (required = false) String birthday,
+            @RequestParam (required = false) Role role){
 
-        userService.updateUser(userId, name, surname, username, password, email, birthday);
+        userService.updateUser(userId, name, surname, username, password, email, birthday, role);
     }
 
 }

@@ -1,5 +1,6 @@
 package it.unical.demacs.FundasticServer.Users.Registration;
 
+import it.unical.demacs.FundasticServer.Users.Role;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class RegistrationRequest {
     private String password;
     private String email;
     private String birthday;
+    private Role role;
 
     public RegistrationRequest(){}
 }

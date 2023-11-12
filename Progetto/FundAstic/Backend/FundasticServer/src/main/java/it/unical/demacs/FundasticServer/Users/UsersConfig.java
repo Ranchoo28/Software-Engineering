@@ -18,7 +18,8 @@ public class UsersConfig {
                     "Ranchoo",
                     "sav@gmail.com",
                     "123456",
-                    "1998-01-01"
+                    "1998-01-01",
+                    Role.Publisher
             );
 
             usersRepository.save(Mario);

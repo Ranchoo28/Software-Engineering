@@ -28,21 +28,22 @@ public class Users {
     private Long id;
     private String name;
     private String surname;
-    private String username;
+    @Column(unique = true) private String username;
     private String password;
-    private String email;
+    @Column(unique = true) private String email;
     private String birthday;
-    @Transient
-    private Integer age; // Viene automaticamente calcolata in base alla data di nascita
+    @Transient private Integer age; // Viene automaticamente calcolata in base alla data di nascita
+    @Enumerated(EnumType.STRING) private Role role;
 
     public Users() {}
-    public Users(String name, String surname,String username, String password, String email, String birthday) {
+    public Users(String name, String surname,String username, String password, String email, String birthday, Role role) {
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
         this.email = email;
         this.birthday = birthday;
+        this.role = role;
     }
 
     public Integer getAge() {

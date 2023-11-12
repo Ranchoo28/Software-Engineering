@@ -44,7 +44,8 @@ public class UserService {
                 request.getUsername(),
                 request.getPassword(),
                 request.getEmail(),
-                request.getBirthday()
+                request.getBirthday(),
+                request.getRole()
         ));
     }
 
@@ -61,7 +62,8 @@ public class UserService {
             String username,
             String password,
             String email,
-            String birthday) {
+            String birthday,
+            Role role) {
 
         Users userToUpdate = usersRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with id " + userId + " does not exist"));
@@ -96,6 +98,10 @@ public class UserService {
 
         if(birthday != null && !birthday.equals(userToUpdate.getBirthday()) && userToUpdate.getAge() > 18){
             userToUpdate.setBirthday(birthday);
+        }
+
+        if(role != null && !role.equals(userToUpdate.getRole())){
+            userToUpdate.setRole(role);
         }
     }
 
