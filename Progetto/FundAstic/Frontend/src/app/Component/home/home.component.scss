@@ -10,18 +10,27 @@ h2{
 }
 
 div{ 
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
+    font-family: font;
 }
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 15vh;
+    margin: 0;
+}
+
+h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0vh;
     margin: 0;
 }
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 222px); /* Cambia il numero di colonne e la larghezza desiderata */
-    gap: 10px; /* Aggiunge uno spazio tra le colonne */
+    grid-template-columns: repeat(4, 190px); /* Cambia il numero di colonne e la larghezza desiderata */
+    gap: 5px; /* Aggiunge uno spazio tra le colonne */
 }

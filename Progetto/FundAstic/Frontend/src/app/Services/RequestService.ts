@@ -11,17 +11,22 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RequestService {
+  
   loginUrl = "http://localhost:8080/api/login"
   registrationUrl = "http://localhost:8080/api/registration"
+  dashboardUrl = "http://localhost:8080/api/dashboard"
 
   constructor(private http: HttpClient) { }
   loginUtente(data: {}) {
     return this.http.post(this.loginUrl, data, httpOptions).subscribe()
   }
-
-  
  
   insertUtente(data: {}){
     return this.http.post(this.registrationUrl, data,httpOptions).subscribe()
   }
+  
+  getDashboardData() {
+    return this.http.get(this.dashboardUrl, httpOptions)
+  }
+
 }
