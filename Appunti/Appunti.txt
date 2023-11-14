@@ -939,3 +939,122 @@ Come implementrare AF:
 
 Oppure:
 - Creare un metodo parametrico con il tipo di oggetto da creare che avrà un switch case per creare l'oggetto giusto.
+
+
+----------------------- Lezione 13 - 14/11/2023 -----------------------
+
+----- PROTOTYPE (PR) -----
+Specifica il tipo di oggetto da creare usando un'istanza prototipo e quindi il nuovo oggetto viene creato clonando questo prototipo.
+
+Esempio costruttore di copia C++:
+class MyClass {
+    int data;
+
+public:
+    // Costruttore normale
+    MyClass(int value) : data(value) { }
+
+    // Costruttore di copia
+    MyClass(const MyClass& source) {
+        data = source.data;
+    }
+};
+
+in Java:
+public class MyClass implements Cloneable {
+    int data;
+
+    public MyClass(int data) {
+        this.data = data;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+Oppure usare Seralizable, in modo da poter scriverli su file e poi rileggerli quando si vuole.
+
+Quando usare PR:
+- quando le classi da istanziare sono specificate a runtime.
+- per evitare di usare AF dato che potrebbe diventare molto molto grande.
+
+Come sfruttarlo:
+1) Creare un riferimento al nostro prototipo.
+2) Quando dobbiamo clonare l'oggetto faremo riferimento al prototipo.
+
+Conseguenze PR:
+- Aggiungere e rimuovere prodotti a runtime.
+- Ridurre la necessità di creare altre classi rispetto ad altri pattern (es AF) 
+- Si perde la coerenza delle famiglie di oggetti.
+- In java non esiste un costruttore di copia.
+
+In Java, la Reflection è un potente strumento che permette di ispezionare o modificare il comportamento di classi, interfacce, campi 
+e metodi a runtime. 
+Il PR può essere usato per l'AF.
+
+----- BUILDER (BU) -----
+Questo pattern ha l'obiettivo di separare la costruzione di oggetti complessi dalla sua rappresentazione.
+Non è necessario usare classi astratte per i prodotti perchè spesso non sono oggetti.
+
+Quando usare BU:
+- Ogni qual volta l'algoritmo di costruzione deve essere indipendente da ciò che andiamo a creare
+- Quando il processo di creazione deve rappresentare più oggetti.
+
+Esempio in Java:
+public interface Builder {
+    void parseText();
+    void buildPartB();
+    void buildPartC();
+}
+
+// Metodi di costruttori delle parti (Specifico builder)
+public class ConcreteBuilder implements Builder {
+    @Override 
+    public void parseText() {
+        // Implementazione del metodo
+    }
+
+    @Override
+    public void buildPartB() {
+        // Implementazione del metodo
+    }
+
+    @Override
+    public void buildPartC() {
+        // Implementazione del metodo
+    }
+}
+
+public class Director {
+    private Builder builder;
+
+    public Director(Builder builder) {
+        this.builder = builder;
+    }
+
+    public void construct() {
+        builder.buildPartA();
+        builder.buildPartB();
+        builder.buildPartC();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Builder builder = new ConcreteBuilder();
+        Director director = new Director(builder);
+        director.construct();
+    }
+}
+
+Conseguenze BU:
+- Isola il codice per la costruzione e la rappresentazione
+- Il cliente non sa nulla sulla struttura interna del prodotto.
+- Il prodotto viene costruito step by step dal director.
+
+Il director è una componente che controlla il processo di costruzione di un oggetto. Il Director utilizza un oggetto Builder per 
+costruire un oggetto complesso, passo dopo passo. Non è a conoscenza dei dettagli concreti delle classi dei Builder e interagisce 
+solo con l'interfaccia Builder. Questo permette di cambiare o riutilizzare il codice di costruzione dell'oggetto senza 
+cambiare il codice del Director.
+Nell'esempio in un editor di testo in input si potrebbe usare l'AF, in output il BU. (Domanda che potrebbe fare all'orale)
