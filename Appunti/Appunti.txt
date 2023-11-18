@@ -839,8 +839,7 @@ Ordine su come farlo:
 1) UI
 2) Application (Workflow, App controller)
 3) Domain 
-4) Business Infrastrucuture (accesso al DB, accesso ad un sistema esterno)3
-
+4) Business Infrastrucuture (accesso al DB, accesso ad un sistema esterno)
 Non identificare risorse esterne. (es COTS o DB).
 */
 
@@ -1058,3 +1057,186 @@ costruire un oggetto complesso, passo dopo passo. Non è a conoscenza dei dettag
 solo con l'interfaccia Builder. Questo permette di cambiare o riutilizzare il codice di costruzione dell'oggetto senza 
 cambiare il codice del Director.
 Nell'esempio in un editor di testo in input si potrebbe usare l'AF, in output il BU. (Domanda che potrebbe fare all'orale)
+
+
+----------------------- Lezione 14 - 15/11/2023 -----------------------
+
+----- PATTERN STRUTTURALI -----
+
+- Adapter (AD)
+- Proxy
+- Bridge
+- Decorator
+
+----- Adapter (AD) ----- 
+Questo pattern (conosciuto anche come Wrapper) ha l'obiettivo di convertire l'interfaccia di una classe in un'altra interfaccia che i clienti si aspettano. Quindi permettono 
+alle classi di lavorare insieme anche quando non dovrebbero a causa di incompatibilità.
+
+Quando usare AD: quando si vuole usare una classe esistente ma la sua interfaccia non è compatibile con quella che si vuole usare.
+
+Esempio:
+// Interfaccia esistente
+interface OldInterface {
+    void oldMethod();
+}
+
+// Classe esistente che implementa l'interfaccia esistente
+class OldClass implements OldInterface {
+    public void oldMethod() {
+        System.out.println("Old Method");
+    }
+}
+
+// Nuova interfaccia che i clienti si aspettano
+interface NewInterface {
+    void newMethod();
+}
+
+// Adapter che implementa la nuova interfaccia e utilizza l'interfaccia esistente
+class Adapter implements NewInterface {
+    private OldInterface oldObject;
+
+    public Adapter(OldInterface oldObject) {
+        this.oldObject = oldObject;
+    }
+
+    public void newMethod() {
+        oldObject.oldMethod();
+    }
+}
+
+// Classe cliente che utilizza la nuova interfaccia
+public class Client {
+    public static void main(String[] args) {
+        OldInterface oldObject = new OldClass();
+        NewInterface adapter = new Adapter(oldObject);
+        adapter.newMethod();
+    }
+}
+
+
+----- BRIDGE (BR) -----
+Questo pattern serve a collegare un'astrazione alla sua implementazione.
+
+Quando usare BR:
+- quando un'astrazione può avere diverse implementazioni (es Swing di java che varia in base al siste,a operativo).
+- quando non voglio avere un collegamento permanente fra l'astrazione e la sua implementazione.
+- l'implementazione verrà selezionata a tempo di esecuzione.
+- vogliamo nascondere l'implementazione di un'astrazione ai clienti (esempio i DLL in windows).
+
+Conseguenze BR:
+- un'implementazione non è collegata permanentemente ad un'interfaccia
+- l'implementazione di un'astrazione può essere configurata/cambiata a tempo di esecuzione.
+
+Il BR può essere usato insieme all'AF. Si può usare l'AF per la creazione delle varie implementazioni, ma non per l'astrazione vera e propria.
+Per esempio se abbiamo l'astrazione di Windows collegata tramite BR alla WindowsImpl, possiamo usare l'AF per la creazione di prodotti diversi
+della stessa famiglia WindowsImpl. Quindi avremo una fabbrica di WindowsImpl che crea bottoni, scrollbar ecc (ovvero i prodotti concreti) in 
+base a cosa noi scegliamo di creare (WindowsImplIos, WindowsImplAndroid ecc).
+
+Esempio:
+// Implementor
+interface Implementor {
+    void operationImpl();
+}
+
+// Concrete Implementors
+class ConcreteImplementorA implements Implementor {
+    public void operationImpl() {
+        System.out.println("Concrete Implementor A");
+    }
+}
+
+class ConcreteImplementorB implements Implementor {
+    public void operationImpl() {
+        System.out.println("Concrete Implementor B");
+    }
+}
+
+// Abstraction
+abstract class Abstraction {
+    protected Implementor implementor;
+
+    public Abstraction(Implementor implementor) {
+        this.implementor = implementor;
+    }
+
+    public abstract void operation();
+}
+
+// Refined Abstraction
+class RefinedAbstraction extends Abstraction {
+    public RefinedAbstraction(Implementor implementor) {
+        super(implementor);
+    }
+
+    public void operation() {
+        implementor.operationImpl();
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        Implementor implementorA = new ConcreteImplementorA();
+        Abstraction abstractionA = new RefinedAbstraction(implementorA);
+        abstractionA.operation();
+
+        Implementor implementorB = new ConcreteImplementorB();
+        Abstraction abstractionB = new RefinedAbstraction(implementorB);
+        abstractionB.operation();
+    }
+}
+
+
+----- FACADE (FA) -----
+Questo pattern ha l'obiettivo di fornire un'interfaccia unificata ad un serie di interfacce in un sottosistema. Fornisce un interfaccia di alto 
+livello che facilita l'utilizzo del sottosistema.
+
+Quando usare FA:
+- quando voglia nascondere al cliente le vere implementazioni, facilitando anche eventuali modifiche.
+- quando vogliamo offrire un'interfaccia semplice per un sottosistema complesso, garantendo una buona UI e UX.
+
+Conseguenze FA:
+- Isola i clienti dal sottosistema, riducendo il numero di oggetti con cui l'utente può operare.
+- Promuove il disaccoppiamento fra sottosistema e clienti.
+- Riduce la possibilità di avere cicli di dipendenze di compilazione.
+
+FA può essere collegato all'AF, SI e Mediator.
+
+Esempio:
+// Classi del sottosistema
+class SubsystemClass1 {
+    public void method1() {
+        System.out.println("SubsystemClass1 method1");
+    }
+}
+
+class SubsystemClass2 {
+    public void method2() {
+        System.out.println("SubsystemClass2 method2");
+    }
+}
+
+// Facade
+class Facade {
+    private SubsystemClass1 subsystem1;
+    private SubsystemClass2 subsystem2;
+
+    public Facade() {
+        subsystem1 = new SubsystemClass1();
+        subsystem2 = new SubsystemClass2();
+    }
+
+    public void operation() {
+        subsystem1.method1();
+        subsystem2.method2();
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        Facade facade = new Facade();
+        facade.operation();
+    }
+}
