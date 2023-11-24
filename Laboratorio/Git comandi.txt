@@ -7,7 +7,7 @@ git add -> aggiungere file che poi dovranno essere messi nella repository
 git rm --cached -> togliere file che non dovranno essere messi nella repository
 git commit -> aggiungere file alla repository
 	1) Scrivere i per inserire il messaggio
-	2) Premere esc quando il messaggio è finit
+	2) Premere esc quando il messaggio è finito
 	3) Scrivere :wq per uscire dal menù
 git commit -m -> fa la stessa cosa del commit normale ma più rapido
 git push -> viene usato per mandare il nostro codice nella repository

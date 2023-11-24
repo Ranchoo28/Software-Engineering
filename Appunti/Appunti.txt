@@ -919,7 +919,7 @@ Come implementarlo:
 Look-and-feel: è uno standard che definisce l'aspetto e il comportamento di un prodotto software. (es Windows, Mac ecc...)
 Obiettivo: fornire un'interfaccia per creare famiglie di oggetti correlati o dipendenti senza specificare le classi concrete.
 Differenti look-and-feels quindi definiscono differenti componenti grafici. (es Windows usa un tipo di bottone diverso da Mac)
-La differenza fra AF e FM è che l'Abstract Factory crea famiglie di oggetti correlati o dipendenti mentre il Factory Method crea un solo oggetto. ù
+La differenza fra AF e FM è che l'Abstract Factory crea famiglie di oggetti correlati o dipendenti mentre il Factory Method crea un solo oggetto.
 Inoltre nella AF si occupa la fabbrica di creare l'oggetto mentre nella FM si occupa la sottoclasse di creare l'oggetto.
 
 Quando usare AF:
@@ -1069,6 +1069,9 @@ Nell'esempio in un editor di testo in input si potrebbe usare l'AF, in output il
 - Proxy
 - Bridge
 - Decorator
+- Composite
+- Flyweight
+- Facade
 
 ----- Adapter (AD) ----- 
 Questo pattern (conosciuto anche come Wrapper) ha l'obiettivo di convertire l'interfaccia di una classe in un'altra interfaccia che i clienti si aspettano. Quindi permettono 
@@ -1365,7 +1368,265 @@ public class Client {
     }
 }
 
+----- DECORATOR -----
+Consente di collegare nuovi comportamenti agli oggetti posizionando questi oggetti all'interno di oggetti wrapper speciali che contengono i comportamenti. Questo 
+può essere più flessibile dell'ereditarietà perché le funzionalità possono essere aggiunte e rimosse a runtime.
+
+Quando usare DE:
+- quando si vuole aggiungere responsabilità a singoli oggetti in modo dinamico e trasparente
+- quando non si vuole usare l'ereditarietà per aggiungere responsabilità
+- quando si vuole creare oggetti che condividano un'implementazione
+
+Ecco come funziona:
+1) Si definisce un'interfaccia o una classe astratta ('Component') per l'oggetto che si desidera decorare.
+2) Si crea una classe concreta che implementa o estende 'Component'.
+3) Si crea una classe astratta Decorator che implementa anche 'Component' e ha un campo di riferimento a un 'Component'. Questo campo viene 
+inizializzato tramite il costruttore.
+4) Si creano classi Decorator concrete che estendono la classe astratta Decorator e aggiungono nuovi comportamenti nel metodo 'operation'.
+In questo modo, si può avvolgere un oggetto con uno o più decoratori per aggiungere funzionalità in modo dinamico.
+
+Esempio:
+// Component
+interface Component {
+    void operation();
+}
+
+// Concrete Component
+class ConcreteComponent implements Component {
+    public void operation() {
+        System.out.println("Concrete Component");
+    }
+}
+
+// Decorator
+class Decorator implements Component {
+    private Component component;
+
+    public Decorator(Component component) {
+        this.component = component;
+    }
+
+    public void operation() {
+        component.operation();
+    }
+}
+
+// Concrete Decorator
+class ConcreteDecorator extends Decorator {
+    public ConcreteDecorator(Component component) {
+        super(component);
+    }
+
+    public void operation() {
+        super.operation();
+        System.out.println("Concrete Decorator");
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        Component component = new ConcreteComponent();
+        component.operation();
+
+        Component decorator = new ConcreteDecorator(component);
+        decorator.operation();
+    }
+}
+
 ----------------------- Lezione 16 - 22/11/2023 -----------------------
 
------ PROXYY (PR) -----
-Questo pattern ha l'obiettivo di fornire un surrogato o un segnaposto per un altro oggetto per controllare l'accesso a questo oggetto.
+----- PROXY (PR) -----
+Questo pattern ha l'obiettivo di fornire un surrogato (sostituto) o un segnaposto per un altro oggetto per controllare l'accesso a questo 
+oggetto.
+Un proxy è una classe che ha la stessa interfaccia dell'oggetto reale. Il proxy NON deve conoscere il tipo dell'oggetto reale. Bisogna creare un proxy per ogni
+oggetto vero. Il metodo equals() può essere utile per capire l'identità dell'oggetto.
+
+Esistono 3 tipi di proxy:
+- Proxy virtuale: aumenta la velocità di avvio dell'applicazione. Infatti per l'avvio sfrutterà i surrogati; nel momento in cui invece serve 
+  la vera risorsa, il proxy creerà l'oggetto richiesto.
+- Proxy remoto: è un tipo di proxy che fornisce una rappresentazione locale di un oggetto che risiede in un diverso spazio di indirizzamento, tipicamente un server 
+  remoto. In altre parole, un Proxy Remoto può essere visto come un surrogato locale di un oggetto che si trova in un'altra area di rete.
+  Il ProxyRemoto è responsabile per la comunicazione tra il client e l'oggetto remoto. Questa comunicazione può includere la gestione della connessione di rete, 
+  l'invio di richieste al server remoto, la ricezione delle risposte, ecc. Un esempio comune di Proxy Remoto è un oggetto stub in un sistema di chiamata di procedura 
+  remota (RPC). Lo stub funge da Proxy Remoto per l'oggetto remoto. Il client interagisce con lo stub come se fosse l'oggetto reale, ma in realtà lo stub gestisce la comunicazione di rete con l'oggetto remoto.
+- Proxy di protezione: generalizza l'interfaccia di metodi. Molto utilizzato per la gestione dell'autenticazione. Si crea un'interfaccia 
+  uguale per tutti (es utente, amministratore) e poi se si è amministratore si crea l'oggetto vero, se si è utente si crea il proxy. Infine con
+  try-catch controlliamo se è un proxy o meno. Quando il proxy chiamerà i metodi che non possono essere chiamati, allora darà un expection.
+
+Esempio: 
+// Interfaccia comune per RealObject e Proxy
+interface CommonInterface {
+    void operation();
+}
+
+// RealObject
+class RealObject implements CommonInterface {
+    public void operation() {
+        System.out.println("RealObject operation");
+    }
+}
+
+// Proxy
+class Proxy implements CommonInterface {
+    private RealObject realObject;
+
+    public void operation() {
+        if (realObject == null) {
+            realObject = new RealObject();
+        }
+        realObject.operation();
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        CommonInterface proxy = new Proxy();
+        proxy.operation();
+    }
+}
+
+----- BEHAVIORAL PATTERN -----
+
+----- TEMPLATE METHOD (TM) -----
+Definisce lo scheletro di un algoritmo in un'operazione, deferendo alcuni passi alle sue sottoclassi. Fa in modo che le sottoclassi ridefiniscono alcuni passi
+dell'algoritmo senza cambiare la struttura, quindi generalizziamo una parte dell'algoritmo.
+
+Esempio:
+// Classe astratta con il metodo template
+abstract class AbstractClass {
+    public void templateMethod() {
+        operation1();
+        operation2();
+    }
+
+    protected abstract void operation1();
+    protected abstract void operation2();
+}
+
+// Classe concreta che implementa le operazioni
+class ConcreteClass extends AbstractClass {
+    protected void operation1() {
+        System.out.println("ConcreteClass operation1");
+    }
+
+    protected void operation2() {
+        System.out.println("ConcreteClass operation2");
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        AbstractClass concreteClass = new ConcreteClass();
+        concreteClass.templateMethod();
+    }
+}
+
+----- INTERPRETER (IN) -----
+E' un pattern di progettazione comportamentale che viene utilizzato per interpretare le lingue. Questo pattern definisce come valutare le espressioni in una lingua. 
+L'idea di base è avere una classe per ogni simbolo (terminale o non terminale) in una lingua specifica. Il pattern Interpreter implica la costruzione di un interprete 
+per una grammatica definita. Ogni regola della grammatica è una classe separata. Per interpretare una frase della lingua, l'interprete utilizza una struttura ad 
+albero di tali classi. (Composite pattern)
+L'interpreter è il risultato rappresentato tramite oggetti del parser.
+
+Esempio:
+// Interfaccia dell'interprete
+interface Interpreter {
+    int interpret();
+}
+
+// Interprete concreto
+class Number implements Interpreter {
+    private int number;
+
+    public Number(int number) {
+        this.number = number;
+    }
+
+    public int interpret() {
+        return number;
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        Interpreter number = new Number(5);
+        System.out.println(number.interpret());
+    }
+}
+
+----------------------- Lezione 17 - 24/11/2023 -----------------------
+
+----- OBSERVER (OB) -----
+E' un pattern che definisce una dipendenza uno a molti fra gli oggetti in modo che quando un oggetto cambia stato, tutte le dipendenze 
+vengono notificate e aggiornate automaticamente (es Observer di Java o Angular). Aiuta quindi a mantenere la consistenza fra dati che vengono
+condivise fra più classi, cercando di mantenere un legame basso fra le classi. Supporta le comunicazioni broadcast; bisogna fare sempre
+molta attenzione a chi mandiamo gli aggiornamenti. Si può usare una hashtable per mappare i subject e gli observer. Nel momento in cui
+le informazioni sono molto complesse da gestire, è consigliato usare un ChangeManager che gestirà le dipendenze fra subject e observers, quindi
+fa da mediatore.
+
+Polling: è un metodo per controllare lo stato di un dispositivo, un servizio o una risorsa. Consiste nel fare richieste periodiche (o "sondaggi")
+per verificare se ci sono nuovi dati disponibili o se lo stato di una risorsa è cambiato.
+
+Subject (publisher): conosce i suoi observers. Un subject può avere più subscriber 
+Observer (subscriber): avrà un riferimento al subject cocreto e implementa l'interfaccia observer.
+
+Quando usare OB:
+- quando un cambiamento in un oggetto richiede un cambiamento in altri oggetti e non si sa quanti oggetti devono essere cambiati.
+- quando un oggetto deve essere in grado di notificare altri oggetti senza fare ipotesi su chi sono questi oggetti.
+
+Esistono due tipi di model:
+- push model: il subject manda agli observers informazioni dettagliate sui cambiamenti, anche se non richiesto.
+- pull model: il subject manda notifiche agli observers ma in modo non dettagliato; gli observer possono richiedere i dettagli.
+
+Esempio:
+// Interfaccia Observer
+interface Observer {
+    void update();
+}
+
+// Interfaccia Observable
+interface Observable {
+    void addObserver(Observer observer);
+    void removeObserver(Observer observer);
+    void notifyObservers();
+}
+
+// Concrete Observable
+class ConcreteObservable implements Observable {
+    private List<Observer> observers = new ArrayList<>();
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+}
+
+// Concrete Observer
+class ConcreteObserver implements Observer {
+    public void update() {
+        System.out.println("ConcreteObserver update");
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        Observable observable = new ConcreteObservable();
+        Observer observer = new ConcreteObserver();
+        observable.addObserver(observer);
+        observable.notifyObservers();
+    }
+}
