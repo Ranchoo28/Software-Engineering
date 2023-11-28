@@ -1630,3 +1630,261 @@ public class Client {
         observable.notifyObservers();
     }
 }
+
+----------------------- Lezione 18 - 28/11/2023 -----------------------
+
+----- MEDIATOR (ME) -----
+Definisce un oggetto che incapsula come un set di oggetti interagisce. Quindi più oggetti collaborano con lo stesso obiettivo e sono interdipendeti.
+Quindi più oggetti parlano verso il mediatore che agirà di conseguenza sugli oggeti collaboratori.
+
+Quando usare ME: 
+- quando più oggetti devono comunicare in modo definito ma complesso
+
+Conseguenze: 
+- si minimizza il bisogno di creare classi
+- semplifica il protocollo di comunicazione
+
+Il ME non interessa fare scambio di messaggi rispetto all'OB. Il ME vuole solo notificare un cambiamento.
+
+Esempio:
+// Mediator interface
+public interface Mediator {
+    void send(String message, Colleague colleague);
+}
+
+// Concrete Mediator
+public class ConcreteMediator implements Mediator {
+    private Colleague colleague1;
+    private Colleague colleague2;
+
+    public void setColleague1(Colleague colleague) {
+        this.colleague1 = colleague;
+    }
+
+    public void setColleague2(Colleague colleague) {
+        this.colleague2 = colleague;
+    }
+
+    @Override
+    public void send(String message, Colleague colleague) {
+        if (colleague == colleague1) {
+            colleague2.notify(message);
+        } else {
+            colleague1.notify(message);
+        }
+    }
+}
+
+// Colleague interface
+public interface Colleague {
+    void send(String message);
+    void notify(String message);
+}
+
+// Concrete Colleague
+public class ConcreteColleague1 implements Colleague {
+    private Mediator mediator;
+
+    public ConcreteColleague1(Mediator mediator) {
+        this.mediator = mediator;
+    }
+
+    @Override
+    public void send(String message) {
+        mediator.send(message, this);
+    }
+
+    @Override
+    public void notify(String message) {
+        System.out.println("Colleague1 riceve il messaggio: " + message);
+    }
+}
+
+public class ConcreteColleague2 implements Colleague {
+    private Mediator mediator;
+
+    public ConcreteColleague2(Mediator mediator) {
+        this.mediator = mediator;
+    }
+
+    @Override
+    public void send(String message) {
+        mediator.send(message, this);
+    }
+
+    @Override
+    public void notify(String message) {
+        System.out.println("Colleague2 riceve il messaggio: " + message);
+    }
+}
+
+// Client
+public class Client {
+    public static void main(String[] args) {
+        ConcreteMediator mediator = new ConcreteMediator();
+
+        ConcreteColleague1 colleague1 = new ConcreteColleague1(mediator);
+        ConcreteColleague2 colleague2 = new ConcreteColleague2(mediator);
+
+        mediator.setColleague1(colleague1);
+        mediator.setColleague2(colleague2);
+
+        colleague1.send("Ciao, come stai?");
+        colleague2.send("Bene, grazie!");
+    }
+}
+
+----- CHAIN OF RESPONSABILITY (CoR) -----
+
+Serve a gestire delle richieste tra più oggetti. Un oggetto riceve la richiesta, se non la può gestire la passa all'oggetto successivo.
+Un esempio naturale di questo pattern è il try catch. 
+
+Quando usare CoR:
+- quando più di un oggetto potrebbe dover gestire una richiesta e non si conosce il gestore a priori.
+
+Conseguenze CoR:
+- riduce l'accoppiamento 
+- maggiore flessibilità nella'assegnamento della responsabilità
+
+Esempio:
+// Step 1: Creare l'interfaccia Handler
+public interface Handler {
+    void setNext(Handler handler);
+    void handleRequest(String request);
+}
+
+// Step 2: Creare le classi ConcreteHandler che implementano l'interfaccia Handler
+public class ConcreteHandler1 implements Handler {
+    private Handler next;
+
+    @Override
+    public void setNext(Handler handler) {
+        this.next = handler;
+    }
+
+    @Override
+    public void handleRequest(String request) {
+        if ("Richiesta1".equals(request)) {
+            System.out.println("ConcreteHandler1 ha gestito la richiesta");
+        } else if (next != null) {
+            next.handleRequest(request);
+        }
+    }
+}
+
+public class ConcreteHandler2 implements Handler {
+    private Handler next;
+
+    @Override
+    public void setNext(Handler handler) {
+        this.next = handler;
+    }
+
+    @Override
+    public void handleRequest(String request) {
+        if ("Richiesta2".equals(request)) {
+            System.out.println("ConcreteHandler2 ha gestito la richiesta");
+        } else if (next != null) {
+            next.handleRequest(request);
+        }
+    }
+}
+
+// Step 3: Utilizzare il pattern Chain of Responsibility
+public class Client {
+    public static void main(String[] args) {
+        Handler handler1 = new ConcreteHandler1();
+        Handler handler2 = new ConcreteHandler2();
+
+        handler1.setNext(handler2);
+
+        handler1.handleRequest("Richiesta1");
+        handler1.handleRequest("Richiesta2");
+    }
+}
+
+----- MEMENTO (MMT) -----
+
+Serve a salvare lo stato di un oggetto in modo da poterlo ripristinare in un secondo momento. Il Memento è un oggetto che incapsula lo stato di 
+un altro oggetto.
+
+Quando usare MMT:
+- quando bisogna ripristinare in un secondo momento lo stato di un oggetto
+
+Conseguenze MMT:
+- semplifichiamo l'interfaccia dell'origine 
+- utilizzare il memento può essere costoso
+- fare attenzione ai meccanismi di isterisi (es batteria che nel tempo si degrada con le ricariche)
+
+In C++ MMT è supportato molto grazie al friend.
+
+Esempio:
+// Step 1: Creare la classe Memento
+public class Memento {
+    private String state;
+
+    public Memento(String state) {
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
+}
+
+// Step 2: Creare la classe Originator
+public class Originator {
+    private String state;
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Memento saveStateToMemento() {
+        return new Memento(state);
+    }
+
+    public void getStateFromMemento(Memento memento) {
+        state = memento.getState();
+    }
+}
+
+// Step 3: Creare la classe Caretaker
+public class Caretaker {
+    private List<Memento> mementoList = new ArrayList<Memento>();
+
+    public void add(Memento state) {
+        mementoList.add(state);
+    }
+
+    public Memento get(int index) {
+        return mementoList.get(index);
+    }
+}
+
+// Step 4: Utilizzare il pattern Memento
+public class Client {
+    public static void main(String[] args) {
+        Originator originator = new Originator();
+        Caretaker caretaker = new Caretaker();
+
+        originator.setState("Stato1");
+        originator.setState("Stato2");
+        caretaker.add(originator.saveStateToMemento());
+
+        originator.setState("Stato3");
+        caretaker.add(originator.saveStateToMemento());
+
+        originator.setState("Stato4");
+        System.out.println("Stato attuale: " + originator.getState());
+
+        originator.getStateFromMemento(caretaker.get(0));
+        System.out.println("Primo stato salvato: " + originator.getState());
+        originator.getStateFromMemento(caretaker.get(1));
+        System.out.println("Secondo stato salvato: " + originator.getState());
+    }
+}
+
+----- STATE (ST) -----
+
+Serve a cambiare il comportamento di un oggetto in base al suo stato interno. Quindi cambia il comportamento in base allo stato interno.
