@@ -1,4 +1,4 @@
-package it.unical.demacs.FundasticServer.Users;
+package it.unical.demacs.FundasticServer.Users.Jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package it.unical.demacs.FundasticServer.Users;
+package it.unical.demacs.FundasticServer.Users.Jwt;
 
 import lombok.Getter;
 

@@ -1,19 +1,23 @@
 package it.unical.demacs.FundasticServer.Users;
 
 import it.unical.demacs.FundasticServer.Handler.RegexHandler;
+import it.unical.demacs.FundasticServer.Users.Jwt.JwtAuthResponse;
+import it.unical.demacs.FundasticServer.Users.Jwt.JwtService;
 import it.unical.demacs.FundasticServer.Users.Login.LoginRequest;
 import it.unical.demacs.FundasticServer.Users.Registration.RegistrationRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class UserService {
     private final UsersRepository usersRepository;
+    private final JwtService jwtService = new JwtService();
+    //private final SessionRepository sessionRepository;
 
     @Autowired
     public UserService(UsersRepository usersRepository) {
@@ -22,15 +26,18 @@ public class UserService {
 
     public List<Users> getUsers(){ return usersRepository.findAll(); }
 
-    public void loginUser(LoginRequest request){
+    public ResponseEntity<?> loginUser(LoginRequest request){
         Optional<Users> userOptional = usersRepository.findUsersByUsername(request.getUsername());
         if(userOptional.isEmpty()) throw new IllegalStateException("Username or password are incorrect");
         else
             if(!userOptional.get().getPassword().equals(request.getPassword()))
                 throw new IllegalStateException("Username or password are incorrect");
-            else
+            else{
                 System.out.println("Login successful");
+                return ResponseEntity.ok(new JwtAuthResponse(jwtService.generateToken(request.getUsername())));
+            }
     }
+
 
     public void addNewUser(RegistrationRequest request) {
         Optional<Users> userOptional = usersRepository.findUsersByEmail(request.getEmail());

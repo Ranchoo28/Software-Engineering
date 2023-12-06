@@ -14,6 +14,7 @@ import { MenuComponent } from './Component/menu/menu.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './Component/register/register.component'
 import { HttpClientModule } from '@angular/common/http'
+import { RequestService } from './Services/RequestService';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http'
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

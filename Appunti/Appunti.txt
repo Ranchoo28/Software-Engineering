@@ -1250,7 +1250,7 @@ public class Client {
 
 ----- COMPOSITE (CO) -----
 Questo pattern ha l'obiettivo di comporre oggetti in strutture ad albero per rappresentare gerarchie parte-tutto. Permette ai clienti di trattare
-in modo uniforme oggeti che sono composizione di altri oggetti. Quindi questo design massimizza i comportamenti dell'interfaccia, rendendo trasparente
+in modo uniforme oggetti che sono composizione di altri oggetti. Quindi questo design massimizza i comportamenti dell'interfaccia, rendendo trasparente
 l'utilizzo di ogni componente.
 
 Quando usare CO:
@@ -2119,5 +2119,83 @@ Pattern correlati:
 - Memento
 
 
+----------------------- Lezione 18 - 05/12/2023 -----------------------
 
 ----- ITERATOR (ITR) -----
+Fornisce un meccanismo per accedere ad un elemento in modo sequenziale senza esporre ciò che ha all'interno. Quindi viene messa la logica
+di iterazione in un oggetto separato. Itr è utile per leggere i dati da una raccolta, ma non per modificarli.
+
+Quando usare ITR:
+- quando si vuole accedere agli elementi di un oggetto senza esporre la sua rappresentazione
+- quando si vuole fornire più di un modo per accedere agli elementi di un oggetto
+- quando si vuole fornire un'interfaccia uniforme per iterare su diverse strutture di dati
+
+Conseguenze ITR:
+- fornisce un'interfaccia uniforme per accedere agli elementi di una raccolta
+- supporta l'iterazione di una raccolta senza esporre la sua rappresentazione
+- più di un iteratore può attraversare la stessa raccolta contemporaneamente
+- supporta l'aggiunta e la rimozione di elementi durante l'iterazione
+
+Esempio:
+// Step 1: Creare l'interfaccia Iterator
+public interface Iterator {
+    boolean hasNext();
+    Object next();
+}
+// Step 2: Implementare l'interfaccia Iterator
+public class ConcreteIterator implements Iterator {
+    private List<Object> list;
+    private int index;
+
+    public ConcreteIterator(List<Object> list) {
+        this.list = list;
+    }
+
+    public boolean hasNext() {
+        return index < list.size();
+    }
+
+    public Object next() {
+        if (this.hasNext()) {
+            return list.get(index++);
+        }
+        return null;
+    }
+}
+
+// Step 3: Creare l'interfaccia Aggregate
+public interface Aggregate {
+    Iterator createIterator();
+}
+
+// Step 4: Implementare l'interfaccia Aggregate
+public class ConcreteAggregate implements Aggregate {
+    private List<Object> list = new ArrayList<>();
+
+    public void add(Object object) {
+        list.add(object);
+    }
+
+    public Iterator createIterator() {
+        return new ConcreteIterator(list);
+    }
+}
+
+// Step 5: Utilizzare il pattern Iterator
+public class Client {
+    public static void main(String[] args) {
+        Aggregate aggregate = new ConcreteAggregate();
+        aggregate.add("Elemento 1");
+        aggregate.add("Elemento 2");
+        aggregate.add("Elemento 3");
+
+        Iterator iterator = aggregate.createIterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+}
+
+----- VISITOR (VIS) -----
+Fornisce un modo per navigare in una struttura di oggetti complessa senza dover modificare questi oggetti. Quindi permette di aggiungere 
+nuove operazioni 

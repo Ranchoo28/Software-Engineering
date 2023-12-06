@@ -1,5 +1,8 @@
-package it.unical.demacs.FundasticServer.Users;
+package it.unical.demacs.FundasticServer.Config;
 
+import it.unical.demacs.FundasticServer.Users.Role;
+import it.unical.demacs.FundasticServer.Users.Users;
+import it.unical.demacs.FundasticServer.Users.UsersRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
