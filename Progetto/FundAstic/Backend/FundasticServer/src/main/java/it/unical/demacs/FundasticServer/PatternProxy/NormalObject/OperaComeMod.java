@@ -1,8 +1,10 @@
-package it.unical.demacs.FundasticServer.PatternProxy;
+package it.unical.demacs.FundasticServer.PatternProxy.NormalObject;
 
-public class OperaComeMod implements ActionToProtect{
+import it.unical.demacs.FundasticServer.PatternProxy.ActionToProtect;
+
+public class OperaComeMod implements ActionToProtect {
     @Override
     public void protectAction() {
-        
+        System.out.println("Sei Moderatore, puoi fare ciò che vuoi.");
     }
 }

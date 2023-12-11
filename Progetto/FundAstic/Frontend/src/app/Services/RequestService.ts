@@ -1,5 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { tap, catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,9 +19,9 @@ export class RequestService {
   registrationUrl = "http://localhost:8080/api/registration"
   dashboardUrl = "http://localhost:8080/api/dashboard"
 
-  constructor(private http: HttpClient) { }
-  loginUtente(data: {}) {
-    return this.http.post(this.loginUrl, data, httpOptions).subscribe()
+  constructor(private http: HttpClient, private router: Router) { }
+  loginUtente(data: {}) : Observable<string>{
+    return this.http.post<string>(this.loginUrl, data, httpOptions)
   }
  
   insertUtente(data: {}){

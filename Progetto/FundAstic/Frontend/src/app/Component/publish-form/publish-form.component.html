@@ -1,0 +1,52 @@
+<div  class="form-container">
+    <mat-card>
+        <mat-card-title> Pubblica progetto </mat-card-title>
+    <mat-card-content>
+  
+    <form [formGroup]="publisherForm" (ngSubmit)="submit()">
+       <!-- Name field -->
+       <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Title" formControlName="title">
+        </mat-form-field>
+      </p>
+       <!-- Surname field -->
+       <p>
+        <mat-form-field>
+          <textarea name="desc" type="text" matInput placeholder="Description" formControlName ="description"> </textarea>
+        </mat-form-field>
+      </p>
+      <!-- Username field -->
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+      </p>
+      <!-- Password field -->
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+      </p>
+  
+      <!-- Email field -->
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+      </p>
+      <!-- Birthday field -->
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Birthday" formControlName="birthday">
+        </mat-form-field>
+      </p>
+      
+      <div class="button">
+        <button type="submit" mat-button [disabled]="!publisherForm.valid"> Registrati  </button>
+      </div>
+  
+    </form>
+    </mat-card-content>
+    </mat-card>
+  </div>

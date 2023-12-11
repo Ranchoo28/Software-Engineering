@@ -1,0 +1,41 @@
+.desc { width: 90px; height: 400px; border: 1px solid #999999; padding: 5px; }
+
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 150px 0px;
+  }
+  
+  .form-container {
+    width: 80%;  // Imposta la larghezza del contenitore del form
+  }
+  
+  .mat-form-field {
+    width: 100%;  // Imposta la larghezza dei campi di input al 100%
+    min-width: 300px;  // Imposta una larghezza minima
+  }
+  
+  .mat-card-title,
+  .mat-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;  // Imposta la larghezza del titolo e del contenuto al 100%
+  }
+  
+  /* Imposta la larghezza degli input al 100% all'interno del mat-form-field */
+  .mat-form-field input {
+    width: 100%;
+  }
+  
+  /* Stile aggiuntivo per il campo di testo multilinea */
+  .mat-form-field textarea {
+    width: 100%;
+    min-height: 100px;  // Imposta l'altezza minima per il campo di testo multilinea
+  }
+  
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+  

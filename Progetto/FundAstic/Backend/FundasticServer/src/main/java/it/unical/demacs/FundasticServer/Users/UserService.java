@@ -5,6 +5,7 @@ import it.unical.demacs.FundasticServer.Users.Jwt.JwtAuthResponse;
 import it.unical.demacs.FundasticServer.Users.Jwt.JwtService;
 import it.unical.demacs.FundasticServer.Users.Login.LoginRequest;
 import it.unical.demacs.FundasticServer.Users.Registration.RegistrationRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,13 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UsersRepository usersRepository;
-    private final JwtService jwtService = new JwtService();
+    private final JwtService jwtService;
     //private final SessionRepository sessionRepository;
 
     @Autowired
-    public UserService(UsersRepository usersRepository) {
+    public UserService(UsersRepository usersRepository, JwtService jwtService) {
         this.usersRepository = usersRepository;
+        this.jwtService = jwtService;
     }
 
     public List<Users> getUsers(){ return usersRepository.findAll(); }
@@ -33,8 +35,10 @@ public class UserService {
             if(!userOptional.get().getPassword().equals(request.getPassword()))
                 throw new IllegalStateException("Username or password are incorrect");
             else{
-                System.out.println("Login successful");
-                return ResponseEntity.ok(new JwtAuthResponse(jwtService.generateToken(request.getUsername())));
+                System.out.println("Login successful for user " + request.getUsername());
+                return ResponseEntity.ok(new JwtAuthResponse(jwtService.generateToken(
+                        request.getUsername(),
+                        userOptional.get().getRole().toString())));
             }
     }
 
@@ -52,7 +56,7 @@ public class UserService {
                 request.getPassword(),
                 request.getEmail(),
                 request.getBirthday(),
-                request.getRole()
+                Role.Utente
         ));
     }
 

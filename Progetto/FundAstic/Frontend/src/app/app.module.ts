@@ -6,6 +6,7 @@ import { HomeComponent } from './Component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HowWorksComponent } from './Component/how-works/how-works.component';
 import { LoginComponent } from './Component/login/login.component';
+import { MenuLoggedComponent } from './Component/menu-logged/menu-logged.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +16,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './Component/register/register.component'
 import { HttpClientModule } from '@angular/common/http'
 import { RequestService } from './Services/RequestService';
+import { ProxyService } from './Services/ProxyService';
+import { CookieService } from 'ngx-cookie-service';
+import { PublishFormComponent } from './Component/publish-form/publish-form.component';
 
 
 @NgModule({
@@ -23,10 +27,11 @@ import { RequestService } from './Services/RequestService';
     HomeComponent,
     HowWorksComponent,
     LoginComponent,
-    NotFoundComponent,
+    MenuLoggedComponent,
     NotFoundComponent,
     MenuComponent,
     RegisterComponent,
+    PublishFormComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { RequestService } from './Services/RequestService';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [RequestService],
+  providers: [RequestService, CookieService, ProxyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

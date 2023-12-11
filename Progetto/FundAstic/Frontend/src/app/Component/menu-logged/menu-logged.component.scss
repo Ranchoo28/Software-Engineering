@@ -14,11 +14,12 @@
     background-color: #03a5fc;
 }
 
-.btnLogin{
+.btnLogout{
     margin-left: 25%;
 }
-.btnLogin:hover{
+.btnLogout:hover{
     background-color: orange;
+
 }
 
 .btnReg:hover{
@@ -53,4 +54,4 @@ hr{
    &:hover {
       animation: grow 0.8s infinite;
    }
-}
+  }

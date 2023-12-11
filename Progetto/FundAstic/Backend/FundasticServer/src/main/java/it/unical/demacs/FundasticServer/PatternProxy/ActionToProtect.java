@@ -1,2 +1,5 @@
-package it.unical.demacs.FundasticServer.PatternProxy;public class ActionToProtect {
+package it.unical.demacs.FundasticServer.PatternProxy;
+
+public interface ActionToProtect {
+    void protectAction();
 }

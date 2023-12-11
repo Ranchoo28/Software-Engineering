@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { CookiesUtils } from './Utils/CookiesUtils';
+import { Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FundAstic';
+
+  constructor(private cookieUtils: CookiesUtils, private router: Router ){
+    const username = this.cookieUtils.getUsernameFromCookie()
+    if(username != null){
+      this.router.navigate(['menu-logged'])
+    } 
+  }
+  
 }
+
+

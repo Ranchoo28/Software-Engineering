@@ -8,8 +8,6 @@ import { RequestService } from 'src/app/Services/RequestService';
   styleUrls: ['./register.component.scss']
 })
 
-// cd C:\Users\savcr\OneDrive\Desktop\Università\Esercizi e appunti Università\Software-Engineering\Progetto\FundAstic\Frontend
-
 export class RegisterComponent {
 
   regexEmail = "^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@(?:gmail\.com|yahoo\.com|hotmail\.com|libero\.it|icloud\.com|gmx\.com|aol\.com)"
@@ -42,6 +40,4 @@ export class RegisterComponent {
     })
   }
 
-
-  @Output() submitEM = new EventEmitter();
 }

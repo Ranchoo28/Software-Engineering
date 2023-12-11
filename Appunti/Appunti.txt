@@ -865,6 +865,10 @@ I pattern vengono classificati in base al:
     - Object: pattern che si applicano a oggetti
     - Participants: partecipanti del pattern
 
+Pattern di classe: Factory Method, Adapter, Interpreter e Template Method
+Pattern ad oggetti: Adapter e tutti gli altri.
+Adapter ha una variante per classi e una per oggetti.
+
 Come selezionare un DP:
 - Considerare come il pattern risolve il problema
 - Vedere le loro correlazioni
@@ -1074,8 +1078,8 @@ Nell'esempio in un editor di testo in input si potrebbe usare l'AF, in output il
 - Facade
 
 ----- Adapter (AD) ----- 
-Questo pattern (conosciuto anche come Wrapper) ha l'obiettivo di convertire l'interfaccia di una classe in un'altra interfaccia che i clienti si aspettano. Quindi permettono 
-alle classi di lavorare insieme anche quando non dovrebbero a causa di incompatibilità.
+Questo pattern (conosciuto anche come Wrapper) ha l'obiettivo di convertire l'interfaccia di una classe in un'altra interfaccia che i clienti si aspettano. Quindi 
+permette alle classi di lavorare insieme anche quando non dovrebbero a causa di incompatibilità.
 
 Quando usare AD: quando si vuole usare una classe esistente ma la sua interfaccia non è compatibile con quella che si vuole usare.
 
@@ -1124,7 +1128,7 @@ public class Client {
 Questo pattern serve a collegare un'astrazione alla sua implementazione.
 
 Quando usare BR:
-- quando un'astrazione può avere diverse implementazioni (es Swing di java che varia in base al siste,a operativo).
+- quando un'astrazione può avere diverse implementazioni (es Swing di java che varia in base al sistema operativo).
 - quando non voglio avere un collegamento permanente fra l'astrazione e la sua implementazione.
 - l'implementazione verrà selezionata a tempo di esecuzione.
 - vogliamo nascondere l'implementazione di un'astrazione ai clienti (esempio i DLL in windows).
@@ -1198,7 +1202,7 @@ Questo pattern ha l'obiettivo di fornire un'interfaccia unificata ad un serie di
 livello che facilita l'utilizzo del sottosistema.
 
 Quando usare FA:
-- quando voglia nascondere al cliente le vere implementazioni, facilitando anche eventuali modifiche.
+- quando vogliamo nascondere al cliente le vere implementazioni, facilitando anche eventuali modifiche.
 - quando vogliamo offrire un'interfaccia semplice per un sottosistema complesso, garantendo una buona UI e UX.
 
 Conseguenze FA:
@@ -1258,7 +1262,7 @@ Quando usare CO:
 - quando si vuole che i clienti trattino in modo uniforme oggetti singoli e composizioni di oggetti.
 
 Conseguenze CO:
-- il composito rende più semplice aggiungere nuovi oggetti
+- il composite rende più semplice aggiungere nuovi oggetti
 - nel momento in cui si usa questo pattern bisogna sapere quali sono le foglie e quali sono i composite object
 - foglie e composite hanno la stessa interfaccia, quindi la parte client è facile da gestire
 - si possono condividere i vari componenti
@@ -1437,8 +1441,7 @@ public class Client {
 ----------------------- Lezione 16 - 22/11/2023 -----------------------
 
 ----- PROXY (PR) -----
-Questo pattern ha l'obiettivo di fornire un surrogato (sostituto) o un segnaposto per un altro oggetto per controllare l'accesso a questo 
-oggetto.
+Questo pattern ha l'obiettivo di fornire un surrogato (sostituto) o un segnaposto per un altro oggetto per controllare l'accesso a questo oggetto.
 Un proxy è una classe che ha la stessa interfaccia dell'oggetto reale. Il proxy NON deve conoscere il tipo dell'oggetto reale. Bisogna creare un proxy per ogni
 oggetto vero. Il metodo equals() può essere utile per capire l'identità dell'oggetto.
 

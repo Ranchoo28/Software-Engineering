@@ -23,9 +23,7 @@ export class HomeComponent {
       this.project = this.data[0].projectActiveAmount
       this.investment = this.data[0].donationNumber
       this.eur = this.data[0].eurAmount 
+
     });
-    
-    
-    
   }
 }
