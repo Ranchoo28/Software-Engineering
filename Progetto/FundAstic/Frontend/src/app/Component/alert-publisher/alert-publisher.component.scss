@@ -1,0 +1,37 @@
+.alert {
+    width: 250px;
+    height: 100px;
+    padding: 20px;
+    background-color: white; /* Red */
+    color: black;
+    margin-bottom: 15px;
+  }
+  
+  .alert h2 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+  
+  .alert p {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .alert button {
+    display: block;
+    width: 90px;
+    margin: 0 auto; /* Allinea il bottone al centro */
+    background-color: black; /* Green */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .alert button:hover {
+    background-color: white;
+  }

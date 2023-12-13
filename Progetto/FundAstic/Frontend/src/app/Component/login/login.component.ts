@@ -51,7 +51,7 @@ export class LoginComponent {
         }
 
       }),
-      switchMap(() => this.router.navigate(['menu-logged'])),
+      switchMap(() => this.router.navigate([''])),
       catchError(error => {
         console.error('Errore durante il login', error);
         // Gestisci l'errore di autenticazione

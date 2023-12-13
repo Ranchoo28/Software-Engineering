@@ -2199,6 +2199,105 @@ public class Client {
     }
 }
 
------ VISITOR (VIS) -----
+----------------------- Lezione 19 - 12/12/2023 -----------------------
+
+----- VISITOR (VST) -----
 Fornisce un modo per navigare in una struttura di oggetti complessa senza dover modificare questi oggetti. Quindi permette di aggiungere 
-nuove operazioni 
+nuove operazioni con un costo minimo. Ogni operazione può essere aggiunta in modo separato; il visitatore una volta accettato potrà visitare 
+il nodo che ha effettuato la richiesta.
+
+Quando usare VST:
+- quando si vogliono eseguire operazioni su oggetti senza modificare le classi su cui operano.
+- quando si vogliono aggiungere nuove operazioni senza modificare le classi su cui operano.
+- quando si vogliono raggruppare operazioni correlate e definirle in una classe separata.- 
+
+Diversi tipi di Visitor:
+- Visitor (Node visitor): definisce un metodo visit per ogni tipo di nodo della struttura.
+- ConcreteVisitor (TypeCheckingVisitor): implementa i metodi visit definiti nell'interfaccia Visitor.
+- Element (Node): implementa un'operazione per accettare il visitor.
+
+Double Dispatch: avviene quando un oggetto di una classe Element accetta un Visitor. Il metodo accept() dell'Element chiama il metodo 
+visit() del Visitor passando se stesso (this) come argomento. Questo è il primo dispatch.
+Il secondo dispatch avviene quando il metodo visit() viene eseguito. Il metodo corretto visit() da eseguire viene determinato dal tipo 
+dell'Element passato come argomento. Quindi, se hai diversi tipi di Element e ogni tipo ha un metodo visit() corrispondente nel Visitor, 
+il metodo visit() corretto sarà chiamato in base al tipo dell'Element.
+
+Esempio:
+// Step 1: Creare l'interfaccia Visitor
+public interface Visitor {
+    void visit(ConcreteElementA concreteElementA);
+    void visit(ConcreteElementB concreteElementB);
+}
+
+// Step 2: Creare le classi ConcreteVisitor
+public class ConcreteVisitor1 implements Visitor {
+    public void visit(ConcreteElementA concreteElementA) {
+        System.out.println("ConcreteVisitor1 visit ConcreteElementA");
+    }
+
+    public void visit(ConcreteElementB concreteElementB) {
+        System.out.println("ConcreteVisitor1 visit ConcreteElementB");
+    }
+}
+
+public class ConcreteVisitor2 implements Visitor {
+    public void visit(ConcreteElementA concreteElementA) {
+        System.out.println("ConcreteVisitor2 visit ConcreteElementA");
+    }
+
+    public void visit(ConcreteElementB concreteElementB) {
+        System.out.println("ConcreteVisitor2 visit ConcreteElementB");
+    }
+}
+
+// Step 3: Creare l'interfaccia Element
+public interface Element {
+    void accept(Visitor visitor);
+}
+
+// Step 4: Creare le classi ConcreteElement
+public class ConcreteElementA implements Element {
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+public class ConcreteElementB implements Element {
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+// Step 5: Creare la classe ObjectStructure
+public class ObjectStructure {
+    private List<Element> elements = new ArrayList<>();
+
+    public void add(Element element) {
+        elements.add(element);
+    }
+
+    public void remove(Element element) {
+        elements.remove(element);
+    }
+
+    public void accept(Visitor visitor) {
+        for (Element element : elements) {
+            element.accept(visitor);
+        }
+    }
+}
+
+// Step 6: Utilizzare il pattern Visitor
+public class Client {
+    public static void main(String[] args) {
+        ObjectStructure objectStructure = new ObjectStructure();
+        objectStructure.add(new ConcreteElementA());
+        objectStructure.add(new ConcreteElementB());
+
+        Visitor visitor1 = new ConcreteVisitor1();
+        objectStructure.accept(visitor1);
+
+        Visitor visitor2 = new ConcreteVisitor2();
+        objectStructure.accept(visitor2);
+    }
+}

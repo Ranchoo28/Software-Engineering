@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Component/home/home.component';
 import { HowWorksComponent } from './Component/how-works/how-works.component';
@@ -7,6 +7,7 @@ import { NotFoundComponent } from './Component/not-found-component/not-found.com
 import { RegisterComponent } from './Component/register/register.component';
 import { MenuLoggedComponent } from './Component/menu-logged/menu-logged.component';
 import { PublishFormComponent } from './Component/publish-form/publish-form.component';
+import { FinanceFormComponent } from './Component/finance-form/finance-form.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'menu-logged', component: MenuLoggedComponent},
   { path: 'publish-project', component: PublishFormComponent},
+  { path: 'finance-project', component: FinanceFormComponent},
   { path: '404', component: NotFoundComponent},
   { path: '**', component: NotFoundComponent}
 ];

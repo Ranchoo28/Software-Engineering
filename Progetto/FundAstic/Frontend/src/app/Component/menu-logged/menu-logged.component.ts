@@ -4,6 +4,8 @@ import {CookiesUtils} from 'src/app/Utils/CookiesUtils'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { catchError, switchMap } from 'rxjs';
+;
+
 
 @Component({
   selector: 'app-menu-logged',
@@ -17,7 +19,6 @@ export class MenuLoggedComponent {
     private cookieService: CookieService,
     private router: Router
     ){}
-
 
   requestPermitAdmin() {
     // TODO
@@ -42,6 +43,8 @@ export class MenuLoggedComponent {
 
   doLogout(): void{
     this.cookieService.deleteAll()
-    this.router.navigate([""])
+    this.router.navigate([""]).then(() => {
+      location.reload()
+    })
   }
 }

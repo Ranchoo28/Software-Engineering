@@ -122,8 +122,4 @@ public class UserService {
         if (user != null) return password.equals(user.getPassword());
         return false;
     }
-
-    public void getLoggedUser() {
-        System.out.println("Logged user");
-    }
 }

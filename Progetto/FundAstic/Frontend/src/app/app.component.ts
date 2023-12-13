@@ -10,13 +10,14 @@ import { switchMap } from 'rxjs';
 })
 export class AppComponent {
   title = 'FundAstic';
-
+  
   constructor(private cookieUtils: CookiesUtils, private router: Router ){
     const username = this.cookieUtils.getUsernameFromCookie()
     if(username != null){
       this.router.navigate(['menu-logged'])
     } 
   }
+  
   
 }
 

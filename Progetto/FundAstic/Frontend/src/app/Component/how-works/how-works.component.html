@@ -1,4 +1,6 @@
-<app-menu> </app-menu>
+<app-menu *ngIf="!isLogged"></app-menu>
+<app-menu-logged *ngIf="isLogged"></app-menu-logged>
+
 <body>
     <h2> 1. Invia la tua candidatura</h2>
     <p>Compila il form di candidatura della tua azienda per una campagna di equity crowdfunding sul nostro portale.</p>

@@ -1,8 +1,11 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<app-menu> </app-menu>
-<h2 align="center" style="text-align: center;"> Dai vita a un progetto creativo. </h2>
+
+<app-menu *ngIf="!isLogged"></app-menu>
+<app-menu-logged *ngIf="isLogged"></app-menu-logged>
+
+<h2 style="text-align: center;"> Dai vita a un progetto creativo. </h2>
 
 <body> 
     <div class="grid-container">

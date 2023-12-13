@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RequestService } from 'src/app/Services/RequestService';
+import { CookiesUtils } from 'src/app/Utils/CookiesUtils';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,11 @@ export class HomeComponent {
   users = "";
   investment = "";
   eur = "";
-  
+
   data: any
-  constructor(private request: RequestService){}
+  isLogged!: boolean
+
+  constructor(private request: RequestService, private cookieUtils: CookiesUtils){}
 
   ngOnInit(): void {
     this.request.getDashboardData().subscribe((result: any) => {
@@ -22,8 +25,8 @@ export class HomeComponent {
       this.users = this.data[0].userActiveNumber
       this.project = this.data[0].projectActiveAmount
       this.investment = this.data[0].donationNumber
-      this.eur = this.data[0].eurAmount 
-
+      this.eur = this.data[0].eurAmount
+      this.isLogged = this.cookieUtils.checkLogged()
     });
   }
 }

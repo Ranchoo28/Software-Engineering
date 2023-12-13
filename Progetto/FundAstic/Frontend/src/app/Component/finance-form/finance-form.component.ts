@@ -1,20 +1,15 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-
 @Component({
-  selector: 'app-publish-form',
-  templateUrl: './publish-form.component.html',
-  styleUrl: './publish-form.component.scss'
+  selector: 'app-finace-form',
+  templateUrl: './finance-form.component.html',
+  styleUrl: './finance-form.component.scss'
 })
-export class PublishFormComponent {
-submit() {
-  throw new Error('Method not implemented.');
-}
-
-publisherForm!: FormGroup;
+export class FinanceFormComponent {
+  finaceForm!: FormGroup;
   ngOnInit(): void {
-    this['publisherForm'] = new FormGroup({
+    this['finaceForm'] = new FormGroup({
       name: new FormControl(''),
       surname: new FormControl(''),
       username: new FormControl('', Validators.required),
@@ -23,5 +18,8 @@ publisherForm!: FormGroup;
       birthday: new FormControl('')
     });
   }
- 
+submit() {
+  throw new Error('Method not implemented.');
+}
+
 }

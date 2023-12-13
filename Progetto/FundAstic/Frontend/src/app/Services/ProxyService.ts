@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap, catchError } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogComponent } from '../Component/alert-publisher/alert-publisher.component';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,7 +18,17 @@ export class ProxyService {
   
   menuProtectedUrl = "http://localhost:8080/api/checkPermission"
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private dialog: MatDialog
+    ) { }
+
+    apriAlert(): void {
+      const c = this.dialog.open(MatDialogComponent, {
+        data: { messaggio: 'Accesso negato!' }
+      });
+    }
   
   sendPublisherRequest(data: {}){
     this.http.post(this.menuProtectedUrl, data, httpOptions)
@@ -31,7 +43,7 @@ export class ProxyService {
     this.http.post(this.menuProtectedUrl, data, httpOptions)
     .pipe(
       catchError(this.handleError),
-      tap(() => this.router.navigate(["finace-project"]))
+      tap(() => this.router.navigate(["finance-project"]))
     )
     .subscribe()
   }
@@ -45,9 +57,9 @@ export class ProxyService {
     .subscribe()
   }
 
-  private handleError(error: any) {
-    console.error('An error occurred:', error);
+  private handleError = (error: any) => {
+    this.apriAlert();
     return throwError('Accesso negato!');
-}
+  }
 
 }

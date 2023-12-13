@@ -12,13 +12,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { NotFoundComponent } from './Component/not-found-component/not-found.component';
 import { MenuComponent } from './Component/menu/menu.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './Component/register/register.component'
 import { HttpClientModule } from '@angular/common/http'
 import { RequestService } from './Services/RequestService';
 import { ProxyService } from './Services/ProxyService';
 import { CookieService } from 'ngx-cookie-service';
 import { PublishFormComponent } from './Component/publish-form/publish-form.component';
+import { FinanceFormComponent } from './Component/finance-form/finance-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogComponent } from './Component/alert-publisher/alert-publisher.component';
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { PublishFormComponent } from './Component/publish-form/publish-form.comp
     NotFoundComponent,
     MenuComponent,
     RegisterComponent,
-    PublishFormComponent
+    PublishFormComponent,
+    FinanceFormComponent,
+    MatDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { PublishFormComponent } from './Component/publish-form/publish-form.comp
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [RequestService, CookieService, ProxyService],
   bootstrap: [AppComponent]

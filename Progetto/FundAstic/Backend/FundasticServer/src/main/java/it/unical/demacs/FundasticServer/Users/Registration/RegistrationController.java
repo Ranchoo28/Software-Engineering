@@ -19,22 +19,20 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @GetMapping // il GetMapping serve per ottenere la lista degli utenti
+    @GetMapping
     public List<Users> getUsers(){
         return userService.getUsers();
     }
 
-    @PostMapping // il PostMapping serve per registrare un nuovo utente, attraverso il body della richiesta
+    @PostMapping
     public void registerNewUser(@RequestBody RegistrationRequest request ){
         userService.addNewUser(request);
     }
 
-    @DeleteMapping(path = "{userId}") // il DeleteMapping serve per eliminare un utente, attraverso il body della richiesta
-    public void deleteUser(@PathVariable("userId") Long userId){
-        userService.deleteUser(userId);
-    }
+    @DeleteMapping(path = "{userId}")
+    public void deleteUser(@PathVariable("userId") Long userId){ userService.deleteUser(userId); }
 
-    @PutMapping(path = "{userId}") // il PutMapping serve per modificare un utente, attraverso il body della richiesta
+    @PutMapping(path = "{userId}")
     public void updateUser(
             @PathVariable("userId") Long userId,
             @RequestParam (required = false) String name,
