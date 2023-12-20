@@ -3,8 +3,6 @@ import { ProxyService } from 'src/app/Services/ProxyService';
 import {CookiesUtils} from 'src/app/Utils/CookiesUtils'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { catchError, switchMap } from 'rxjs';
-;
 
 
 @Component({

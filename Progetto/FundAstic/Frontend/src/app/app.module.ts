@@ -10,6 +10,10 @@ import { MenuLoggedComponent } from './Component/menu-logged/menu-logged.compone
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 import { NotFoundComponent } from './Component/not-found-component/not-found.component';
 import { MenuComponent } from './Component/menu/menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,10 +26,18 @@ import { PublishFormComponent } from './Component/publish-form/publish-form.comp
 import { FinanceFormComponent } from './Component/finance-form/finance-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogComponent } from './Component/alert-publisher/alert-publisher.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core'
+import { AutoResizeDirective } from './Direttive/auto-resize.directive';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 @NgModule({
   declarations: [
+    AutoResizeDirective,
     AppComponent,
     HomeComponent,
     HowWorksComponent,
@@ -47,7 +59,18 @@ import { MatDialogComponent } from './Component/alert-publisher/alert-publisher.
     MatButtonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [RequestService, CookieService, ProxyService],
   bootstrap: [AppComponent]

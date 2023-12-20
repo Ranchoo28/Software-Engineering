@@ -1,52 +1,142 @@
-<div  class="form-container">
-    <mat-card>
-        <mat-card-title> Pubblica progetto </mat-card-title>
-    <mat-card-content>
-  
-    <form [formGroup]="publisherForm" (ngSubmit)="submit()">
-       <!-- Name field -->
-       <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Title" formControlName="title">
-        </mat-form-field>
-      </p>
-       <!-- Surname field -->
-       <p>
-        <mat-form-field>
-          <textarea name="desc" type="text" matInput placeholder="Description" formControlName ="description"> </textarea>
-        </mat-form-field>
-      </p>
-      <!-- Username field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Username" formControlName="username">
-        </mat-form-field>
-      </p>
-      <!-- Password field -->
-      <p>
-        <mat-form-field>
-          <input type="password" matInput placeholder="Password" formControlName="password">
-        </mat-form-field>
-      </p>
-  
-      <!-- Email field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Email" formControlName="email">
-        </mat-form-field>
-      </p>
-      <!-- Birthday field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Birthday" formControlName="birthday">
-        </mat-form-field>
-      </p>
-      
-      <div class="button">
-        <button type="submit" mat-button [disabled]="!publisherForm.valid"> Registrati  </button>
+<mat-stepper [linear]="false" #stepper>
+
+  <!-- Primo Step -->
+  <mat-step [stepControl]="firstForm">
+    <form [formGroup]="firstForm">
+      <ng-template matStepLabel>Informazioni progetto</ng-template>
+
+      <mat-form-field>
+        <mat-label>Nome progetto</mat-label>
+        <input matInput formControlName="projectName" required>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field [style.width.px]="350">
+        <mat-label>Descrizione (Max 1000 parole)</mat-label>
+        <textarea class="desc" matInput formControlName="projectDescrip" required appAutoResize></textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <input matInput formControlName="projectCategory" required>
+      </mat-form-field>
+
+      <br>
+      <mat-label> Immagine </mat-label> 
+      <mat-form-field [style.width.px]="120" [style.padding.px]="15">
+        <input matInput hidden formControlName="imageProject">
+        <button type="button" mat-raised-button (click)="imageInput.click()">Carica</button>
+        <input hidden (change)="uploadAndConvertImage($event)" #imageInput type="file" id="image" accept=".png, .jpg, .jpeg, .svg, .tiff, .bmp">
+      </mat-form-field> 
+
+
+      <mat-label> Video </mat-label>
+      <mat-form-field [style.width.px]="120" >
+        <input matInput hidden formControlName="imageProject">
+        <button type="button" mat-raised-button (click)="videoInput.click()">Carica</button>
+        <input hidden (change)="uploadAndConvertVideo($event)" #videoInput type="file" id="video" accept=".flv, .mp4, .wmv, .avc">
+      </mat-form-field> 
+
+      <br>
+      <mat-form-field>
+        <mat-label>Importo €</mat-label>
+        <input matInput type="number" min="1" formControlName="projectAmount" required>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field>
+        <mat-label>Durata</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="startProjectDate">
+          <input matEndDate formControlName="endProjectDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <br>
+
+      <div>
+        <button mat-button matStepperNext>Prosegui</button>
       </div>
-  
     </form>
-    </mat-card-content>
-    </mat-card>
-  </div>
+  </mat-step>
+
+  <!-- Secondo Step -->
+  <mat-step [stepControl]="secondForm" label="Membri">
+    <form [formGroup]="secondForm">
+      <div formArrayName="projectMembers">
+        <mat-form-field *ngFor="let memberGroup of projectMembers.controls; let i = index">
+          <mat-label>Nome Membro {{ i + 1 }} </mat-label>
+          <input matInput [formControl]="getFirstNameControl(memberGroup)" required>
+        </mat-form-field>
+        
+        <br>
+
+        <mat-form-field *ngFor="let memberGroup of projectMembers.controls; let i = index">
+          <mat-label>Cognome Membro {{ i + 1 }} </mat-label>
+          <input matInput [formControl]="getLastNameControl(memberGroup)" required>
+        </mat-form-field>
+
+        <hr>
+        <br>
+        <mat-form-field [style.width.px]="200" *ngFor="let memberGroup of projectMembers.controls; let i = index">
+          <input matInput hidden formControlName="docRicon" >
+          <button type="button" mat-raised-button (click)="fileInput.click()">Carica documento</button>
+          <input hidden (change)="uploadAndConvertDoc($event)" #fileInput type="file" id="docRicon" accept=".pdf">
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngFor="let memberGroup of projectMembers.controls; let i = index">
+          <button type="button" mat-raised-button (click)="removeMember(i)">Rimuovi membro</button>
+        </mat-form-field>
+        
+      </div>
+
+      <div>
+        <button type="button" mat-button (click)="addMember()"><mat-icon>add</mat-icon></button>
+        <button mat-button matStepperPrevious>Indietro</button>
+        <button mat-button matStepperNext>Prosegui</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Terzo Step -->
+  <mat-step>
+    <ng-template matStepLabel>Fondo per le donazioni</ng-template>
+      <form [formGroup]="paymentForm">
+        <mat-label> Metodo di pagamento </mat-label>
+        <br>
+        <mat-radio-group formControlName="paymentMethod">
+          <mat-radio-button value="iban">IBAN</mat-radio-button>
+          <mat-radio-button value="paypal">PayPal</mat-radio-button>
+          <!-- Aggiungi altri radio button per altri metodi di pagamento -->
+        </mat-radio-group>
+      
+        <!-- Campi aggiuntivi per la carta di credito -->
+        <div *ngIf="selectedPaymentMethod === 'iban'">
+          <mat-form-field>
+            <mat-label>IBAN</mat-label>
+            <input matInput type="text" formControlName="iban" required>
+          </mat-form-field>
+        </div>
+      
+        <!-- Campi aggiuntivi per PayPal -->
+        <div *ngIf="selectedPaymentMethod === 'paypal'">
+          <mat-form-field>
+            <mat-label>Email PayPal</mat-label>
+            <input matInput formControlName="paypalEmail" required>
+          </mat-form-field>
+        </div>
+      </form>
+  </mat-step>
+
+  <!-- Quarto Step -->
+  <mat-step>
+    <ng-template matStepLabel>Invia richiesta di pubblicazione</ng-template>
+    <p>Sei sicuro di voler inviare la richiesta?</p>
+    <div>
+      <button mat-button (click)="submit()">Si</button>
+      <button mat-button matStepperPrevious>No</button>
+    </div>
+  </mat-step>
+</mat-stepper>

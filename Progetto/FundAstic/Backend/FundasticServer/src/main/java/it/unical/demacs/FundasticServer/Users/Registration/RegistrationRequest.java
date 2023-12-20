@@ -12,13 +12,13 @@ import lombok.ToString;
 @ToString
 
 public class RegistrationRequest {
-    private long idUser;
     private String name;
     private String surname;
     private String username;
     private String password;
     private String email;
     private String birthday;
+    private Integer number;
     private Role role;
 
     public RegistrationRequest(){}

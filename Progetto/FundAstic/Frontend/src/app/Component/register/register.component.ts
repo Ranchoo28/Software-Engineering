@@ -24,7 +24,8 @@ export class RegisterComponent {
       username: new FormControl('', Validators.required),
       email: new FormControl('',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexEmail)]),
       password: new FormControl('',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexPassword)]),
-      birthday: new FormControl('')
+      birthday: new FormControl(''),
+      number: new FormControl('', Validators.required)
     });
   }
  
@@ -36,7 +37,8 @@ export class RegisterComponent {
       username: this.registerForm.value.username,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      birthday: this.registerForm.value.birthday
+      birthday: this.registerForm.value.birthday,
+      number: this.registerForm.value.number
     })
   }
 

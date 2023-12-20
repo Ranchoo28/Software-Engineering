@@ -10,12 +10,17 @@ import { switchMap } from 'rxjs';
 })
 export class AppComponent {
   title = 'FundAstic';
+
+  isLogged!: boolean
   
   constructor(private cookieUtils: CookiesUtils, private router: Router ){
+   
+  }
+
+  ngOnInit(): void {
+    this.isLogged = this.cookieUtils.checkLogged()
     const username = this.cookieUtils.getUsernameFromCookie()
-    if(username != null){
-      this.router.navigate(['menu-logged'])
-    } 
+   
   }
   
   

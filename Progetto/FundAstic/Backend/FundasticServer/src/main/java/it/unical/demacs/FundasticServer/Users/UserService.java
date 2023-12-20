@@ -43,11 +43,11 @@ public class UserService {
     }
 
 
-    public void addNewUser(RegistrationRequest request) {
+    public ResponseEntity<?> addNewUser(RegistrationRequest request) {
         Optional<Users> userOptional = usersRepository.findUsersByEmail(request.getEmail());
-        if(userOptional.isPresent()) throw new IllegalStateException("Email already taken");
+        if(userOptional.isPresent()) return ResponseEntity.status(402).body("Account with this email already exist.");
         userOptional = usersRepository.findUsersByUsername(request.getUsername());
-        if(userOptional.isPresent()) throw new IllegalStateException("Username already taken");
+        if(userOptional.isPresent()) return ResponseEntity.status(402).body("Account with this username already exist.");
 
         usersRepository.save(new Users(
                 request.getName(),
@@ -56,8 +56,10 @@ public class UserService {
                 request.getPassword(),
                 request.getEmail(),
                 request.getBirthday(),
+                request.getNumber(),
                 Role.Utente
         ));
+        return ResponseEntity.status(200).body("Project published!");
     }
 
     public void deleteUser(Long id) {

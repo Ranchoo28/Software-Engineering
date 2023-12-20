@@ -13,7 +13,7 @@ public class FinanziaProgettoProxy {
     }
 
     public void protectAction(){
-        verificaPermessi();
+        //verificaPermessi();
         fp.protectAction();
     }
 

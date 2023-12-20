@@ -1,4 +1,4 @@
-package it.unical.demacs.FundasticServer.Handler;
+package it.unical.demacs.FundasticServer.Converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

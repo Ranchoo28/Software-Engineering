@@ -7,7 +7,6 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @Getter
-
 @EqualsAndHashCode
 @ToString
 public class LoginRequest {

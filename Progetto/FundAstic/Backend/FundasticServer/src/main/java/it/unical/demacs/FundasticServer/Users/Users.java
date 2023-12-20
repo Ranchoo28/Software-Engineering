@@ -1,17 +1,17 @@
 package it.unical.demacs.FundasticServer.Users;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDate;
 import java.time.Period;
 
-@Getter
-@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table
+@Builder
 
 public class Users {
     @Id
@@ -33,16 +33,17 @@ public class Users {
     @Column(unique = true) private String email;
     private String birthday;
     @Transient private Integer age; // Viene automaticamente calcolata in base alla data di nascita
+    private Integer number;
     @Enumerated(EnumType.STRING) private Role role;
 
-    public Users() {}
-    public Users(String name, String surname,String username, String password, String email, String birthday, Role role) {
+    public Users(String name, String surname, String username, String password, String email, String birthday, Integer number, Role role) {
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
         this.email = email;
         this.birthday = birthday;
+        this.number = number;
         this.role = role;
     }
 

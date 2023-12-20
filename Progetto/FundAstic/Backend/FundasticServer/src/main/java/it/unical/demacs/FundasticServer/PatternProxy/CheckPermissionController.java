@@ -3,9 +3,6 @@ package it.unical.demacs.FundasticServer.PatternProxy;
 import it.unical.demacs.FundasticServer.PatternProxy.ProxyObject.FinanziaProgettoProxy;
 import it.unical.demacs.FundasticServer.PatternProxy.ProxyObject.OperaComeModProxy;
 import it.unical.demacs.FundasticServer.PatternProxy.ProxyObject.PubblicaProgettoProxy;
-import it.unical.demacs.FundasticServer.Users.Registration.RegistrationRequest;
-import it.unical.demacs.FundasticServer.Users.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/checkPermission")
 public class CheckPermissionController {
 
-    @PostMapping()
+    @PostMapping
     public void check(@RequestBody CheckPermissionRequest request){
         switch(request.getAction()){
             case "Pubblica":{
@@ -26,13 +23,11 @@ public class CheckPermissionController {
                 fp.protectAction();
                 break;
             }
-
             case "Modera":{
                 OperaComeModProxy mp = new OperaComeModProxy(request.getRole());
                 mp.protectAction();
                 break;
             }
         }
-
     }
 }

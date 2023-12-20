@@ -1,58 +1,25 @@
 package it.unical.demacs.FundasticServer.Project;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Getter
 @EqualsAndHashCode
 @ToString
-@AllArgsConstructor
-public class ProjectRequest {
+@NoArgsConstructor
+public class PublishProjectRequest {
     private String title;
     private String description;
     private String category;
-    private String image;
-    private String video;
-    private String members;
+    @JsonFormat(shape= JsonFormat.Shape.ARRAY) private byte[] image;
+    @JsonFormat(shape= JsonFormat.Shape.ARRAY) private byte[] video;
+    private String[] members;
     private Double amount;
+    private String payments_method;
+    @JsonFormat(shape = JsonFormat.Shape.ARRAY) private byte[] doc_ricon;
     private LocalDate startDate;
     private LocalDate endDate;
-
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public String getVideo() {
-        return video;
-    }
-
-    public String getMembers() {
-        return members;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
 }

@@ -1,52 +1,71 @@
-<div  class="form-container">
-    <mat-card>
-        <mat-card-title> Finanzia progetto </mat-card-title>
-    <mat-card-content>
+<!-- stepper-form.component.html -->
+<mat-stepper linear #stepper>
+  <!-- Step 1 -->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
   
-    <form [formGroup]="finaceForm" (ngSubmit)="submit()">
-       <!-- Name field -->
-       <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Title" formControlName="title">
-        </mat-form-field>
-      </p>
-       <!-- Surname field -->
-       <p>
-        <mat-form-field>
-          <textarea name="desc" type="text" matInput placeholder="Description" formControlName ="description"> </textarea>
-        </mat-form-field>
-      </p>
-      <!-- Username field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Username" formControlName="username">
-        </mat-form-field>
-      </p>
-      <!-- Password field -->
-      <p>
-        <mat-form-field>
-          <input type="password" matInput placeholder="Password" formControlName="password">
-        </mat-form-field>
-      </p>
-  
-      <!-- Email field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Email" formControlName="email">
-        </mat-form-field>
-      </p>
-      <!-- Birthday field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Birthday" formControlName="birthday">
-        </mat-form-field>
-      </p>
+
+      <mat-form-field>
+        <mat-label>Importo</mat-label>
+        <input matInput type="number" min="1" formControlName="donationAmount" required>
+      </mat-form-field>
+      <br> <br> <br> <br>
+        
+        <mat-label> Metodo di pagamento </mat-label>
+
+        <mat-radio-group formControlName="paymentMethod" [style.padding.px]="30">
+          <mat-radio-button value="creditCard">Carta di credito</mat-radio-button>
+          <mat-radio-button value="paypal">PayPal</mat-radio-button>
+          <!-- Aggiungi altri radio button per altri metodi di pagamento -->
+        </mat-radio-group>
       
-      <div class="button">
-        <button type="submit" mat-button [disabled]="!finaceForm.valid"> Finanzia  </button>
-      </div>
+        <!-- Campi aggiuntivi per la carta di credito -->
+        <div *ngIf="selectedPaymentMethod === 'creditCard'">
+          <br>
+          <mat-form-field>
+            <mat-label>Numero della carta</mat-label>
+            <input matInput type="number" formControlName="creditCardNumber" >
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Nome sulla carta</mat-label>
+            <input matInput formControlName="creditCardName" >
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>CVV</mat-label>
+            <input matInput formControlName="creditCardCvv" >
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Scadenza</mat-label>
+            <input matInput formControlName="creditCardExpiration" >
+          </mat-form-field>
+      
+          <!-- Altri campi per la carta di credito -->
+        </div>
+      
+        <!-- Campi aggiuntivi per PayPal -->
+        <div *ngIf="selectedPaymentMethod === 'paypal'">
+          <br>
+          <mat-form-field>
+            <mat-label>Email PayPal</mat-label>
+            <input matInput formControlName="paypalEmail" >
+          </mat-form-field>
+        </div>
+      </form>
+      <br> <hr>
+      <button mat-button matStepperNext>Prosegui</button>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Dona al progetto</ng-template>
+    <p>Sei sicuro di voler donare?</p>
+    <div>
+      <button mat-button matStepperPrevious (action)="submit()">Si</button>
+      <button mat-button matStepperPrevious>No</button>
+    </div>
+  </mat-step>
+
   
-    </form>
-    </mat-card-content>
-    </mat-card>
-  </div>
+</mat-stepper>

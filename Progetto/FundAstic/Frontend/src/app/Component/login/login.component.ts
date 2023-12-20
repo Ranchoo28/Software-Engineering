@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RequestService } from 'src/app/Services/RequestService';
 import { Router } from '@angular/router';
 import { tap, switchMap, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -49,12 +48,9 @@ export class LoginComponent {
         } else {
           console.error('La data di scadenza non è disponibile nel token.');
         }
-
       }),
       switchMap(() => this.router.navigate([''])),
       catchError(error => {
-        console.error('Errore durante il login', error);
-        // Gestisci l'errore di autenticazione
         return error;
       })
     )

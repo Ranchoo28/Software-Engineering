@@ -12,11 +12,9 @@ export class MatDialogComponent {
   constructor(
     private dialogRef: MatDialogRef<MatDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router
   ) { }
   
   closeAlert(): void {
     this.dialogRef.close();
-    this.router.navigate([""])
   }
 }

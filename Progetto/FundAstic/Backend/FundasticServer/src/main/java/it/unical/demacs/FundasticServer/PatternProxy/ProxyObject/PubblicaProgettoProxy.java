@@ -15,7 +15,7 @@ public class PubblicaProgettoProxy implements ActionToProtect {
 
     @Override
     public void protectAction() {
-        verificaPermessi();
+        //verificaPermessi();
         pr.protectAction();
     }
 

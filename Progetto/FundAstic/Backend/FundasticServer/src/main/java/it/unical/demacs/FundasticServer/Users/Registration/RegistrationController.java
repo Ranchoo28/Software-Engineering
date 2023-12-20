@@ -4,6 +4,7 @@ import it.unical.demacs.FundasticServer.Users.Role;
 import it.unical.demacs.FundasticServer.Users.UserService;
 import it.unical.demacs.FundasticServer.Users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public void registerNewUser(@RequestBody RegistrationRequest request ){
-        userService.addNewUser(request);
+    public ResponseEntity<?> registerNewUser(@RequestBody RegistrationRequest request ){
+       return userService.addNewUser(request);
     }
 
     @DeleteMapping(path = "{userId}")

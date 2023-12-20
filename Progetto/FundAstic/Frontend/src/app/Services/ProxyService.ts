@@ -13,7 +13,7 @@ const httpOptions = {
 };
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class ProxyService {
   
   menuProtectedUrl = "http://localhost:8080/api/checkPermission"

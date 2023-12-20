@@ -2,28 +2,19 @@
     margin-top: -2%;
 }
 .btnContact{
-
     margin-left: 4%;
 }
 
-.btnContact:hover{
-    background-color: #03a5fc;
-}
-
-.btnNormal:hover{
+.btnContact:hover, .btnNormal:hover{
     background-color: #03a5fc;
 }
 
 .btnLogout{
     margin-left: 25%;
 }
-.btnLogout:hover{
+.btnLogout:hover, .btnReg{
     background-color: orange;
 
-}
-
-.btnReg:hover{
-    background-color: orange;
 }
 
 img {

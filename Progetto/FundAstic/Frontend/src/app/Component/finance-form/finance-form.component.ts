@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-finace-form',
@@ -7,17 +7,30 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrl: './finance-form.component.scss'
 })
 export class FinanceFormComponent {
-  finaceForm!: FormGroup;
+  
+ 
+  firstFormGroup!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder){}
+
   ngOnInit(): void {
-    this['finaceForm'] = new FormGroup({
-      name: new FormControl(''),
-      surname: new FormControl(''),
-      username: new FormControl('', Validators.required),
-      email: new FormControl(''),
-      password: new FormControl(''),
-      birthday: new FormControl('')
+    this.firstFormGroup = this.formBuilder.group({
+      donationAmount: [''],
+      paymentMethod: [''],
+      paypalEmail: [''],
+      creditCardNumber: [''],
+      creditCardExpiration: [''],
+      creditCardCvv: [''],
+      creditCardName: [''],
     });
   }
+
+  get selectedPaymentMethod() {
+    const paymentMethod = this.firstFormGroup.get('paymentMethod');
+    return paymentMethod ? paymentMethod.value : null;
+  }
+
+  
 submit() {
   throw new Error('Method not implemented.');
 }

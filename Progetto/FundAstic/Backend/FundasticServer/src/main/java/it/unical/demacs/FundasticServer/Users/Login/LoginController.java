@@ -20,23 +20,8 @@ public class LoginController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    // fare get per printare chi è loggato
-    @GetMapping
-    public void getLoggedUser(){
-        //userService.getLoggedUser();
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest request){
         return userService.loginUser(request);
     }
-
-    /*
-    @GetMapping("/logout")
-    public void logoutUser(){
-        userService.logoutUser();
-    }
-
-     */
 }
