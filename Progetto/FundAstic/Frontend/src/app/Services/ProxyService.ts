@@ -26,16 +26,16 @@ export class ProxyService {
     private projectService: ProjectService
     ) { }
 
-    apriAlert(): void {
+      apriAlert(body: string): void {
       const c = this.dialog.open(MatDialogComponent, {
-        data: { messaggio: 'Accesso negato!' }
+        data: { messaggio: body }
       });
     }
   
   sendPublisherRequest(data: {}){
     this.http.post(this.menuProtectedUrl, data, httpOptions)
     .pipe(
-      catchError(this.handleError),
+      catchError(this.handleErrorPub),
       tap(() => this.router.navigate(["publish-project"]))
     )
     .subscribe()
@@ -44,7 +44,7 @@ export class ProxyService {
   sendFinanziatoreRequest(data: {}) {
     this.http.post(this.menuProtectedUrl, data, httpOptions)
     .pipe(
-      catchError(this.handleError),
+      catchError(this.handleErrorFin),
       tap(() => this.router.navigate(["finance-project"]))
     )
     .subscribe()
@@ -53,14 +53,24 @@ export class ProxyService {
   sendModRequest(data: {}) {
     this.http.post(this.menuProtectedUrl, data, httpOptions)
     .pipe(
-      catchError(this.handleError),
+      catchError(this.handleErrorMod),
       tap(() => this.projectService.deleteProject(data))
     )
     .subscribe()
   }
 
-  private handleError = (error: any) => {
-    this.apriAlert();
+  private handleErrorPub = (error: any) => {
+    this.apriAlert("Devi essere publisher per poter accedere a questa funzione.");
+    return throwError('Accesso negato!');
+  }
+
+  private handleErrorFin = (error: any) => {
+    this.apriAlert("Devi essere finanziatore per poter accedere a questa funzione.");
+    return throwError('Accesso negato!');
+  }
+
+  private handleErrorMod = (error: any) => {
+    this.apriAlert("Devi essere moderatore per poter accedere a questa funzione.");
     return throwError('Accesso negato!');
   }
 

@@ -12,6 +12,7 @@ public class PublishProjectRequest {
     private String title;
     private String description;
     private String category;
+    private String email;
     @JsonFormat(shape= JsonFormat.Shape.ARRAY) private byte[] image;
     @JsonFormat(shape= JsonFormat.Shape.ARRAY) private byte[] video;
     private String[] members;

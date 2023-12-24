@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 public class EmailService {
     private final EmailHandler emailHandler = EmailHandler.getInstance();
 
-    public void emailServiceSendWelcomeEmail(String toEmail, String subject, String body) {
+    public void sendEmail(String toEmail, String subject, String body) {
         ExecutorService emailExecutor = Executors.newSingleThreadExecutor();
         emailExecutor.execute(() -> emailHandler.sendEmail(toEmail, subject, body));
         emailExecutor.shutdown();

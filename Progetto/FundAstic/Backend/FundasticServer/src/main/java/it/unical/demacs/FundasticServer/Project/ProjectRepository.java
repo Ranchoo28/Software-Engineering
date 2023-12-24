@@ -12,4 +12,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     Optional<Project> findProjectByTitle(String title);
     void deleteByTitle(String title);
+
+    Optional<Project> findProjectByEmail(String email);
 }

@@ -74,7 +74,7 @@ public class UserService {
         ));
         System.out.println(request.getBirthday());
         /*
-        emailService.emailServiceSendWelcomeEmail(
+        emailService.sendEmail(
                 request.getEmail(),
                 "Benvenuto in FundAstic!" ,
                 request.getName() + " grazie per esserti registrato!"

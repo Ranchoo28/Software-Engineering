@@ -1,11 +1,14 @@
 *{
-    margin-top: -2%;
+    margin-top: -1.5%;
 }
 .btnContact{
     margin-left: 4%;
 }
+.btnPublish{
+    margin-left: 4%;
+}
 
-.btnContact:hover, .btnNormal:hover{
+.btnContact:hover, .btnNormal:hover, .btnPublish:hover{
     background-color: #03a5fc;
 }
 
@@ -23,7 +26,7 @@ img {
 }
 
 hr{
-    margin-top: 0.1%;
+    margin-top: 0.2%;
 }
 
 

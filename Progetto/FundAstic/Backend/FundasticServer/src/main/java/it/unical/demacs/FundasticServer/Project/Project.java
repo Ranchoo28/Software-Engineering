@@ -30,6 +30,7 @@ public class Project {
     @Column(unique = true) private String title;
     private String description;
     private String category;
+    @Column(unique = true)  private String email;
     private byte[]  image;
     private byte[]  video;
     @Convert(converter = StringArrayConverter.class)
@@ -43,10 +44,11 @@ public class Project {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Project(String title, String description, String category, byte[] image, byte[] video, String[] members, Double amountToReach, Double amountReached, String paymentsMethod, String[] donators_username, byte[] doc_ricon, LocalDate startDate, LocalDate endDate) {
+    public Project(String title, String description, String category,  String email, byte[] image, byte[] video, String[] members, Double amountToReach, Double amountReached, String paymentsMethod, String[] donators_username, byte[] doc_ricon, LocalDate startDate, LocalDate endDate) {
         this.title = title;
         this.description = description;
         this.category = category;
+        this.email = email;
         this.image = image;
         this.video = video;
         this.members = members;
