@@ -1,4 +1,4 @@
-<mat-stepper [linear]="false" #stepper>
+<mat-stepper [linear]="true" #stepper>
 
   <!-- Primo Step -->
   <mat-step [stepControl]="firstForm">
@@ -12,7 +12,7 @@
       <br>
 
       <mat-form-field [style.width.px]="350">
-        <mat-label>Descrizione (Max 1000 parole)</mat-label>
+        <mat-label>Descrizione (Max 2000 caratteri)</mat-label>
         <textarea class="desc" matInput formControlName="projectDescrip" required appAutoResize></textarea>
       </mat-form-field>
       <br>
@@ -23,15 +23,15 @@
       </mat-form-field>
 
       <br>
-      <mat-label> Immagine </mat-label> 
+      <mat-label> Immagine (max 100 Kb)</mat-label> 
       <mat-form-field [style.width.px]="120" [style.padding.px]="15">
-        <input matInput hidden formControlName="imageProject">
+        <input matInput hidden formControlName="imageProject" required="false">
         <button type="button" mat-raised-button (click)="imageInput.click()">Carica</button>
         <input hidden (change)="uploadAndConvertImage($event)" #imageInput type="file" id="image" accept=".png, .jpg, .jpeg, .svg, .tiff, .bmp">
       </mat-form-field> 
 
 
-      <mat-label> Video </mat-label>
+      <mat-label> Video (max 100 Kb)</mat-label>
       <mat-form-field [style.width.px]="120" >
         <input matInput hidden formControlName="imageProject">
         <button type="button" mat-raised-button (click)="videoInput.click()">Carica</button>
@@ -57,6 +57,7 @@
       <br>
 
       <div>
+        <button mat-button routerLink=""> Torna alla home </button>
         <button mat-button matStepperNext>Prosegui</button>
       </div>
     </form>
@@ -66,6 +67,7 @@
   <mat-step [stepControl]="secondForm" label="Membri">
     <form [formGroup]="secondForm">
       <div formArrayName="projectMembers">
+        
         <mat-form-field *ngFor="let memberGroup of projectMembers.controls; let i = index">
           <mat-label>Nome Membro {{ i + 1 }} </mat-label>
           <input matInput [formControl]="getFirstNameControl(memberGroup)" required>
@@ -77,25 +79,21 @@
           <mat-label>Cognome Membro {{ i + 1 }} </mat-label>
           <input matInput [formControl]="getLastNameControl(memberGroup)" required>
         </mat-form-field>
-
         <hr>
-        <br>
-        <mat-form-field [style.width.px]="200" *ngFor="let memberGroup of projectMembers.controls; let i = index">
-          <input matInput hidden formControlName="docRicon" >
-          <button type="button" mat-raised-button (click)="fileInput.click()">Carica documento</button>
-          <input hidden (change)="uploadAndConvertDoc($event)" #fileInput type="file" id="docRicon" accept=".pdf">
-        </mat-form-field>
-        <br>
-        <mat-form-field *ngFor="let memberGroup of projectMembers.controls; let i = index">
-          <button type="button" mat-raised-button (click)="removeMember(i)">Rimuovi membro</button>
-        </mat-form-field>
-        
+  
       </div>
 
       <div>
         <button type="button" mat-button (click)="addMember()"><mat-icon>add</mat-icon></button>
-        <button mat-button matStepperPrevious>Indietro</button>
-        <button mat-button matStepperNext>Prosegui</button>
+        <button type="button" mat-button (click)="removeMember()"><mat-icon> remove </mat-icon></button>
+        <button type="button" mat-raised-button (click)="fileInput.click()">Carica documento</button>
+        <input hidden (change)="uploadAndConvertDoc($event)" #fileInput type="file" id="docRicon" accept=".pdf">
+        <br> <br> <hr>
+        <div class="btnStep"> 
+          <button mat-button matStepperPrevious>Indietro</button>
+          <button mat-button matStepperNext>Prosegui</button>
+        </div>
+        <br>
       </div>
     </form>
   </mat-step>

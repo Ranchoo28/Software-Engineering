@@ -38,15 +38,29 @@
       <!-- Birthday field -->
       <p>
         <mat-form-field>
-          <input type="text" matInput placeholder="Birthday" formControlName="birthday">
+          <mat-label>Data di nascita</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthday">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </p>
        <!-- Telephone number field -->
       <p>
         <mat-form-field>
-          <input type="text" matInput placeholder="Telephone number" formControlName="number">
+          <input type="number" min="1" matInput placeholder="Numero di telefono" formControlName="number">
         </mat-form-field>
       </p>
+      <p> 
+      <mat-form-field>
+        <mat-label>Seleziona ruolo</mat-label>
+        <mat-select matNativeControl required [(value)]="start_role" formControlName="role">
+          <mat-option value="Utente">Utente</mat-option >
+          <mat-option value="Publisher">Publisher</mat-option >
+          <mat-option value="Finanziatore">Finanziatore</mat-option >
+        </mat-select>
+      </mat-form-field>
+    </p>
       
       <div class="button">
         <button type="submit" mat-button [disabled]="!registerForm.valid"> Registrati  </button>

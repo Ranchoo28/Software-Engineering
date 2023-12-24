@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list';
+import { MatListModule, MatSelectionList } from '@angular/material/list';
 import { NotFoundComponent } from './Component/not-found-component/not-found.component';
 import { MenuComponent } from './Component/menu/menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,11 +27,13 @@ import { FinanceFormComponent } from './Component/finance-form/finance-form.comp
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogComponent } from './Component/alert-publisher/alert-publisher.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule} from '@angular/material/core'
+import {MatNativeDateModule, MatOptionModule} from '@angular/material/core'
 import { AutoResizeDirective } from './Direttive/auto-resize.directive';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import { ShowcaseComponent } from './Component/showcase/showcase.component';
 
 
 
@@ -48,7 +50,8 @@ import {MatRadioModule} from '@angular/material/radio';
     RegisterComponent,
     PublishFormComponent,
     FinanceFormComponent,
-    MatDialogComponent
+    MatDialogComponent,
+    ShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     MatRadioModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [RequestService, CookieService, ProxyService],
   bootstrap: [AppComponent]

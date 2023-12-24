@@ -1,3 +1,11 @@
-mat-form-field{
-    
+.btnStep {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+::ng-deep .mat-horizontal-stepper-header .mat-step-icon,
+.mat-vertical-stepper-header .mat-step-icon {
+  background-color: orange;
 }

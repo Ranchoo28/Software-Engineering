@@ -14,35 +14,18 @@
         <mat-label> Metodo di pagamento </mat-label>
 
         <mat-radio-group formControlName="paymentMethod" [style.padding.px]="30">
-          <mat-radio-button value="creditCard">Carta di credito</mat-radio-button>
+          <mat-radio-button value="iban">IBAN</mat-radio-button>
           <mat-radio-button value="paypal">PayPal</mat-radio-button>
-          <!-- Aggiungi altri radio button per altri metodi di pagamento -->
         </mat-radio-group>
       
-        <!-- Campi aggiuntivi per la carta di credito -->
-        <div *ngIf="selectedPaymentMethod === 'creditCard'">
+        <!-- Campi aggiuntivi per IBAN -->
+        <div *ngIf="selectedPaymentMethod === 'iban'">
           <br>
           <mat-form-field>
-            <mat-label>Numero della carta</mat-label>
-            <input matInput type="number" formControlName="creditCardNumber" >
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <mat-label>Nome sulla carta</mat-label>
-            <input matInput formControlName="creditCardName" >
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <mat-label>CVV</mat-label>
-            <input matInput formControlName="creditCardCvv" >
-          </mat-form-field>
-          <br>
-          <mat-form-field>
-            <mat-label>Scadenza</mat-label>
-            <input matInput formControlName="creditCardExpiration" >
+            <mat-label>Codice IBAN</mat-label>
+            <input matInput type="text" formControlName="ibanCode" >
           </mat-form-field>
       
-          <!-- Altri campi per la carta di credito -->
         </div>
       
         <!-- Campi aggiuntivi per PayPal -->
@@ -62,7 +45,7 @@
     <ng-template matStepLabel>Dona al progetto</ng-template>
     <p>Sei sicuro di voler donare?</p>
     <div>
-      <button mat-button matStepperPrevious (action)="submit()">Si</button>
+      <button mat-button (click)="submit()">Si</button>
       <button mat-button matStepperPrevious>No</button>
     </div>
   </mat-step>

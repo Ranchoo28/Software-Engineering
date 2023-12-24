@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    @Query("SELECT project FROM Project project WHERE project.title = ?1")
-    Optional<Project> findProjectByTitle(String title);
 
+    Optional<Project> findProjectByTitle(String title);
+    void deleteByTitle(String title);
 }

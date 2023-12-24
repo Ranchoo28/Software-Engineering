@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { tap, catchError } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogComponent } from '../Component/alert-publisher/alert-publisher.component';
+import { ProjectService } from './ProjectService';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +22,8 @@ export class ProxyService {
   constructor(
     private http: HttpClient, 
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private projectService: ProjectService
     ) { }
 
     apriAlert(): void {
@@ -52,7 +54,7 @@ export class ProxyService {
     this.http.post(this.menuProtectedUrl, data, httpOptions)
     .pipe(
       catchError(this.handleError),
-      tap(() => this.router.navigate(["mod-project"]))
+      tap(() => this.projectService.deleteProject(data))
     )
     .subscribe()
   }

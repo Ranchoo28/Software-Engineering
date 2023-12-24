@@ -8,6 +8,7 @@ import { RegisterComponent } from './Component/register/register.component';
 import { MenuLoggedComponent } from './Component/menu-logged/menu-logged.component';
 import { PublishFormComponent } from './Component/publish-form/publish-form.component';
 import { FinanceFormComponent } from './Component/finance-form/finance-form.component';
+import { ShowcaseComponent } from './Component/showcase/showcase.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'menu-logged', component: MenuLoggedComponent},
   { path: 'publish-project', component: PublishFormComponent},
   { path: 'finance-project', component: FinanceFormComponent},
+  { path: 'showcase', component: ShowcaseComponent},
   { path: '404', component: NotFoundComponent},
   { path: '**', component: NotFoundComponent}
 ];

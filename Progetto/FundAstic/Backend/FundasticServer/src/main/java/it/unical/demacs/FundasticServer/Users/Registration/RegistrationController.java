@@ -44,7 +44,7 @@ public class RegistrationController {
             @RequestParam (required = false) String birthday,
             @RequestParam (required = false) Role role){
 
-        userService.updateUser(userId, name, surname, username, password, email, birthday, role);
+        //userService.updateUser(userId, name, surname, username, password, email, birthday, role);
     }
 
 }

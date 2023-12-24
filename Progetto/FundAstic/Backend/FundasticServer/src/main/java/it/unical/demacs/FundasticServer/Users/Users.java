@@ -1,5 +1,6 @@
 package it.unical.demacs.FundasticServer.Users;
 
+import it.unical.demacs.FundasticServer.Converter.StringArrayConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,12 +32,15 @@ public class Users {
     @Column(unique = true) private String username;
     private String password;
     @Column(unique = true) private String email;
-    private String birthday;
+    private LocalDate birthday;
     @Transient private Integer age; // Viene automaticamente calcolata in base alla data di nascita
     private Integer number;
     @Enumerated(EnumType.STRING) private Role role;
+    @Convert(converter = StringArrayConverter.class)
+    private String[] donated_projects;
 
-    public Users(String name, String surname, String username, String password, String email, String birthday, Integer number, Role role) {
+
+    public Users(String name, String surname, String username, String password, String email, LocalDate birthday, Integer number, Role role, String[] donated_projects) {
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -44,11 +48,13 @@ public class Users {
         this.email = email;
         this.birthday = birthday;
         this.number = number;
+        this.age = getAge();
         this.role = role;
+        this.donated_projects = donated_projects;
     }
 
     public Integer getAge() {
-        return Period.between(LocalDate.parse(this.birthday), LocalDate.now()).getYears();
+        return Period.between(this.birthday, LocalDate.now()).getYears();
     }
 
     @Override

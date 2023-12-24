@@ -1,0 +1,31 @@
+<app-menu *ngIf="!isLogged"></app-menu>
+<app-menu-logged *ngIf="isLogged"></app-menu-logged>
+
+<div class="projects" *ngFor="let project of projects">
+    <h2>Titolo: {{ project.title }}</h2>
+    <p>{{ project.description }}</p>
+    <p> Categoria: {{ project.category }}</p>
+    <img class="project-image" [src]="project.image" [style.padding.px]="15">
+
+    <video width="320" height="240" controls [style.padding.px]="15">
+        <source [src]="project.video" type="video/mp4">
+    </video>
+
+    <p>Membri: 
+        <ng-container *ngFor="let member of project.members; let last = last">
+            {{ member }}
+            <span *ngIf="!last"> - </span>
+        </ng-container>
+    </p>
+
+    <p>Cifra da raggiungere: {{ project.amountToReach }} €</p>
+    <p>Cifra raggiunta: {{ project.amountReached }} €</p>
+    
+    <p>Data di inizio: {{ project.startDate | date:'dd/MM/yyyy' }}</p>
+    <p>Data fine: {{ project.endDate | date:'dd/MM/yyyy' }}</p>
+
+    <hr>
+
+    <button mat-raised-button class="btnFinance" (click)="requestPermitFinanziatore(project.title)">Finanzia</button>
+    <button mat-raised-button class="btnRemove" (click)="requestPermitAdmin(project.title)">Rimuovi</button>
+</div>

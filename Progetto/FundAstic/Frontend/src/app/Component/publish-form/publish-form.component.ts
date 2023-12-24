@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProjectService } from 'src/app/Services/ProjectService';
-import * as TextEncoding from 'text-encoding-utf-8';
+
 @Component({
   selector: 'app-publish-form',
   templateUrl: './publish-form.component.html',
@@ -24,8 +24,8 @@ export class PublishFormComponent {
       projectName: ['FundOstic', Validators.required],
       projectDescrip: ['Sium', Validators.required],
       projectCategory: ['Gay', Validators.required],
-      imageProject: [this.byteArrayImage, Validators.required],
-      videoProject: [this.byteArrayVideo, Validators.required],
+      imageProject: [this.byteArrayImage],
+      videoProject: [this.byteArrayVideo],
       projectAmount: ['150', Validators.required],
       startProjectDate: ['', Validators.required],
       endProjectDate: ['', Validators.required],
@@ -64,8 +64,8 @@ export class PublishFormComponent {
     this.projectMembers.push(memberFormGroup);
   }
 
-  removeMember(index: number) {
-    this.projectMembers.removeAt(index);
+  removeMember() {
+    this.projectMembers.removeAt(this.projectMembers.length-1)
   }
 
   getFirstNameControl(memberGroup: AbstractControl): FormControl {
@@ -78,9 +78,8 @@ export class PublishFormComponent {
 
   submit() { 
     var formattedArray = this.secondForm.get('projectMembers')?.value.map(
-      (person: { firstName: string, lastName: string, doc: number[] }) => `${person.firstName} ${person.lastName} ${person.doc}`);
+      (person: { firstName: string, lastName: string}) => `${person.firstName} ${person.lastName}`);
       
-    console.log(formattedArray)
     this.projectService.publishProject({
       title: this.firstForm.get('projectName')?.value,
       description: this.firstForm.get('projectDescrip')?.value,

@@ -1,19 +1,17 @@
 package it.unical.demacs.FundasticServer.Project;
-
-
 import it.unical.demacs.FundasticServer.Converter.StringArrayConverter;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
+import java.util.Arrays;
 
-
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table
 @Builder
+@Setter
+@Getter
 
 public class Project {
 
@@ -36,21 +34,26 @@ public class Project {
     private byte[]  video;
     @Convert(converter = StringArrayConverter.class)
     private String[] members;
-    private Double amount;
+    private Double amountToReach;
+    private Double amountReached;
     private String paymentsMethod;
+    @Convert(converter = StringArrayConverter.class)
+    private String[] donators_username;
     private byte[] doc_ricon;
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Project(String title, String description, String category, byte[] image, byte[] video, String[] members, Double amount, String paymentsMethod, byte[] doc_ricon, LocalDate startDate, LocalDate endDate) {
+    public Project(String title, String description, String category, byte[] image, byte[] video, String[] members, Double amountToReach, Double amountReached, String paymentsMethod, String[] donators_username, byte[] doc_ricon, LocalDate startDate, LocalDate endDate) {
         this.title = title;
         this.description = description;
         this.category = category;
         this.image = image;
         this.video = video;
         this.members = members;
-        this.amount = amount;
+        this.amountToReach = amountToReach;
+        this.amountReached =  amountReached;
         this.paymentsMethod = paymentsMethod;
+        this.donators_username = donators_username;
         this.doc_ricon = doc_ricon;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -62,10 +65,11 @@ public class Project {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
-                ", video=" + video + '\'' +
-                ", members=" + members + '\'' +
-                ", amount=" + amount + '\'' +
+                ", image='" + Arrays.toString(image) + '\'' +
+                ", video=" + Arrays.toString(video) + '\'' +
+                ", members=" + Arrays.toString(members) + '\'' +
+                ", amount=" + amountToReach + '\'' +
+                ", amount=" + amountReached + '\'' +
                 ", paymentMethod= " +  paymentsMethod + '\'' +
                 ",start=" + startDate + '\'' +
                 ",end=" + endDate + '\'' +

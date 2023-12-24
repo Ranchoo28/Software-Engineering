@@ -17,42 +17,82 @@ const httpOptions = {
 })
 
 export class ProjectService{
-    private url: string = "http://localhost:8080/api/project/publish"
+   
+    private publishUrl: string = "http://localhost:8080/api/project/publish"
+    private financeUrl: string = "http://localhost:8080/api/project/finance"
+    private projectsUrl: string = "http://localhost:8080/api/showcase"
+    private deleteUrl: string = "http://localhost:8080/api/project/delete"
 
     constructor(
         private http: HttpClient, 
         private router: Router,
         private dialog: MatDialog
         ){}
+        
+    getProjects(){
+       return this.http.get(this.projectsUrl, httpOptions)
+    }
 
-    publishProject(data: {}){
-        return this.http.post(this.url, data, httpOptions)
+    financeProject(data: {}){
+        return this.http.post(this.financeUrl, data, httpOptions)
         .pipe(
-            catchError(this.handleError)
-       
+            catchError(this.handleErrorFinance)
         ).subscribe()
     }
 
-    private handleError = (error: any) => {
-        if(error.error.text === "Project published successfully!")
-            this.apriPublishAlert();
+    publishProject(data: {}){
+        return this.http.post(this.publishUrl, data, httpOptions)
+        .pipe(
+            catchError(this.handleErrorPublish)
+        ).subscribe()
+    }
+
+    deleteProject(data: {}){
+        return this.http.post(this.deleteUrl, data, httpOptions)
+        .pipe(
+            catchError(this.handleErrorDelete)
+        ).subscribe()
+    }
+
+    private handleErrorDelete = (error: any) => {
+        if(error.error.text === "Project removed successfully!")
+            this.apriPublishAlert("Progetto rimosso");
         else
-            this.apriErrorAlert();
+            this.apriErrorAlert("nella rimozione");
         
         return throwError(error)
     }
 
-    apriErrorAlert(): void {
-        const c = this.dialog.open(MatDialogComponent, {
-          data: { messaggio: 'Problemi nella pubblicazione del progetto, riprova.' }
+    private handleErrorFinance = (error: any) => {
+        if(error.error.text === "Project financed successfully!")
+            this.apriPublishAlert("Finanziamento avvenuto");
+        else
+            this.apriErrorAlert("nel finanziamento");
+        
+        return throwError(error)
+    }
+
+    private handleErrorPublish = (error: any) => {
+        if(error.error.text === "Project published successfully!")
+            this.apriPublishAlert("Progetto pubblicato ");
+        else
+            this.apriErrorAlert(" durante la pubblicazione");
+        
+        return throwError(error)
+    }
+
+
+    apriErrorAlert(action: string): void {
+        this.dialog.open(MatDialogComponent, {
+            data: { messaggio: "Errore " + action + ", riprova" }
         });
     }
 
-    apriPublishAlert(): void{
-        const c = this.dialog.open(MatDialogComponent, {
-            data: { messaggio: 'Progetto pubblicato con successo!' }
+    apriPublishAlert(action: string): void{
+        this.dialog.open(MatDialogComponent, {
+            data: { messaggio: action + ' con successo!' }
         });
-        this.router.navigate(["menu-logged"])
+        this.router.navigate([""])
     }
     
 }

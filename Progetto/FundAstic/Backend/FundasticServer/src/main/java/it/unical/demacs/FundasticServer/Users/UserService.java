@@ -1,15 +1,16 @@
 package it.unical.demacs.FundasticServer.Users;
 
-import it.unical.demacs.FundasticServer.Handler.RegexHandler;
+import it.unical.demacs.FundasticServer.Service.EmailService;
 import it.unical.demacs.FundasticServer.Users.Jwt.JwtAuthResponse;
 import it.unical.demacs.FundasticServer.Users.Jwt.JwtService;
 import it.unical.demacs.FundasticServer.Users.Login.LoginRequest;
 import it.unical.demacs.FundasticServer.Users.Registration.RegistrationRequest;
-import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,25 +19,27 @@ import java.util.Optional;
 public class UserService {
     private final UsersRepository usersRepository;
     private final JwtService jwtService;
+    private final EmailService emailService;
     //private final SessionRepository sessionRepository;
 
     @Autowired
-    public UserService(UsersRepository usersRepository, JwtService jwtService) {
+    public UserService(UsersRepository usersRepository, JwtService jwtService, EmailService emailService) {
         this.usersRepository = usersRepository;
         this.jwtService = jwtService;
+        this.emailService = emailService;
     }
 
     public List<Users> getUsers(){ return usersRepository.findAll(); }
 
     public ResponseEntity<?> loginUser(LoginRequest request){
         Optional<Users> userOptional = usersRepository.findUsersByUsername(request.getUsername());
-        if(userOptional.isEmpty()) throw new IllegalStateException("Username or password are incorrect");
+        if(userOptional.isEmpty()) return ResponseEntity.status(402).body("Username incorrect");
         else
             if(!userOptional.get().getPassword().equals(request.getPassword()))
-                throw new IllegalStateException("Username or password are incorrect");
+                return  ResponseEntity.status(402).body("Password incorrect");
             else{
-                System.out.println("Login successful for user " + request.getUsername());
-                return ResponseEntity.ok(new JwtAuthResponse(jwtService.generateToken(
+                return ResponseEntity.ok(new JwtAuthResponse(
+                        jwtService.generateToken(
                         request.getUsername(),
                         userOptional.get().getRole().toString())));
             }
@@ -49,6 +52,15 @@ public class UserService {
         userOptional = usersRepository.findUsersByUsername(request.getUsername());
         if(userOptional.isPresent()) return ResponseEntity.status(402).body("Account with this username already exist.");
 
+        if(Period.between(request.getBirthday(), LocalDate.now()).getYears() < 18)
+            return ResponseEntity.status(402).body("You must be of legal age.");
+
+        Role role = switch (request.getRole()) {
+            case "Finanziatore" -> Role.Finanziatore;
+            case "Publisher" -> Role.Publisher;
+            default -> Role.Utente;
+        };
+
         usersRepository.save(new Users(
                 request.getName(),
                 request.getSurname(),
@@ -57,9 +69,19 @@ public class UserService {
                 request.getEmail(),
                 request.getBirthday(),
                 request.getNumber(),
-                Role.Utente
+                role,
+                new String[]{""}
         ));
-        return ResponseEntity.status(200).body("Project published!");
+        System.out.println(request.getBirthday());
+        /*
+        emailService.emailServiceSendWelcomeEmail(
+                request.getEmail(),
+                "Benvenuto in FundAstic!" ,
+                request.getName() + " grazie per esserti registrato!"
+                );
+
+         */
+        return ResponseEntity.status(200).body("Account registered!");
     }
 
     public void deleteUser(Long id) {
@@ -67,6 +89,7 @@ public class UserService {
          else throw new IllegalStateException("User with id " + id + " does not exist");
     }
 
+    /*
     @Transactional
     public void updateUser(
             Long userId,
@@ -124,4 +147,6 @@ public class UserService {
         if (user != null) return password.equals(user.getPassword());
         return false;
     }
+
+     */
 }

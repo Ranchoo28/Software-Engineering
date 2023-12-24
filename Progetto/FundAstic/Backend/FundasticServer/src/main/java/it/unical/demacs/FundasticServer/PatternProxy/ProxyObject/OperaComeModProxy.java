@@ -1,11 +1,12 @@
 package it.unical.demacs.FundasticServer.PatternProxy.ProxyObject;
 
 import it.unical.demacs.FundasticServer.PatternProxy.ActionToProtect;
-import it.unical.demacs.FundasticServer.PatternProxy.NormalObject.PubblicaProgetto;
+import it.unical.demacs.FundasticServer.PatternProxy.NormalObject.OperaComeMod;
+import it.unical.demacs.FundasticServer.Project.ProjectService;
 import it.unical.demacs.FundasticServer.Users.Role;
 
 public class OperaComeModProxy implements ActionToProtect {
-    PubblicaProgetto pr = new PubblicaProgetto();
+    OperaComeMod pr = new OperaComeMod();
     private final String role;
     private final String requiredRole = String.valueOf(Role.Moderatore);
 
@@ -14,9 +15,9 @@ public class OperaComeModProxy implements ActionToProtect {
     }
 
     @Override
-    public void protectAction() {
+    public void protectAction(String s) {
         verificaPermessi();
-        pr.protectAction();
+        pr.protectAction(s);
     }
 
     public void verificaPermessi(){

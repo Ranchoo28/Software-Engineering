@@ -7,6 +7,7 @@ import { CookiesUtils } from 'src/app/Utils/CookiesUtils';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent {  
   project = "";
   users = "";
@@ -27,6 +28,6 @@ export class HomeComponent {
       this.investment = this.data[0].donationNumber
       this.eur = this.data[0].eurAmount
       this.isLogged = this.cookieUtils.checkLogged()
-    });
+    })
   }
 }

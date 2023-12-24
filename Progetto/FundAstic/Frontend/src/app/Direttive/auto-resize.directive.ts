@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class AutoResizeDirective {
 
-  @Input() maxLength: number = 1000; // Imposta la lunghezza massima desiderata
+  @Input() maxLength: number = 2000; // Imposta la lunghezza massima desiderata
 
   constructor(private el: ElementRef) {}
 

@@ -14,13 +14,13 @@ public class PubblicaProgettoProxy implements ActionToProtect {
     }
 
     @Override
-    public void protectAction() {
-        //verificaPermessi();
-        pr.protectAction();
+    public void protectAction(String  s) {
+        verificaPermessi();
+        pr.protectAction(s);
     }
 
     private void verificaPermessi(){
-        if(!this.role.equals(requiredRole)){
+        if(!this.role.equals(requiredRole) && !this.role.equals(String.valueOf(Role.Moderatore))){
             throw new SecurityException("Accesso negato!");
         }
     }

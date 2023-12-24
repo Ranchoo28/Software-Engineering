@@ -18,18 +18,6 @@ export class MenuLoggedComponent {
     private router: Router
     ){}
 
-  requestPermitAdmin() {
-    // TODO
-  }
-
-  requestPermitFinanziatore() {
-    this.proxyService.sendFinanziatoreRequest({
-      username: this.cookie.getUsernameFromCookie(),
-      action: "Finanzia",
-      role: this.cookie.getRoleFromCookie()
-    });
-  }
-
   requestPermitPublisher() {
     return this.proxyService.sendPublisherRequest({
       username: this.cookie.getUsernameFromCookie(),

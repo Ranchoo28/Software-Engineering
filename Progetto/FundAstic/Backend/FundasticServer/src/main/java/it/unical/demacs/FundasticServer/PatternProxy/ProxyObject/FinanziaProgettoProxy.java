@@ -12,13 +12,13 @@ public class FinanziaProgettoProxy {
         this.role = role;
     }
 
-    public void protectAction(){
-        //verificaPermessi();
-        fp.protectAction();
+    public void protectAction(String s){
+        verificaPermessi();
+        fp.protectAction(s);
     }
 
     private void verificaPermessi(){
-        if(!this.role.equals(requiredRole)){
+        if(!this.role.equals(requiredRole) && !this.role.equals(String.valueOf(Role.Moderatore))){
             throw new SecurityException("Accesso negato!");
         }
     }

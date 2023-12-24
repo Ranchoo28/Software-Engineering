@@ -1,5 +1,6 @@
 package it.unical.demacs.FundasticServer.Config;
 
+import it.unical.demacs.FundasticServer.Users.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,10 +19,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/**").permitAll();
-                    //auth.requestMatchers("/user").hasRole("User");
-                    //auth.requestMatchers("/moderator").hasRole("Moderatore);
-                    //auth.requestMatchers("/publisher").hasRole("Publisher");
-                    //auth.requestMatchers("/finanziatore").hasRole("Finanziatore");
+                    //auth.requestMatchers("/user").hasRole(String.valueOf(Role.Utente));
+                    //auth.requestMatchers("/moderator").hasRole(String.valueOf(Role.Moderatore));
+                    //auth.requestMatchers("/publisher").hasRole(String.valueOf(Role.Publisher));
+                    //auth.requestMatchers("/finanziatore").hasRole(String.valueOf(Role.Finanziatore));
                 })
                 .httpBasic(withDefaults())
                 .build();

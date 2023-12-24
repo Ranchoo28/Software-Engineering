@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { tap, switchMap, catchError } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { throwError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogComponent } from '../alert-publisher/alert-publisher.component';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +21,8 @@ export class LoginComponent {
   constructor(
     private request: RequestService, 
     private router: Router, 
-    private cookie: CookieService
+    private cookie: CookieService,
+    private dialog: MatDialog
     ){}
  
   ngOnInit():void{
@@ -50,16 +54,32 @@ export class LoginComponent {
         }
       }),
       switchMap(() => this.router.navigate([''])),
-      catchError(error => {
-        return error;
-      })
+      catchError(this.handleLoginError)
     )
     .subscribe();
   }
   
-  
+  private handleLoginError = (error: any) => {
+    console.log(error.error.text)
+    if(error.error.text === "Account registered!")
+        this.apriErrorAlert(error.error.text);
+    else
+        this.apriErrorAlert(error.error);
+    
+    return throwError(error)
+  }
 
-  //@Output() submitEM = new EventEmitter();
+  apriErrorAlert(action: string): void {
+    this.dialog.open(MatDialogComponent, {
+        data: { messaggio: action }
+    });
+  }
 
-
+  apriConfirmAlert(action: string): void{
+      this.dialog.open(MatDialogComponent, {
+          data: { messaggio: action }
+      });
+      this.router.navigate([""])
+  }
 }
+

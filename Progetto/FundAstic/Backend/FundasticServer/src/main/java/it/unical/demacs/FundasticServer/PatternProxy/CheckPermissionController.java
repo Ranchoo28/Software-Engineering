@@ -15,17 +15,17 @@ public class CheckPermissionController {
         switch(request.getAction()){
             case "Pubblica":{
                 PubblicaProgettoProxy pr = new PubblicaProgettoProxy(request.getRole());
-                pr.protectAction();
+                pr.protectAction(null);
                 break;
             }
             case "Finanzia":{
                 FinanziaProgettoProxy fp = new FinanziaProgettoProxy(request.getRole());
-                fp.protectAction();
+                fp.protectAction(null);
                 break;
             }
             case "Modera":{
                 OperaComeModProxy mp = new OperaComeModProxy(request.getRole());
-                mp.protectAction();
+                mp.protectAction(request.getTitle());
                 break;
             }
         }
