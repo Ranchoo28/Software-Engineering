@@ -1,72 +1,71 @@
-<div  class="form-container">
-    <mat-card>
-        <mat-card-title> Registrati </mat-card-title>
+<div class="form-container">
+  <a routerLink="">
+    <img src="assets/FundAstic.png" width="63%" height="5%" style="margin-left: 13%; margin-bottom: 10%;" class="logo">
+  </a>
+  <mat-card>
+    <mat-card-title> Registrati </mat-card-title>
     <mat-card-content>
-  
-    <form [formGroup]="registerForm" (ngSubmit)="submit()">
-       <!-- Name field -->
-       <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Name" formControlName="name">
-        </mat-form-field>
-      </p>
-       <!-- Surname field -->
-       <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Surname" formControlName ="surname">
-        </mat-form-field>
-      </p>
-      <!-- Username field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Username" formControlName="username">
-        </mat-form-field>
-      </p>
-      <!-- Password field -->
-      <p>
-        <mat-form-field>
-          <input type="password" matInput placeholder="Password" formControlName="password">
-        </mat-form-field>
-      </p>
-  
-      <!-- Email field -->
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Email" formControlName="email">
-        </mat-form-field>
-      </p>
-      <!-- Birthday field -->
-      <p>
-        <mat-form-field>
-          <mat-label>Data di nascita</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="birthday">
-          <mat-hint>DD/MM/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </p>
-       <!-- Telephone number field -->
-      <p>
-        <mat-form-field>
-          <input type="number" min="1" matInput placeholder="Numero di telefono" formControlName="number">
-        </mat-form-field>
-      </p>
-      <p> 
-      <mat-form-field>
-        <mat-label>Seleziona ruolo</mat-label>
-        <mat-select matNativeControl required [(value)]="start_role" formControlName="role">
-          <mat-option value="Utente">Utente</mat-option >
-          <mat-option value="Publisher">Publisher</mat-option >
-          <mat-option value="Finanziatore">Finanziatore</mat-option >
-        </mat-select>
-      </mat-form-field>
-    </p>
-      
-      <div class="button">
-        <button type="submit" mat-button [disabled]="!registerForm.valid"> Registrati  </button>
-      </div>
-  
-    </form>
+      <form [formGroup]="registerForm" (ngSubmit)="submit()">
+        <!-- Name field -->
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Name" formControlName="name">
+          </mat-form-field>
+        </p>
+        <!-- Surname field -->
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Surname" formControlName="surname">
+          </mat-form-field>
+        </p>
+        <!-- Username field -->
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Username" formControlName="username">
+          </mat-form-field>
+        </p>
+        <!-- Password field -->
+        <p>
+          <mat-form-field>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+        </p>
+        <!-- Email field -->
+        <p>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </p>
+        <!-- Birthday field -->
+        <p>
+          <mat-form-field>
+            <mat-label>Data di nascita</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthday">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <!-- Telephone number field -->
+        <p>
+          <mat-form-field>
+            <input type="number" min="1" matInput placeholder="Numero di telefono" formControlName="number">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-label>Seleziona ruolo</mat-label>
+            <mat-select matNativeControl required [(value)]="start_role" formControlName="role">
+              <mat-option value="Utente">Utente</mat-option>
+              <mat-option value="Publisher">Publisher</mat-option>
+              <mat-option value="Finanziatore">Finanziatore</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <div class="button">
+          <button type="submit" mat-button [disabled]="!registerForm.valid"> Registrati </button>
+        </div>
+      </form>
     </mat-card-content>
-    </mat-card>
-  </div>
+  </mat-card>
+</div>

@@ -1,37 +1,32 @@
 *{
-    margin-top: -2%;
-}
-.btnContact{
-
-    margin-left: 4%;
+    margin-top: -1.5%;
 }
 
-.btnContact:hover{
-    background-color: #03a5fc;
+.btnPublish{
+    margin-left: 3%;
 }
 
-.btnNormal:hover{
+.btnNormal:hover, .btnPublish:hover{
     background-color: #03a5fc;
 }
 
 .btnLogin{
     margin-left: 25%;
 }
-.btnLogin:hover{
+.btnLogin:hover, .btnReg:hover{
     background-color: orange;
 }
 
-.btnReg:hover{
-    background-color: orange;
-}
 
 img {
-    margin-left: 4%;
+    margin-left: 3%;
     margin-top: 1%;
 }
 
-hr{
-    margin-top: 0.1%;
+.mat-divider{
+    height: 1px;
+    background-color: #03a5fc;
+    margin-top: 0.2%;
 }
 
 

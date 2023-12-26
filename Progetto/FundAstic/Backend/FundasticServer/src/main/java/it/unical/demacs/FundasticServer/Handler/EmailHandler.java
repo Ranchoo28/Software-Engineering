@@ -1,13 +1,9 @@
 package it.unical.demacs.FundasticServer.Handler;
 
-import org.aspectj.bridge.IMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.security.core.parameters.P;
-
 import java.util.Properties;
-
 
 public class EmailHandler {
     private EmailHandler(){}
@@ -25,7 +21,7 @@ public class EmailHandler {
 
             mailSender.setHost("smtp.gmail.com");
             mailSender.setUsername("projectuid28@gmail.com");
-            mailSender.setPassword("mhsujioysswltzpj");
+            mailSender.setPassword(this.password);
             mailSender.setPort(587);
             properties.setProperty("mail.smtp.auth", "true");
             properties.setProperty("mail.smtp.starttls.enable", "true");
