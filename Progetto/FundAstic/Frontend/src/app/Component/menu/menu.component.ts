@@ -13,7 +13,7 @@ export class MenuComponent {
     ){}
   denyAcces() {
     const c = this.dialog.open(MatDialogComponent, {
-      data: { messaggio: 'Devi registrarti per poter accedere a questa funzione!' }
+      data: { messaggio: 'Devi essere publisher per poter accedere a questa funzione!' }
     });
   }
 }

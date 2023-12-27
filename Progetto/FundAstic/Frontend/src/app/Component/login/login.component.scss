@@ -21,11 +21,21 @@ mat-card-content {
 }
 
 .button .login-button {
-  margin-left: auto;
+  margin-right: 10px;
+  border-radius: 7px;
 }
 
 .button .register-button {
-  margin-right: auto;
+  margin-left: 10px;
+  border-radius: 7px;
+}
+
+.button .register-button:hover{
+  background-color: #03a5fc;
+}
+
+.button .login-button:hover{
+  background-color: orange;
 }
 
 .logo {

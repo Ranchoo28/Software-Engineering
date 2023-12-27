@@ -14,18 +14,20 @@
     display: flex;
     justify-content: center;
   }
-
-  .error {
-    padding: 16px;
-    width: 300px;
-    color: white;
-    background-color: red;
+  .button .login-button {
+    margin-right: 10px;
+    border-radius: 7px;
   }
-
-  .button {
-    display: flex;
-    justify-content: flex-end;
+  
+  .button .register-button {
+    margin-left: 60px;
+    border-radius: 7px;
   }
-
   
+  .button .register-button:hover{
+    background-color: #03a5fc;
+  }
   
+  .button .login-button:hover{
+    background-color: orange;
+  }

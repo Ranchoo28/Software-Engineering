@@ -22,6 +22,7 @@ export class PublishFormComponent {
   firstForm: FormGroup;
   secondForm: FormGroup;
   paymentForm: FormGroup;
+  tooltipMaxAmount = "Minimo 100€"
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,13 +41,13 @@ export class PublishFormComponent {
 
     this.form = this.formBuilder.group({});
     this.firstForm = this.formBuilder.group({
-      projectName: ['FundAstic', Validators.required],
-      projectDescrip: ['Descrizione', Validators.required],
-      projectCategory: ['Informatica', Validators.required],
-      email: ['savcreaa.kr98@gmail.com', Validators.required],
+      projectName: ['', Validators.required],
+      projectDescrip: ['', Validators.required],
+      projectCategory: ['', Validators.required],
+      email: ['', Validators.required],
       imageProject: [],
       videoProject: [],
-      projectAmount: ['150', Validators.required],
+      projectAmount: ['', Validators.required],
       startProjectDate: ['', Validators.required],
       endProjectDate: ['', Validators.required],
     });
@@ -57,7 +58,7 @@ export class PublishFormComponent {
 
     this.paymentForm = this.formBuilder.group({
       paymentMethod: ['', Validators.required],
-      iban: ['65y676', Validators.required],
+      iban: ['', Validators.required],
       paypalEmail: ['', Validators.required],
     });
   }
@@ -113,12 +114,10 @@ export class PublishFormComponent {
   }
 
   uploadAndConvertImage($event: Event) {
-    console.log("entra img")
     this.uploadAndConvertFile($event, 'image');
   }
 
   uploadAndConvertVideo($event: Event) {
-    console.log("entra video")
     this.uploadAndConvertFile($event, 'video');
   }
 

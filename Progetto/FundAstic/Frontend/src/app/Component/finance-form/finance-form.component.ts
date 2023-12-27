@@ -16,6 +16,7 @@ export class FinanceFormComponent {
   
  
   firstFormGroup!: FormGroup;
+  tooltipAmount = "Minimo 1€"
 
   constructor(
     private formBuilder: FormBuilder,

@@ -34,6 +34,7 @@ import { AutoResizeDirective } from './Direttive/auto-resize.directive';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { ShowcaseComponent } from './Component/showcase/showcase.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -75,7 +76,8 @@ import { ShowcaseComponent } from './Component/showcase/showcase.component';
     MatInputModule,
     MatFormFieldModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
   ],
   providers: [RequestService, CookieService, ProxyService],
   bootstrap: [AppComponent]

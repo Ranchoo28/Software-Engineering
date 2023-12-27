@@ -34,6 +34,7 @@ export class ShowcaseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.isLogged = this.cookieUtils.checkLogged();
     this.projectService.getProjects().subscribe((result: any) => {
       this.projects = Object.keys(result).map((key) => {
@@ -80,7 +81,7 @@ export class ShowcaseComponent implements OnInit {
       const converted_source = btoa(binaryString);
       return `data:image/png;base64,${converted_source}`;
     } else {
-      return 'assets/immagine-di-fallback.png';
+      return '';
     }
   }
 }

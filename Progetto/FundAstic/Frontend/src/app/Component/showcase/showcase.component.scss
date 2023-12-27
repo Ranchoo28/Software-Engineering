@@ -1,44 +1,48 @@
-/* Aggiungi questo stile al tuo file CSS */
-
 .projects {
-    margin: 20px;
-    padding: 20px;
-    border: 2px solid black;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .projects h3 {
-    color: #333;
-  }
-  
-  .projects p {
-    color: #666;
-  }
-  
-  .projects img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-  }
-  
-  .projects button {
-    margin-top: 10px;
-  }
+  margin: 20px;
+  padding: 20px;
+  border: 2.1px solid black;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .projects .btnRemove{
-    background-color: orange;
-    margin: 10px;
-  }
+.projects h3 {
+  color: #333;
+}
 
-  .projects .btnFinance{
-    background-color: #03a5fc;
-    justify-items: auto;
-    margin: 10px;
-  }
-  
+.projects p {
+  color: #666;
+}
+
+.projects img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.projects .btnRemove {
+  background-color: orange;
+  margin: 10px;
+  margin-right: auto; /* Allinea a sinistra */
+  border-radius: 7px;
+}
+
+.projects .btnFinance {
+  background-color: #03a5fc;
+  margin: 10px;
+  margin-left: auto; /* Allinea a destra */
+  border-radius: 7px;
+}
+
+.projects .line{
+  border: 1.2px solid #ccc;
+  border-radius: px;
+  width: 100%;
+  height: fit-content;
+}
 .projects-img {
   margin-left: 10px;
+  width: 3px;
+  height: 3px;
 }
-  

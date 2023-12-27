@@ -14,20 +14,20 @@ export class RegisterComponent {
   regexPassword = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%~&£°#'?*=.])[a-zA-Z0-9@!%&£°#'?*=.]{8,}"
   regexFirstLast = "^(?=.{2,20}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$"
   registerForm!: FormGroup;
-  start_role = "Utente"
+  tooltipPassword = "La password deve essere di almeno 8 caratteri, di cui una lettera maiuscola e un carattere speciale."
 
   constructor(private request: RequestService){}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      name: new FormControl('Sav',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexFirstLast)]),
-      surname: new FormControl('Crea',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexFirstLast)]),
-      username: new FormControl('Savv', Validators.required),
-      email: new FormControl('savcreaa.kr99@gmail.com',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexEmail)]),
-      password: new FormControl('A12345678@',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexPassword)]),
+      name: new FormControl('',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexFirstLast)]),
+      surname: new FormControl('',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexFirstLast)]),
+      username: new FormControl('', Validators.required),
+      email: new FormControl('',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexEmail)]),
+      password: new FormControl('',[(c: AbstractControl) => Validators.required(c), Validators.pattern(this.regexPassword)]),
       birthday: new FormControl('', Validators.required),
-      number: new FormControl(355345345, Validators.required),
-      role: new FormControl('')
+      number: new FormControl('', Validators.required),
+      role: new FormControl('', Validators.required)
     });
   }
  

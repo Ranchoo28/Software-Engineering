@@ -12,8 +12,8 @@
       <br>
 
       <mat-form-field [style.width.px]="350">
-        <mat-label>Descrizione (Max 2000 caratteri)</mat-label>
-        <textarea class="desc" matInput formControlName="projectDescrip" required appAutoResize></textarea>
+        <mat-label>Descrizione </mat-label>
+        <textarea  class="desc" matInput formControlName="projectDescrip" required appAutoResize></textarea>
       </mat-form-field>
       <br>
 
@@ -47,7 +47,7 @@
       <br>
       <mat-form-field>
         <mat-label>Importo €</mat-label>
-        <input matInput type="number" min="1" formControlName="projectAmount" required>
+        <input [matTooltip]="tooltipMaxAmount" matInput type="number" min="100" formControlName="projectAmount" required>
       </mat-form-field>
       <br>
 

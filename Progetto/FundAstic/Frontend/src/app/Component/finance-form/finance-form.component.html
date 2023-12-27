@@ -7,7 +7,7 @@
 
       <mat-form-field>
         <mat-label>Importo</mat-label>
-        <input matInput type="number" min="1" formControlName="donationAmount" required>
+        <input [matTooltip]="tooltipAmount" matInput type="number" min="1" formControlName="donationAmount" required>
       </mat-form-field>
       <br> <br> <br> <br>
         
