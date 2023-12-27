@@ -1,11 +1,8 @@
 package it.unical.demacs.FundasticServer.Config;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import javax.imageio.ImageIO;
-import java.time.LocalDate;
 
+import java.io.File;
+import java.time.LocalDate;
 import it.unical.demacs.FundasticServer.Dashboard.Dashboard;
 import it.unical.demacs.FundasticServer.Dashboard.DashboardRepository;
 import it.unical.demacs.FundasticServer.Project.Project;

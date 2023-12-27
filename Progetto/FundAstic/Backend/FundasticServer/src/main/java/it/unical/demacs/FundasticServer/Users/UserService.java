@@ -20,7 +20,6 @@ public class UserService {
     private final UsersRepository usersRepository;
     private final JwtService jwtService;
     private final EmailService emailService;
-    //private final SessionRepository sessionRepository;
 
     @Autowired
     public UserService(UsersRepository usersRepository, JwtService jwtService, EmailService emailService) {
@@ -73,14 +72,14 @@ public class UserService {
                 new String[]{""}
         ));
         System.out.println(request.getBirthday());
-        /*
+
         emailService.sendEmail(
                 request.getEmail(),
                 "Benvenuto in FundAstic!" ,
                 request.getName() + " grazie per esserti registrato!"
                 );
 
-         */
+
         return ResponseEntity.status(200).body("Account registered!");
     }
 

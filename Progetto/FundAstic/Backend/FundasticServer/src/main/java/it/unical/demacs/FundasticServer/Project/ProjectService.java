@@ -52,13 +52,13 @@ public class ProjectService {
                     request.getStartDate(),
                     request.getEndDate()
             ));
-            /*
+
             emailService.sendEmail(
                     request.getEmail(),
                     "Pubblicazione progetto" ,
                     "Complimenti, il tuo progetto è stato pubblicato con successo!"
             );
-             */
+
             return ResponseEntity.ok().body("Project published successfully!");
         }
     }
@@ -82,7 +82,7 @@ public class ProjectService {
             String[] newProjects = Arrays.copyOf(oldProjects, oldProjects.length + 1);
             newProjects[newProjects.length - 1] = request.getTitle();
             userToUpdate.setDonated_projects(newProjects);
-            /*
+
             emailService.sendEmail(
                     userToUpdate.getEmail(),
                     "Donazione effettuata" ,
@@ -94,8 +94,6 @@ public class ProjectService {
                     "Nuova donazione" ,
                     "Complimenti, un utente ha deciso di donare al tuo progetto!"
             );
-
-             */
 
             usersRepository.save(userToUpdate);
             projectRepository.save(projectToUpdate);
