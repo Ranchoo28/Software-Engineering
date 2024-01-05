@@ -6,6 +6,7 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 
 @Configuration
+@EnableAsync
 public class AsyncConfig {
 
     @Bean
